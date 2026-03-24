@@ -1,6 +1,8 @@
 import bannerBg from "../assets/homeBannerBg.webp";
+import { useLanguage } from "../context/LanguageContext.jsx";
 
 const HeroBanner = () => {
+  const { language } = useLanguage();
   return (
     <section className="relative w-full overflow-hidden bg-white">
       <img
@@ -15,31 +17,52 @@ const HeroBanner = () => {
           className="relative top-5 w-full max-w-[1200px] px-4 text-[28px] font-semibold leading-[38px] text-black sm:top-9 sm:text-[44px] sm:leading-[56px] lg:top-11 lg:text-[60px] lg:leading-[75px]"
           style={{ fontFamily: '"SF Pro Text", sans-serif' }}
         >
-          <span className="text-[28px] font-semibold leading-[38px] text-[rgb(0,85,254)] sm:text-[44px] sm:leading-[56px] lg:text-[60px] lg:leading-[75px]">
-            ExploreTECH:
-          </span>{" "}
-          Your
-          <br className="sm:hidden" />
-          Omni Channel
-          <br className="sm:hidden" />
-          <br className="hidden sm:block" />
-          for All things
-          <br className="sm:hidden" />
-          Hospitality Tech
+          {language === "AR" ? (
+            <>
+              <span className="text-[28px] font-semibold leading-[38px] text-[rgb(0,85,254)] sm:text-[44px] sm:leading-[56px] lg:text-[60px] lg:leading-[75px]">
+                إكسبلورتك:
+              </span>{" "}
+              مصدر واحد | موقع واحد | منصة واحدة | عدة عملاء | حلول متعددة
+            </>
+          ) : (
+            <>
+              <span className="text-[28px] font-semibold leading-[38px] text-[rgb(0,85,254)] sm:text-[44px] sm:leading-[56px] lg:text-[60px] lg:leading-[75px]">
+                ExploreTECH:
+              </span>{" "}
+              Your
+              <br className="sm:hidden" />
+              Omni Channel
+              <br className="sm:hidden" />
+              <br className="hidden sm:block" />
+              for All things
+              <br className="sm:hidden" />
+              Hospitality Tech
+            </>
+          )}
         </h1>
         <p
           className="relative top-6 mt-8 max-w-3xl px-2 text-[16px] font-normal leading-[24px] text-black sm:top-9 md:text-[18px] md:leading-[27px] lg:top-12"
           style={{ fontFamily: '"SF Pro Text", sans-serif' }}
         >
-          Your AI-driven gateway to 2000+ hospitality tech solutions,
-          <br className="hidden sm:block" />
-          streamlining the process from discovery to procurement.
+          {language === "AR" ? (
+            <>
+              بوابتك المدعومة بالذكاء الاصطناعي إلى أكثر من 2000 حل تقني للضيافة،
+              <br className="hidden sm:block" />
+              لتبسيط الرحلة من الاكتشاف إلى الشراء.
+            </>
+          ) : (
+            <>
+              Your AI-driven gateway to 2000+ hospitality tech solutions,
+              <br className="hidden sm:block" />
+              streamlining the process from discovery to procurement.
+            </>
+          )}
         </p>
         <button
           className="relative top-8 mt-10 rounded-md bg-[#2F66F3] px-6 py-3 text-[14px] font-medium text-white transition hover:bg-[#2557D6] sm:top-11 lg:top-14"
           type="button"
         >
-          Start exploring
+          {language === "AR" ? "ابدأ الاستكشاف" : "Start exploring"}
         </button>
       </div>
     </section>

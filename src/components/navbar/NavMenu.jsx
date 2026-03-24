@@ -1,8 +1,10 @@
-import { ChevronDown, ChevronRight, Globe, Menu, Search, X } from "lucide-react";
+import { ChevronRight, Globe, Menu, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import logo from "../../Explote-Tech-Logo-Black.gif";
+import logoEn from "../../Explote-Tech-Logo-Black.gif";
+import logoAr from "../../../AR-Explote-Tech-Logo-Black.gif";
+import { useLanguage } from "../../context/LanguageContext.jsx";
 
-const categories = [
+const categoriesEn = [
   "Business intelligence",
   "Commercial and distribution",
   "Hospitality operations",
@@ -17,7 +19,23 @@ const categories = [
   "Sustainability",
 ];
 
-const resources = ["Resources", "News", "Blog"];
+const categoriesAr = [
+  "ذكاء الأعمال",
+  "التجاري والتوزيع",
+  "عمليات الضيافة",
+  "تقنيات الضيوف والمسافرين",
+  "تقنيات الغرف",
+  "تقنية المعلومات والاتصالات",
+  "التمويل والمدفوعات",
+  "الروبوتات والأتمتة",
+  "خدمات الضيافة",
+  "تقنية المطاعم",
+  "حلول الإيجار قصير الأمد/العطلات",
+  "الاستدامة",
+];
+
+const resourcesEn = ["Resources", "News", "Blog"];
+const resourcesAr = ["الموارد", "الأخبار", "المدونة"];
 
 const menuItemClasses =
   "flex items-center justify-between border-b border-slate-100 px-5 py-1.5 text-[14px] font-medium text-slate-700 transition-colors last:border-b-0 hover:bg-slate-50 hover:text-[#0b56ff]";
@@ -25,12 +43,18 @@ const menuItemClasses =
 const arrowClasses = "h-4 w-4 text-slate-600";
 
 const NavMenu = ({ onSignIn, onSignUp }) => {
+  const { language, setLanguage } = useLanguage();
+  const navLogo = language === "AR" ? logoAr : logoEn;
+  const categories = language === "AR" ? categoriesAr : categoriesEn;
+  const resources = language === "AR" ? resourcesAr : resourcesEn;
   const [searchOpen, setSearchOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerSection, setDrawerSection] = useState(null);
+  const [languageOpen, setLanguageOpen] = useState(false);
   const [query, setQuery] = useState("");
   const panelRef = useRef(null);
   const inputRef = useRef(null);
+  const mobileLanguageRef = useRef(null);
   const hasQuery = query.trim().length > 0;
 
   const closeSearch = () => {
@@ -38,7 +62,10 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
     setQuery("");
   };
 
-  const closeDrawer = () => setDrawerOpen(false);
+  const closeDrawer = () => {
+    setDrawerOpen(false);
+    setLanguageOpen(false);
+  };
 
   const toggleDrawerSection = (section) => {
     setDrawerSection((current) => (current === section ? null : section));
@@ -47,6 +74,14 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
   const clearQuery = () => {
     setQuery("");
     inputRef.current?.focus();
+  };
+
+  const handleLanguageSelect = (code) => {
+    setLanguage(code);
+    setLanguageOpen(false);
+    if (drawerOpen) {
+      closeDrawer();
+    }
   };
 
   useEffect(() => {
@@ -78,6 +113,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
   useEffect(() => {
     if (!drawerOpen) return;
     setDrawerSection(null);
+    setLanguageOpen(false);
     const handleKey = (event) => {
       if (event.key === "Escape") {
         closeDrawer();
@@ -105,9 +141,31 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
     };
   }, [searchOpen, drawerOpen]);
 
+  useEffect(() => {
+    if (!languageOpen) return;
+    const handleOutside = (event) => {
+      const clickedOutsideMobile =
+        mobileLanguageRef.current &&
+        !mobileLanguageRef.current.contains(event.target);
+      if (clickedOutsideMobile) {
+        setLanguageOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutside);
+    return () => document.removeEventListener("mousedown", handleOutside);
+  }, [languageOpen]);
+
   return (
-    <div className="ml-auto mr-0 flex items-center lg:mr-6">
-      <div className="hidden items-center gap-6 lg:flex">
+    <div
+      className={`flex items-center lg:mr-6 ${
+        language === "AR" ? "mr-auto ml-0" : "ml-auto mr-0"
+      }`}
+    >
+      <div
+        className={`hidden items-center gap-6 lg:flex ${
+          language === "AR" ? "flex-row-reverse" : ""
+        }`}
+      >
         <button
           className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-slate-200 text-[#14c439] shadow-sm"
           aria-label="Search"
@@ -121,7 +179,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             className="text-sm font-medium tracking-wide uppercase text-slate-700 transition-colors group-hover:text-[#0b56ff]"
             href="#"
           >
-            Categories
+            {language === "AR" ? "الفئات" : "Categories"}
           </a>
           <div className="invisible absolute left-0 top-full z-50 mt-4 w-72 translate-y-2 rounded-2xl border border-slate-100 bg-white py-2 opacity-0 shadow-[0_20px_40px_-18px_rgba(15,23,42,0.35)] transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
             {categories.map((item) => (
@@ -136,26 +194,26 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
           className="text-sm font-medium tracking-wide uppercase text-slate-700"
           href="#"
         >
-          Products
+          {language === "AR" ? "المنتجات" : "Products"}
         </a>
         <a
           className="text-sm font-medium tracking-wide uppercase text-slate-700"
           href="#"
         >
-          Vendors
+          {language === "AR" ? "المورّدون" : "Vendors"}
         </a>
         <a
           className="text-sm font-medium tracking-wide uppercase text-slate-700"
           href="#"
         >
-          Advisory Services
+          {language === "AR" ? "الخدمات الاستشارية" : "Advisory Services"}
         </a>
         <div className="group relative">
           <a
             className="text-sm font-medium tracking-wide uppercase text-slate-700 transition-colors group-hover:text-[#0b56ff]"
             href="#"
           >
-            Resources
+            {language === "AR" ? "الموارد" : "Resources"}
           </a>
           <div className="invisible absolute left-0 top-full z-50 mt-4 w-56 translate-y-2 rounded-2xl border border-slate-100 bg-white py-2 opacity-0 shadow-[0_20px_40px_-18px_rgba(15,23,42,0.35)] transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
             {resources.map((item) => (
@@ -170,13 +228,13 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
           className="text-sm font-medium tracking-wide uppercase text-slate-700"
           href="#"
         >
-          Events
+          {language === "AR" ? "الفعاليات" : "Events"}
         </a>
         <a
           className="text-sm font-medium tracking-wide uppercase text-slate-700"
           href="#"
         >
-          Contact Us
+          {language === "AR" ? "اتصل بنا" : "Contact Us"}
         </a>
       </div>
 
@@ -199,7 +257,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             onSignIn();
           }}
         >
-          Sign In/ Sign Up
+          {language === "AR" ? "تسجيل الدخول / إنشاء حساب" : "Sign In/ Sign Up"}
         </a>
         <button
           className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-900"
@@ -230,7 +288,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             onSignIn();
           }}
         >
-          Sign In/ Sign Up
+          {language === "AR" ? "تسجيل الدخول / إنشاء حساب" : "Sign In/ Sign Up"}
         </a>
         <button
           className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-900"
@@ -254,7 +312,11 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   onChange={(event) => setQuery(event.target.value)}
                   style={{ fontFamily: '"Space Grotesk", sans-serif' }}
                   className="min-w-0 flex-1 bg-transparent pl-0 pr-[6px] text-[14px] font-medium leading-[20px] tracking-normal text-black placeholder:text-slate-400 focus:outline-none sm:pr-[10px] sm:text-[18px] sm:leading-[28px]"
-                  placeholder="Enter your search term here"
+                  placeholder={
+                    language === "AR"
+                      ? "أدخل عبارة البحث هنا"
+                      : "Enter your search term here"
+                  }
                 />
                 {hasQuery && (
                   <button
@@ -274,7 +336,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   }`}
                   style={{ fontFamily: '"Space Grotesk", sans-serif' }}
                 >
-                  Search
+                  {language === "AR" ? "بحث" : "Search"}
                 </button>
               </div>
 
@@ -287,7 +349,9 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                       fontWeight: 400,
                     }}
                   >
-                    No Result found. Do you want to get result on{" "}
+                    {language === "AR"
+                      ? "لم يتم العثور على نتائج. هل تريد البحث في "
+                      : "No Result found. Do you want to get result on "}
                     <a
                       href="#"
                       className="text-[14px] font-[600] leading-[23px] !text-[#0055fe] hover:!text-[#0055fe]"
@@ -296,7 +360,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                         fontWeight: 600,
                       }}
                     >
-                      ExploreTECH PRO?
+                      {language === "AR" ? "ExploreTECH PRO؟" : "ExploreTECH PRO?"}
                     </a>
                   </p>
                 </div>
@@ -328,7 +392,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
           <div className="flex items-start justify-between px-6 pb-5 pt-6">
             <div>
               <img
-                src={logo}
+                src={navLogo}
                 alt="Explore Tech"
                 className="-ml-4 h-[86px] w-[176px]"
                 style={{ filter: "invert(1) brightness(1.2)" }}
@@ -347,7 +411,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             </button>
           </div>
 
-          <nav className="mt-4 px-6 text-white">
+          <nav className="relative mt-4 px-6 text-white">
             <button
               type="button"
               className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 text-left text-[16px] font-semibold tracking-wide ${
@@ -364,7 +428,8 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                CATEGORIES
+                {language === "AR" ? "الفئات" : "CATEGORIES"}
+                
               </span>
               <ChevronRight
                 className={`h-6 w-6 transition-transform duration-200 ${
@@ -379,10 +444,22 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   <a
                     key={item}
                     href="#"
-                    className="flex w-full items-center justify-between border-t border-white/15 py-4 text-[16px] font-semibold tracking-wide text-white"
+                    className="flex w-full items-center justify-between border-t border-white/15 py-4 text-white"
                     onClick={closeDrawer}
                   >
-                    <span className="pr-4 uppercase">{item}</span>
+                    <span
+                      className="pr-4 uppercase"
+                      style={{
+                        fontFamily: '"SF Pro Text", sans-serif',
+                        fontStyle: "normal",
+                        fontWeight: 400,
+                        fontSize: "16px",
+                        lineHeight: "24px",
+                        color: "rgb(215, 245, 222)",
+                      }}
+                    >
+                      {item}
+                    </span>
                     <ChevronRight
                       className="h-6 w-6 shrink-0 text-white"
                       strokeWidth={2}
@@ -405,7 +482,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                PRODUCTS
+                {language === "AR" ? "المنتجات" : "PRODUCTS"}
               </span>
             </a>
             <a
@@ -422,7 +499,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                VENDORS
+                {language === "AR" ? "المورّدون" : "VENDORS"}
               </span>
             </a>
             <a
@@ -439,7 +516,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                ADVISORY SERVICES
+                {language === "AR" ? "الخدمات الاستشارية" : "ADVISORY SERVICES"}
               </span>
             </a>
             <button
@@ -458,7 +535,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                RESOURCES
+                {language === "AR" ? "الموارد" : "RESOURCES"}
               </span>
               <ChevronRight
                 className={`h-6 w-6 transition-transform duration-200 ${
@@ -473,10 +550,22 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   <a
                     key={item}
                     href="#"
-                    className="flex w-full items-center justify-between border-t border-white/15 py-4 text-[16px] font-semibold tracking-wide text-white"
+                    className="flex w-full items-center justify-between border-t border-white/15 py-4 text-white"
                     onClick={closeDrawer}
                   >
-                    <span className="pr-4 uppercase">{item}</span>
+                    <span
+                      className="pr-4 uppercase"
+                      style={{
+                        fontFamily: '"SF Pro Text", sans-serif',
+                        fontStyle: "normal",
+                        fontWeight: 400,
+                        fontSize: "16px",
+                        lineHeight: "24px",
+                        color: "rgb(215, 245, 222)",
+                      }}
+                    >
+                      {item}
+                    </span>
                     <ChevronRight
                       className="h-6 w-6 shrink-0 text-white"
                       strokeWidth={2}
@@ -499,7 +588,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                EVENTS
+                {language === "AR" ? "الفعاليات" : "EVENTS"}
               </span>
             </a>
             <a
@@ -516,13 +605,62 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                CONTACT US
+                {language === "AR" ? "اتصل بنا" : "CONTACT US"}
               </span>
             </a>
 
-            <div className="mt-10 flex items-center gap-2 text-[14px] font-semibold text-white/80">
-              <Globe className="h-4 w-4" />
-              <span>EN</span>
+            <div ref={mobileLanguageRef} className="relative mt-10 inline-flex">
+              {languageOpen && (
+                <div className="absolute bottom-full left-0 z-10 mb-2 w-[170px] overflow-hidden rounded-[14px] border border-[#d7dee8] bg-[#f4f6f9] shadow-[0_10px_28px_-18px_rgba(15,23,42,0.45)]">
+                  <button
+                    type="button"
+                    className="w-full px-5 py-[10px] text-left transition-colors hover:bg-[#eef2f7]"
+                    onClick={() => handleLanguageSelect("EN")}
+                    style={{
+                      fontFamily: '"SF Pro Text", sans-serif',
+                      fontStyle: "normal",
+                      fontWeight: 400,
+                      fontSize: "13px",
+                      lineHeight: "20px",
+                      color: "rgb(87, 106, 160)",
+                    }}
+                  >
+                    English
+                  </button>
+                  <div className="h-px w-full bg-[#d7dee8]" />
+                  <button
+                    type="button"
+                    className="w-full px-5 py-[10px] text-left transition-colors hover:bg-[#eef2f7]"
+                    onClick={() => handleLanguageSelect("AR")}
+                    style={{
+                      fontFamily: '"SF Pro Text", sans-serif',
+                      fontStyle: "normal",
+                      fontWeight: 400,
+                      fontSize: "13px",
+                      lineHeight: "20px",
+                      color: "rgb(87, 106, 160)",
+                    }}
+                  >
+                    {"\u0627\u0644\u0639\u0631\u0628\u064a\u0629"}
+                  </button>
+                </div>
+              )}
+              <button
+                type="button"
+                className="inline-flex items-center gap-2"
+                onClick={() => setLanguageOpen((current) => !current)}
+                style={{
+                  fontFamily: '"SF Pro Text", sans-serif',
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  fontSize: "13px",
+                  lineHeight: "20px",
+                  color: languageOpen ? "#0b56ff" : "rgb(87, 106, 160)",
+                }}
+              >
+                <Globe className="h-4 w-4" />
+                <span>{language}</span>
+              </button>
             </div>
           </nav>
         </aside>
@@ -532,3 +670,5 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
 };
 
 export default NavMenu;
+
+

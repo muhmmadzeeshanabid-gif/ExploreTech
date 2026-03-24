@@ -1,7 +1,12 @@
-﻿import React, { useState } from "react";
-import logo from "../../015303ETLogo-English_Color.png";
+import React, { useState } from "react";
+import logoEn from "../../015303ETLogo-English_Color.png";
+import logoAr from "../../AR-Explote-Tech-Logo-Black.gif";
+import { useLanguage } from "../context/LanguageContext.jsx";
 
 const Footer = () => {
+  const { language } = useLanguage();
+  const isArabic = language === "AR";
+  const footerLogo = isArabic ? logoAr : logoEn;
   const [selectedCountry, setSelectedCountry] = useState("Bahamas");
 
   const countries = [
@@ -253,55 +258,35 @@ const Footer = () => {
     "Zimbabwe",
   ];
 
-  const footerLinksGroups = [
-    [
-      "About Us",
-      "FAQ",
-      "Pricing",
-      "Contact Us",
-      "Blog",
-      "Start a New Comparison",
-    ],
-    [
-      "Latest News",
-      "ExploreTECH News",
-      "ExploreTECH in the Media",
-      "ExploreTECH Events",
-      "Terms & Conditions",
-      "Terms of Use",
-    ],
-    [
-      "Refund Policy",
-      "Cookies Policy",
-      "Privacy Policy",
-      "VOE Terms & Conditions",
-      "Resources",
-      "Cookie Settings",
-    ],
-  ];
+  const footerLinksGroups = isArabic
+    ? [
+        ["لمحة عامة", "أسئلة متكررة", "التسعير والمزايا للبائعين", "اتصل بنا", "المدونة", "ابدأ مقارنة جديدة"],
+        ["أحدث الأخبار", "اكتشف أخبار التكنولوجيا", "اكسبلورتك في وسائل الإعلام", "استكشف أحداث التكنولوجيا", "الشروط والأحكام", "شروط الاستخدام"],
+        ["سياسة الاسترجاع", "اتفاقية ملفات تعريف الارتباط", "سياسة الخصوصية", "شروط وأحكام صوت الخبير", "الموارد", "إعدادات ملفات تعريف الارتباط"],
+      ]
+    : [
+        ["About Us", "FAQ", "Pricing", "Contact Us", "Blog", "Start a New Comparison"],
+        ["Latest News", "ExploreTECH News", "ExploreTECH in the Media", "ExploreTECH Events", "Terms & Conditions", "Terms of Use"],
+        ["Refund Policy", "Cookies Policy", "Privacy Policy", "VOE Terms & Conditions", "Resources", "Cookie Settings"],
+      ];
 
   const fontSfPro =
     "font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif]";
   const footerLinkClass = `${fontSfPro} !text-[#000000] !text-[14px] !leading-[21px] !font-normal tracking-normal no-underline visited:!text-[#000000] hover:!text-[rgb(0,85,254)] hover:underline hover:underline-offset-[2px]`;
 
   return (
-    <footer className="w-full bg-white mt-10 pt-0">
-      <div className="max-w-[1790px] mx-auto px-5 md:px-10">
-        <div className="border-t-2 border-[#d9dde3] py-[58px] flex flex-col gap-9">
-          <a href="/" className="inline-block w-max">
-            <img
-              src={logo}
-              alt="ExploreTECH Logo"
-              className="h-[63px] w-auto object-contain"
-            />
-          </a>
+    <footer className="mt-10 w-full bg-white pt-0" dir={isArabic ? "rtl" : "ltr"}>
+      <div className="mx-auto max-w-[1790px] px-5 md:px-10">
+        <div className="flex flex-col gap-9 border-t-2 border-[#d9dde3] py-[58px]">
+          <div className={`flex w-full ${isArabic ? "justify-end" : "justify-start"}`}>
+            <a href="/" className="inline-block w-max">
+              <img src={footerLogo} alt="ExploreTECH Logo" className="h-[63px] w-auto object-contain" />
+            </a>
+          </div>
 
-          <div className="w-full grid grid-cols-1 md:grid-cols-[max-content_max-content_max-content_auto] md:justify-start gap-y-5 md:gap-x-[148px] items-start">
+          <div className="grid w-full grid-cols-1 items-start gap-y-5 md:grid-cols-[max-content_max-content_max-content_auto] md:justify-start md:gap-x-[148px]">
             {footerLinksGroups.map((group, groupIndex) => (
-              <div
-                key={groupIndex}
-                className="flex flex-col gap-[10px]"
-              >
+              <div key={groupIndex} className={`flex flex-col gap-[10px] ${isArabic ? "text-right" : ""}`}>
                 {group.map((link, idx) => (
                   <a key={idx} href="#" className={footerLinkClass}>
                     {link}
@@ -310,11 +295,11 @@ const Footer = () => {
               </div>
             ))}
 
-            <div className="relative w-full md:w-[290px] md:ml-16">
+            <div className="relative w-full md:ml-16 md:w-[290px]">
               <select
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
-                className={`${fontSfPro} w-full h-[36px] border border-[#c9ced8] rounded-[6px] bg-white text-[12px] leading-[18px] font-normal px-3 pr-8 appearance-none outline-none`}
+                className={`${fontSfPro} h-[36px] w-full appearance-none rounded-[6px] border border-[#c9ced8] bg-white px-3 pr-8 text-[12px] font-normal leading-[18px] outline-none`}
               >
                 {countries.map((country, idx) => (
                   <option key={idx} value={country}>
@@ -333,48 +318,32 @@ const Footer = () => {
         <div className="border-t-2 border-[#d9dde3]" />
 
         <div className="py-8">
-          <p
-            className={`${fontSfPro} text-[rgb(15,23,42)] text-[14px] leading-[21px] font-normal`}
-          >
-            © Copyright 2024, All Rights Reserved
+          <p className={`${fontSfPro} text-[14px] font-normal leading-[21px] text-[rgb(15,23,42)]`}>
+            {isArabic ? "© إكسبلورتك. جميع الحقوق محفوظة" : "© Copyright 2024, All Rights Reserved"}
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 pb-9">
-          <p
-            className={`${fontSfPro} text-[rgb(15,23,42)] text-[12px] leading-[21px] font-normal`}
-          >
-            ExploreTECH Dubai office. 3906, Mazaya Business Avenue BB1, JLT
-            P.O.Box 333834, Dubai, UAE | Call Us: +971 (0)4 363 6588 | Email Us:
-            exploremore@exploretech.io
+        <div className="flex flex-col items-start justify-between gap-8 pb-9 lg:flex-row lg:items-end">
+          <p className={`${fontSfPro} text-[12px] font-normal leading-[21px] text-[rgb(15,23,42)]`}>
+            {isArabic
+              ? "مكتب إكسبلورتك في دبي:3906، Mazaya Business Avenue BB1، أبراج بحيرة جميرا، صندوق بريد 333834، دبي، الإمارات العربية المتحدة|اتصل بنا:+971 (0)4 363 6588|راسلنا عبر البريد الإلكتروني:exploremore@exploretech.io"
+              : "ExploreTECH Dubai office. 3906, Mazaya Business Avenue BB1, JLT P.O.Box 333834, Dubai, UAE | Call Us: +971 (0)4 363 6588 | Email Us: exploremore@exploretech.io"}
           </p>
 
-          <div className="flex gap-3 flex-shrink-0">
+          <div className="flex flex-shrink-0 gap-3">
             {[
               { iconClass: "bi bi-twitter-x", label: "X" },
-              {
-                iconClass: "bi bi-facebook",
-                label: "Facebook",
-              },
-              {
-                iconClass: "bi bi-instagram",
-                label: "Instagram",
-              },
-              {
-                iconClass: "bi bi-linkedin",
-                label: "LinkedIn",
-              },
+              { iconClass: "bi bi-facebook", label: "Facebook" },
+              { iconClass: "bi bi-instagram", label: "Instagram" },
+              { iconClass: "bi bi-linkedin", label: "LinkedIn" },
             ].map((social, idx) => (
               <a
                 key={idx}
                 href="#"
                 aria-label={social.label}
-                className="w-[38px] h-[38px] border border-[#d7dbe3] rounded-[4px] flex items-center justify-center text-[rgb(15,23,42)] bg-white transition-all duration-300 ease-out hover:rounded-[10px] hover:border-b-[4px] hover:border-[rgb(0,85,254)] hover:text-[rgb(0,85,254)] hover:shadow-[0_6px_14px_rgba(0,85,254,0.16)]"
+                className="flex h-[38px] w-[38px] items-center justify-center rounded-[4px] border border-[#d7dbe3] bg-white text-[rgb(15,23,42)] transition-all duration-300 ease-out hover:rounded-[10px] hover:border-b-[4px] hover:border-[rgb(0,85,254)] hover:text-[rgb(0,85,254)] hover:shadow-[0_6px_14px_rgba(0,85,254,0.16)]"
               >
-                <i
-                  className={`${social.iconClass} text-[14px] leading-none`}
-                  aria-hidden="true"
-                />
+                <i className={`${social.iconClass} text-[14px] leading-none`} aria-hidden="true" />
               </a>
             ))}
           </div>

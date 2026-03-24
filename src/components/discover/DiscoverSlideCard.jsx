@@ -1,6 +1,11 @@
 import React from "react";
+import { useLanguage } from "../../context/LanguageContext.jsx";
 
 const DiscoverSlideCard = ({ cat, onClick, isOut, style }) => {
+  const { language } = useLanguage();
+  const isArabic = language === "AR";
+  const cardTitle = isArabic ? cat.arTitle || cat.title : cat.title;
+
   return (
     <button
       type="button"
@@ -12,14 +17,19 @@ const DiscoverSlideCard = ({ cat, onClick, isOut, style }) => {
     >
       <img
         src={cat.image}
-        alt={cat.title}
+        alt={cardTitle}
         className="w-full h-full object-cover"
       />
 
-      <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/35 to-transparent p-3 pb-4 pt-16 text-left lg:p-6 lg:pb-7 lg:pt-24">
+      <div
+        className={`absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/35 to-transparent p-3 pb-4 pt-16 lg:p-6 lg:pb-7 lg:pt-24 ${
+          isArabic ? "text-right" : "text-left"
+        }`}
+      >
         <div className="flex w-full items-end gap-2 lg:gap-4">
           <h3
             className="max-w-[80%] flex-1 text-[12px] font-semibold leading-[16px] text-white lg:max-w-[82%] lg:text-[16px] lg:leading-[24px]"
+            dir={isArabic ? "rtl" : "ltr"}
             style={{
               fontFamily: '"SF Pro Text", sans-serif',
               fontWeight: 600,
@@ -33,7 +43,7 @@ const DiscoverSlideCard = ({ cat, onClick, isOut, style }) => {
               hyphens: "manual",
             }}
           >
-            {cat.title}
+            {cardTitle}
           </h3>
 
           <div className="ml-auto flex flex-col items-center text-center">
@@ -47,7 +57,7 @@ const DiscoverSlideCard = ({ cat, onClick, isOut, style }) => {
               className="text-[9px] font-bold tracking-[0.1em] text-[#34D399] lg:text-[12px] lg:tracking-[0.16em]"
               style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 700 }}
             >
-              Products
+              {isArabic ? "منتجات" : "Products"}
             </span>
           </div>
         </div>

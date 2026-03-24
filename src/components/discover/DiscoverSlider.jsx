@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { categories } from "./discoverData";
 import DiscoverDots from "./DiscoverDots";
 import DiscoverSlideCard from "./DiscoverSlideCard";
+import { useLanguage } from "../../context/LanguageContext.jsx";
 
 const DiscoverSlider = () => {
+  const { language } = useLanguage();
+  const isArabic = language === "AR";
   const [activeIndex, setActiveIndex] = useState(2);
   const [isPaused, setIsPaused] = useState(false);
   const [isDesktop, setIsDesktop] = useState(
@@ -41,15 +44,21 @@ const DiscoverSlider = () => {
 
   return (
     <div
-      className="relative z-10 mt-7 flex w-full justify-center px-4 md:mt-7 md:px-4 lg:mt-0 lg:px-0 lg:justify-end"
+      className={`relative z-10 mt-7 flex w-full justify-center px-4 md:mt-7 md:px-4 lg:mt-0 lg:px-0 ${
+        isArabic ? "lg:justify-start" : "lg:justify-end"
+      }`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocusCapture={() => setIsPaused(true)}
       onBlurCapture={() => setIsPaused(false)}
     >
-      <div className="flex flex-col items-center lg:translate-x-[275px]">
+      <div className={`flex flex-col items-center ${isArabic ? "lg:-translate-x-[40px]" : "lg:translate-x-[275px]"}`}>
         <div
-          className="relative isolate mx-auto w-[320px] max-w-[calc(100vw-34px)] overflow-hidden md:w-[332px] md:max-w-[calc(100vw-40px)] lg:ml-auto lg:w-[1080px] lg:max-w-none lg:before:pointer-events-none lg:before:absolute lg:before:inset-y-0 lg:before:left-0 lg:before:z-[200] lg:before:w-[220px] lg:before:bg-[#0B5BFF] lg:before:content-[''] lg:after:pointer-events-none lg:after:absolute lg:after:inset-y-0 lg:after:right-0 lg:after:z-[200] lg:after:w-[175px] lg:after:bg-[#0B5BFF] lg:after:content-['']"
+          className={`relative isolate mx-auto w-[360px] max-w-[calc(100vw-24px)] overflow-hidden md:w-[420px] md:max-w-[calc(100vw-32px)] lg:max-w-none lg:before:pointer-events-none lg:before:absolute lg:before:inset-y-0 lg:before:left-0 lg:before:z-[200] lg:before:bg-[#0B5BFF] lg:before:content-[''] lg:after:pointer-events-none lg:after:absolute lg:after:inset-y-0 lg:after:right-0 lg:after:z-[200] lg:after:bg-[#0B5BFF] lg:after:content-[''] ${
+            isArabic
+              ? "lg:ml-0 lg:w-[900px] lg:before:w-[140px] lg:after:w-[140px]"
+              : "lg:ml-auto lg:w-[1200px] lg:before:w-[220px] lg:after:w-[175px]"
+          }`}
           style={{
             WebkitMaskImage: isDesktop
               ? "linear-gradient(to right, transparent 0%, black 10%, black 84%, transparent 100%)"

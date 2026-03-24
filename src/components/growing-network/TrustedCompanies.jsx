@@ -1,59 +1,47 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
+import { useLanguage } from "../../context/LanguageContext.jsx";
 
 const QuoteIcon = () => (
-  <img
-    src="/quote.png"
-    alt="Quote Icon"
-    className="w-[20px] h-[20px] object-contain"
-  />
+  <img src="/quote.png" alt="Quote Icon" className="h-[20px] w-[20px] object-contain" />
 );
 
-const TestimonialCard = ({ quote, author, title, company, pHeight }) => {
+const TestimonialCard = ({ quote, author, title, company, isArabic = false }) => {
   return (
-    <div className="w-full max-w-[440px] mx-auto lg:max-w-none lg:w-[31%] flex flex-col mb-16 lg:mb-0">
-      {/* Box containing the border styling */}
-      <div className="relative pt-12 pb-14 pl-[45.5px] pr-4 border-l-[3px] border-b-[4px] border-[#1fc04f] rounded-bl-[100px] rounded-tl-none rounded-tr-none rounded-br-none h-fit flex flex-col justify-start items-start w-full">
-        {/* Top partial border */}
-        <div className="absolute top-0 left-0 h-[3px] bg-[#1fc04f] w-[35px]"></div>
+    <div className="mx-auto mb-16 flex w-full max-w-[440px] flex-col lg:mb-0 lg:w-[31%] lg:max-w-none">
+      <div
+        className="relative h-fit w-full rounded-bl-[100px] border-b-[4px] border-l-[3px] border-[#1fc04f] pb-14 pl-[45.5px] pr-6 pt-12"
+        dir={isArabic ? "rtl" : "ltr"}
+      >
+        <div className="absolute left-0 top-0 h-[3px] w-[35px] bg-[#1fc04f]" />
 
-        {/* Top-left quote icon */}
-        <div className="absolute -top-[20px] left-[30px] w-[45px] h-[45px] bg-[#1fc04f] rounded-full flex items-center justify-center z-10">
+        <div className="absolute -top-[20px] left-[30px] z-10 flex h-[45px] w-[45px] items-center justify-center rounded-full bg-[#1fc04f]">
           <QuoteIcon />
         </div>
 
-        {/* Gray vertical line extending up from the bottom-right icon */}
-        <div className="absolute bottom-[20px] right-[20px] w-[1px] h-[60px] bg-[#e5e7eb] z-0"></div>
+        <div className="absolute bottom-[20px] right-[20px] z-0 h-[60px] w-[1px] bg-[#e5e7eb]" />
 
-        {/* Bottom-right quote icon */}
-        <div className="absolute -bottom-[20px] right-0 w-[45px] h-[45px] bg-[#1fc04f] rounded-full flex items-center justify-center z-10">
+        <div className="absolute -bottom-[20px] right-0 z-10 flex h-[45px] w-[45px] items-center justify-center rounded-full bg-[#1fc04f]">
           <QuoteIcon />
         </div>
 
         <p
-          className="text-[14px] leading-[22px] text-[#242424] mb-6 flex-grow font-normal w-full"
-          style={{
-            fontFamily: '"SF Pro Text", sans-serif',
-            minHeight: "auto", // Allow height to adjust naturally on mobile
-          }}
+          className={`mb-6 w-full flex-grow text-[14px] font-normal leading-[22px] text-[#242424] ${
+            isArabic ? "text-right" : "text-left"
+          }`}
+          style={{ fontFamily: '"SF Pro Text", sans-serif' }}
         >
           {quote}
         </p>
 
         <div
-          className="flex flex-col w-full"
+          className={`flex w-full flex-col ${
+            isArabic ? "items-end text-right" : "items-start text-left"
+          }`}
           style={{ fontFamily: '"SF Pro Text", sans-serif' }}
         >
-          <div
-            className="text-[16px] leading-[24px] font-medium text-[#242424] w-full"
-          >
-            {author}
-          </div>
-          <div className="text-[14px] leading-[21px] font-normal text-[#242424] w-full">
-            {title}
-          </div>
-          <div className="text-[14px] leading-[21px] font-medium text-[#242424] w-full">
-            {company}
-          </div>
+          <div className="w-full text-[16px] font-medium leading-[24px] text-[#242424]">{author}</div>
+          <div className="w-full text-[14px] font-normal leading-[21px] text-[#242424]">{title}</div>
+          <div className="w-full text-[14px] font-medium leading-[21px] text-[#242424]">{company}</div>
         </div>
       </div>
     </div>
@@ -63,84 +51,111 @@ const TestimonialCard = ({ quote, author, title, company, pHeight }) => {
 const slidesData = [
   [
     {
-      quote: "Excited to be a part of a new digital initiative by ExploreTECH. It is a great resource for Hospitality Industry. It is inimitable. Buyers or Suppliers can now find all the information under one single platform for Technology.",
+      quote:
+        "Excited to be a part of a new digital initiative by ExploreTECH. It is a great resource for Hospitality Industry. It is inimitable. Buyers or Suppliers can now find all the information under one single platform for Technology.",
       author: "Amit Sharda",
       title: "Chief Operating Officer",
       company: "Prologic First",
-      pHeight: "72px",
     },
     {
-      quote: "D-EDGE is excited and proud to be a founding partner of the new ExploreTECH platform - not only because the Middle East is a very important market for D-EDGE but also because the platform is well thought through and will give all Hoteliers a great overview on what's out there",
+      quote:
+        "D-EDGE is excited and proud to be a founding partner of the new ExploreTECH platform - not only because the Middle East is a very important market for D-EDGE but also because the platform is well thought through and will give all Hoteliers a great overview on what's out there",
       author: "Heinrich Kessler",
       title: "Chief Commercial Officer",
       company: "D-EDGE",
-      pHeight: "90px",
     },
     {
-      quote: "Our partnership with ExploreTECH aims to provide hoteliers with the industry's number one hotel technology solutions (Rate Shopping & Market Intelligence Tool, Parity Management Software, and Business Intelligence Software), so they can leverage our data and insights for business success. We look forward to empowering hoteliers to make smarter revenue, distribution and marketing decisions through this collaboration with ExploreTECH.",
+      quote:
+        "Our partnership with ExploreTECH aims to provide hoteliers with the industry's number one hotel technology solutions (Rate Shopping & Market Intelligence Tool, Parity Management Software, and Business Intelligence Software), so they can leverage our data and insights for business success. We look forward to empowering hoteliers to make smarter revenue, distribution and marketing decisions through this collaboration with ExploreTECH.",
       author: "Nora Galfi",
       title: "EMEA Marketing Manager",
       company: "Lighthouse",
-      pHeight: "162px",
     },
   ],
   [
     {
-      quote: "We're excited to work with ExploreTECH to help bring the latest hospitality cloud technology to the Middle East. As a global leader in modern PMS platforms and guest-centric technology, we share ExploreTECH's commitment to promoting innovation in the hospitality industry and helping hotels drive revenue, streamline operations, and elevate the guest experience.",
+      quote:
+        "We're excited to work with ExploreTECH to help bring the latest hospitality cloud technology to the Middle East. As a global leader in modern PMS platforms and guest-centric technology, we share ExploreTECH's commitment to promoting innovation in the hospitality industry and helping hotels drive revenue, streamline operations, and elevate the guest experience.",
       author: "Jeff Down",
       title: "Head of Sales - EMEA",
       company: "Stayntouch",
-      pHeight: "144px",
     },
     {
-      quote: "We are very excited about our business partnership with ExploreTech. We believe this partnership will be another important milestone in our Journey and we will achieve lots of success together.",
+      quote:
+        "We are very excited about our business partnership with ExploreTech. We believe this partnership will be another important milestone in our Journey and we will achieve lots of success together.",
       author: "Adel Abdel Masih",
       title: "Founder",
       company: "Sita Egypt",
-      pHeight: "72px",
     },
     {
-      quote: "We're delighted to partner with ExploreTECH, a recognized leader in the field. This collaboration allows us to extend our reach and offer our solutions to a wider audience.",
+      quote:
+        "We're delighted to partner with ExploreTECH, a recognized leader in the field. This collaboration allows us to extend our reach and offer our solutions to a wider audience.",
       author: "Mrigank Devam",
       title: "Founding CEO",
       company: "Viralops",
-      pHeight: "72px",
     },
   ],
   [
     {
-      quote: "We are very excited about our business partnership with ExploreTech. We believe this partnership will be another important milestone in our Journey and we will achieve lots of success together.",
+      quote:
+        "We are very excited about our business partnership with ExploreTech. We believe this partnership will be another important milestone in our Journey and we will achieve lots of success together.",
       author: "Adel Abdel Masih",
       title: "Founder",
       company: "Sita Egypt",
-      pHeight: "72px",
     },
     {
-      quote: "We're delighted to partner with ExploreTECH, a recognized leader in the field. This collaboration allows us to extend our reach and offer our solutions to a wider audience.",
+      quote:
+        "We're delighted to partner with ExploreTECH, a recognized leader in the field. This collaboration allows us to extend our reach and offer our solutions to a wider audience.",
       author: "Mrigank Devam",
       title: "Founding CEO",
       company: "Viralops",
-      pHeight: "72px",
     },
     {
-      quote: "We are excited to join forces with ExploreTECH and look forward to collaborating with industry professionals who are passionate about innovation and digital transformation.",
+      quote:
+        "We are excited to join forces with ExploreTECH and look forward to collaborating with industry professionals who are passionate about innovation and digital transformation.",
       author: "Nikkie-Randhawa Singh",
       title: "Senior Vice President APAC & Middle East",
       company: "Shiji",
-      pHeight: "72px",
     },
   ],
 ];
 
+const arabicCards = [
+  {
+    quote:
+      "تهدف شراكتنا مع إكسبلورتك إلى تزويد أصحاب الفنادق بالحلول التكنولوجية الفندقية الرائدة في الصناعة (أداة التسعير والتسوق الذكي، وبرامج إدارة التكافؤ، وبرامج ذكاء الأعمال)، حتى يتمكنوا من الاستفادة من بياناتنا وإحصاءاتنا لتحقيق نجاح أكبر. نتطلع إلى تمكين أصحاب الفنادق من اتخاذ قرارات أكثر ذكاءً بشأن الإيرادات والتوزيع والتسويق من خلال هذا التعاون مع إكسبلورتك.",
+    author: "نورا جلفي",
+    title: "مدير التسويق في أوروبا والشرق الأوسط وأفريقيا",
+    company: "إنسايت OTA",
+  },
+  {
+    quote:
+      "إننا في شركة دي-إج متحمسون وفخورون بأن نكون شريكًا مؤسسًا لمنصة إكسبلورتك الجديدة - ليس فقط لأن الشرق الأوسط سوق مهم جدًا لـ دي-إج ولكن أيضًا لأن هذه المنصة مصممة بشكل جيد وستمنح أصحاب الفنادق نظرة عامة رائعة على مختلف الحلول المتوفرة.",
+    author: "هاينريش كيسلر",
+    title: "المدير التجاري",
+    company: "دي-إج",
+  },
+  {
+    quote:
+      "متحمسون لأن نكون جزءًا من هذه المبادرة الرقمية الجديدة من إكسبلورتك. إنه مصدر رائع ليس له مثيل لصناعة الضيافة. يمكن للمشترين أو الموردين الآن الحصول على كل المعلومات المتعلقة بالحلول التقنية ضمن منصة واحدة.",
+    author: "أميت شاردا",
+    title: "نائب الرئيس في برولوجيك أولًا",
+    company: "برولوجيك فيرست",
+  },
+];
 
 const TrustedCompanies = () => {
+  const { language } = useLanguage();
+  const isArabic = language === "AR";
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
   const scrollRef = React.useRef(null);
   const allCards = slidesData.flat();
+  const visibleSlides = isArabic ? [arabicCards] : slidesData;
+  const visibleMobileCards = isArabic ? arabicCards : allCards;
+  const mobileCardsCount = visibleMobileCards.length;
 
-  // Detect mobile viewport (using 1024px as a breakpoint for 'one card' view)
   React.useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
     checkMobile();
@@ -148,143 +163,62 @@ const TrustedCompanies = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const animateScrollByCards = (direction, numCards = 1) => {
-    if (!scrollRef.current) return;
-    const container = scrollRef.current;
-    
-    // On mobile, find the next card index based on current scroll position
-    const cardWidth = container.offsetWidth;
-    const currentScroll = container.scrollLeft;
-    const currentCardIndex = Math.round(currentScroll / cardWidth);
-    
-    let nextIndex = currentCardIndex + (direction * numCards);
-    if (nextIndex >= allCards.length) nextIndex = 0;
-    if (nextIndex < 0) nextIndex = allCards.length - 1;
-
-    const targetPos = nextIndex * cardWidth;
-    const startPos = container.scrollLeft;
-    const distance = targetPos - startPos;
-    const duration = isMobile ? 1200 : 700; // Slow motion for mobile
-    let startTime = null;
-
-    // Temporarily disable snapping to allow custom slow animation
-    if (isMobile) container.style.scrollSnapType = "none";
-
-    const animation = (currentTime) => {
-      if (!startTime) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const run = easeInOutQuad(timeElapsed, startPos, distance, duration);
-      
-      container.scrollLeft = run;
-      
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      } else {
-        container.scrollLeft = targetPos;
-        setCurrentSlide(nextIndex);
-        // Re-enable snapping after animation finishes
-        if (isMobile) container.style.scrollSnapType = "x mandatory";
-      }
-    };
-
-    function easeInOutQuad(t, b, c, d) {
-      t /= d / 2;
-      if (t < 1) return (c / 2) * t * t + b;
-      t--;
-      return (-c / 2) * (t * (t - 2) - 1) + b;
-    }
-
-    requestAnimationFrame(animation);
-  };
-
-
   const handleDotClick = (index) => {
     if (isMobile) {
-      const cardWidth = scrollRef.current.offsetWidth;
-      const targetPos = index * cardWidth;
-      const startPos = scrollRef.current.scrollLeft;
-      const distance = targetPos - startPos;
-      
-      scrollRef.current.style.scrollSnapType = "none";
-      let startTime = null;
-      const animation = (currentTime) => {
-        if (!startTime) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const duration = 1200;
-        const run = (function easeInOutQuad(t, b, c, d) {
-          t /= d / 2;
-          if (t < 1) return (c / 2) * t * t + b;
-          t--;
-          return (-c / 2) * (t * (t - 2) - 1) + b;
-        })(timeElapsed, startPos, distance, duration);
-        
-        scrollRef.current.scrollLeft = run;
-        if (timeElapsed < duration) {
-          requestAnimationFrame(animation);
-        } else {
-          scrollRef.current.scrollLeft = targetPos;
-          setCurrentSlide(index);
-          scrollRef.current.style.scrollSnapType = "x mandatory";
-        }
-      };
-      requestAnimationFrame(animation);
+      const targetCard = scrollRef.current?.children?.[index];
+      targetCard?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+      setCurrentSlide(index);
     } else {
       setCurrentSlide(index);
     }
   };
 
   return (
-    <section className="w-full bg-white py-24 relative overflow-hidden font-sans">
-      <div className="mx-auto max-w-[1380px] px-6 text-center mb-10 lg:mb-28">
-        <h2 
-          className="text-[24px] font-semibold leading-[24px] text-black lg:text-[42px] lg:font-bold lg:leading-[1.2] max-w-[860px] mx-auto"
+    <section className="relative w-full overflow-hidden bg-white py-24 font-sans" dir={isArabic ? "rtl" : "ltr"}>
+      <div className="mx-auto mb-10 max-w-[1380px] px-6 text-center lg:mb-28">
+        <h2
+          className="mx-auto max-w-[1040px] text-[24px] font-semibold leading-[1.3] text-black lg:text-[42px] lg:font-bold"
           style={{ fontFamily: '"Space Grotesk", sans-serif' }}
         >
-          Trusted and recognized by renowned global hospitality tech companies.
+          {isArabic
+            ? "البائعون: منصة موثوق بها عالميًا ومعتمدة من قبل مزودي التكنولوجيا المعروفين."
+            : "Trusted and recognized by renowned global hospitality tech companies."}
         </h2>
       </div>
 
       {isMobile ? (
-        /* Mobile View: Single card per screen with snapping */
-        <div className="w-full relative overflow-visible pt-12 pb-4">
-          <div 
+        <div className="relative w-full overflow-visible pb-4 pt-12">
+          <div
             ref={scrollRef}
-            className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar"
-            style={{ 
-              scrollbarWidth: "none", 
-              msOverflowStyle: "none",
-              scrollBehavior: "auto" // Prevent conflicts with custom JS animation
+            className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            onScroll={(event) => {
+              const cardWidth = event.currentTarget.offsetWidth;
+              if (!cardWidth) return;
+              const active = Math.round(event.currentTarget.scrollLeft / cardWidth);
+              if (active !== currentSlide) setCurrentSlide(active);
             }}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
           >
-            {allCards.map((card, index) => (
-              <div 
-                key={index} 
-                className="w-full shrink-0 flex items-center justify-center snap-center px-6"
-              >
+            {visibleMobileCards.map((card, index) => (
+              <div key={index} className="flex w-full shrink-0 snap-center items-center justify-center px-6">
                 <div className="w-full max-w-[440px]">
-                  <TestimonialCard {...card} />
+                  <TestimonialCard {...card} isArabic={isArabic} />
                 </div>
               </div>
             ))}
           </div>
         </div>
       ) : (
-        /* Desktop View: 3 cards per slide with transform */
-        <div className="w-full relative pt-[30px] pb-[30px] -mt-[30px] -mb-[30px] overflow-hidden">
-          <div 
-            className="flex transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] w-full"
+        <div className="relative -mb-[30px] -mt-[30px] w-full overflow-hidden pb-[30px] pt-[30px]">
+          <div
+            className="flex w-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
           >
-            {slidesData.map((slide, slideIndex) => (
-              <div 
-                key={slideIndex} 
-                className="w-full shrink-0 flex flex-col items-center justify-start"
-              >
-                <div className="w-full max-w-[1380px] mx-auto px-6 lg:px-8 flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-[3.5%]">
-                  {slide.map((card, cardIndex) => (
-                    <TestimonialCard key={cardIndex} {...card} />
+            {visibleSlides.map((slide, slideIndex) => (
+              <div key={slideIndex} className="flex w-full shrink-0 flex-col items-center justify-start">
+                <div className="mx-auto flex w-full max-w-[1380px] flex-col items-start justify-between gap-8 px-6 lg:flex-row lg:gap-[3.5%] lg:px-8">
+                  {slide.slice(0, 3).map((card, cardIndex) => (
+                    <TestimonialCard key={cardIndex} {...card} isArabic={isArabic} />
                   ))}
                 </div>
               </div>
@@ -293,18 +227,15 @@ const TrustedCompanies = () => {
         </div>
       )}
 
-      {/* Pagination Dots */}
-      <div className={`w-full px-6 ${isMobile ? "mt-0" : "mt-12"} relative z-10 font-sans`}>
-        <div className={`${isMobile ? "max-w-[440px] gap-1" : "max-w-[1380px] gap-2"} mx-auto flex justify-center items-center`}>
-          {(isMobile ? allCards : slidesData).map((_, index) => (
+      <div className={`relative z-10 w-full px-6 font-sans ${isMobile ? "mt-0" : "mt-12"}`}>
+        <div className={`${isMobile ? "max-w-[440px] gap-2" : "max-w-[1380px] gap-2"} mx-auto flex items-center justify-center`}>
+          {(isMobile ? visibleMobileCards : visibleSlides).map((_, index) => (
             <button
               key={index}
               onClick={() => handleDotClick(index)}
-              className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${
-                isMobile ? "flex-1" : "w-8"
-              } ${
-                currentSlide === index ? "bg-[#0B5BFF]" : "bg-[#E0E5ED]"
-              }`}
+              className={`cursor-pointer rounded-full transition-all duration-300 ${
+                isMobile ? "h-4 w-4" : "h-2 w-8"
+              } ${currentSlide === index ? "bg-[#0B5BFF] shadow-[0_0_0_2px_rgba(11,91,255,0.14)]" : "bg-[#E0E5ED]"}`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

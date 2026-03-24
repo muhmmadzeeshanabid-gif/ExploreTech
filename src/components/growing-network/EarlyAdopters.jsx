@@ -1,27 +1,34 @@
 import React from "react";
 import { earlyAdopters } from "../../data/earlyAdopters";
+import { useLanguage } from "../../context/LanguageContext.jsx";
 
 const EarlyAdopters = () => {
+  const { language } = useLanguage();
+  const isArabic = language === "AR";
+
   return (
-    <section className="w-full bg-white py-16 md:py-24">
-      <div className="mx-auto w-full max-w-[1320px] px-5 md:px-10 text-center">
+    <section className="w-full bg-white py-16 md:py-24" dir={isArabic ? "rtl" : "ltr"}>
+      <div className="mx-auto w-full max-w-[1320px] px-5 text-center md:px-10">
         <h2
-          className="text-[32px] md:text-[40px] font-bold text-[#0b0b0b] leading-[1.2]"
+          className="text-[32px] font-bold leading-[1.2] text-[#0b0b0b] md:text-[40px]"
           style={{ fontFamily: '"Space Grotesk", sans-serif' }}
         >
-          ExploreTECH Early Adopters
+          {isArabic ? "أوائل من انضموا إلى إكسبلورتك" : "ExploreTECH Early Adopters"}
         </h2>
         <p
-          className="mx-auto mt-4 max-w-[960px] text-[16px] leading-[26px] text-[#1f274b]"
-          style={{ fontFamily: '"SF Pro Text", sans-serif' }}
+          className="mx-auto mt-4 max-w-[960px] text-[18px] font-normal leading-[27px] text-[rgb(16,24,64)]"
+          style={{
+            fontFamily: '"Space Grotesk", sans-serif',
+            fontStyle: "normal",
+            fontWeight: 400,
+          }}
         >
-          We are immensely thankful to the visionary technology brands who, as
-          early adopters, have played a crucial role in validating ExploreTECH�s
-          value proposition right from the outset.
+          {isArabic
+            ? "قمنا بإدراج 13 علامة تجارية على منصة إكسبلورتك الرقمية منذ اليوم الأول، تشاركنا جميعها الرؤية والرسالة لتمكين الابتكار من خلال التكنولوجيا في قطاع الضيافة في الشرق الأوسط وأفريقيا"
+            : "We are immensely thankful to the visionary technology brands who, as early adopters, have played a crucial role in validating ExploreTECH's value proposition right from the outset."}
         </p>
 
         <div className="mt-12 space-y-4 md:space-y-6">
-          {/* Row 1: 6 Logos */}
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             {earlyAdopters.slice(0, 6).map((item) => (
               <div
@@ -38,7 +45,6 @@ const EarlyAdopters = () => {
             ))}
           </div>
 
-          {/* Row 2: 4 Logos */}
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             {earlyAdopters.slice(6, 10).map((item) => (
               <div

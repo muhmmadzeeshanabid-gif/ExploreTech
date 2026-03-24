@@ -1,27 +1,33 @@
-import React from "react";
+﻿import React from "react";
 import { latestNewsItems } from "../../data/latestNews";
 import { ArrowUpRight } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext.jsx";
 
 const LatestNews = () => {
+  const { language } = useLanguage();
+  const isArabic = language === "AR";
+
   return (
-    <section className="w-full bg-[#f4f5f7] py-16 md:py-24">
+    <section className="w-full bg-[#EDEDED] py-16 md:py-24" dir={isArabic ? "rtl" : "ltr"}>
       <div className="mx-auto w-full max-w-[1520px] px-5 md:px-10">
         <div className="mb-12 text-center">
           <h2
-            className="text-[32px] md:text-[40px] font-bold text-[#111] leading-[1.2]"
+            className="text-[32px] font-bold leading-[1.2] text-[#111] md:text-[40px]"
             style={{ fontFamily: '"Space Grotesk", sans-serif' }}
           >
-            Latest News
+            {isArabic ? "ماذا يحدث؟" : "Latest News"}
           </h2>
           <p
-            className="mt-3 text-[15px] md:text-[16px] text-[#4b5563] max-w-[880px] mx-auto"
+            className="mx-auto mt-3 max-w-[880px] text-[15px] text-[#4b5563] md:text-[16px]"
             style={{ fontFamily: '"SF Pro Text", sans-serif' }}
           >
-            Stay informed with the latest and most relevant news from ExploreTECH and our featured hospitality industry experts.
+            {isArabic
+              ? "اقرأ أحدث الأخبار وأكثرها صلة والتي ينشرها مزودوا الخدمات المسجلون معنا وإكسبلورتك"
+              : "Stay informed with the latest and most relevant news from ExploreTECH and our featured hospitality industry experts."}
           </p>
         </div>
 
-        <div className="grid gap-4 sm:gap-10 grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 sm:gap-10 lg:grid-cols-3">
           {latestNewsItems.map((item) => {
             const isSelectDate = item.id === 4;
             return (
@@ -29,7 +35,7 @@ const LatestNews = () => {
                 key={item.id}
                 className="group relative mx-auto flex h-full w-full max-w-[440px] flex-col gap-3"
               >
-                <div className="h-[180px] sm:h-[209px] w-full max-w-[440px] overflow-hidden rounded-[12px] bg-[#e5e7eb]">
+                <div className="h-[180px] w-full max-w-[440px] overflow-hidden rounded-[12px] bg-[#e5e7eb] sm:h-[209px]">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -46,9 +52,9 @@ const LatestNews = () => {
                   >
                     {item.date}
                   </p>
-                  <div className="flex h-[60px] w-[440px] max-w-full items-start gap-3 justify-between">
+                  <div className="flex h-[60px] w-[440px] max-w-full items-start justify-between gap-3">
                     <h4
-                      className="pb-[2px] text-[22px] leading-[32px] font-[600] text-[#000] transition-all duration-200 group-hover:text-[#0B5BFF] group-hover:underline group-hover:underline-offset-[2px]"
+                      className="pb-[2px] text-[22px] font-[600] leading-[32px] text-[#000] transition-all duration-200 group-hover:text-[#0B5BFF] group-hover:underline group-hover:underline-offset-[2px]"
                       style={{ fontFamily: '"SF Pro Text", sans-serif', letterSpacing: "normal" }}
                     >
                       {item.title}
@@ -72,9 +78,9 @@ const LatestNews = () => {
         <div className="mt-10 flex justify-center">
           <button
             type="button"
-            className="h-[46px] w-[122.5px] rounded-[4px] bg-blue-600 text-[16px] font-medium leading-[32px] uppercase text-white transition hover:bg-blue-700"
+            className="h-[46px] w-[122.5px] rounded-[4px] bg-blue-600 text-[16px] font-medium uppercase leading-[32px] text-white transition hover:bg-blue-700"
           >
-            Read More
+            {isArabic ? "اقرأ المزيد" : "Read More"}
           </button>
         </div>
       </div>
