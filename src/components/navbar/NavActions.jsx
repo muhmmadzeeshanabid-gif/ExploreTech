@@ -5,6 +5,7 @@ import { useLanguage } from "../../context/LanguageContext.jsx";
 const NavActions = ({ onSignIn, onSignUp }) => {
   const [open, setOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
+  const isArabic = language === "AR";
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -42,7 +43,7 @@ const NavActions = ({ onSignIn, onSignUp }) => {
       >
         {language === "AR" ? "إنشاء حساب" : "Sign Up"}
       </button>
-      <div className="relative" ref={menuRef}>
+      <div className="relative z-[80] isolate" ref={menuRef}>
         <button
           className="flex items-center gap-2 rounded-md px-2 py-1 text-[13px] text-slate-600 transition hover:text-blue-700"
           type="button"
@@ -54,9 +55,9 @@ const NavActions = ({ onSignIn, onSignUp }) => {
           <span>{language}</span>
         </button>
         <div
-          className={`absolute right-0 top-full mt-3 w-40 overflow-hidden rounded-xl border border-slate-100 bg-white text-[14px] font-medium text-slate-700 shadow-[0_18px_40px_-20px_rgba(15,23,42,0.45)] transition ${
+          className={`absolute top-full mt-3 w-40 overflow-hidden rounded-xl border border-slate-100 bg-white text-[14px] font-medium text-slate-700 shadow-[0_18px_40px_-20px_rgba(15,23,42,0.45)] transition ${
             open ? "visible opacity-100" : "invisible opacity-0"
-          }`}
+          } ${isArabic ? "left-0" : "right-0"} z-[90]`}
           role="menu"
         >
           <button
