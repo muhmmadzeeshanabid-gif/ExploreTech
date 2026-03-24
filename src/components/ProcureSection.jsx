@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import procureImage from "../../ProcureSection.png";
+import procureImage from "../assets/images/procure/ProcureSection.png";
 import { useLanguage } from "../context/LanguageContext.jsx";
 
 const ProcureSection = () => {

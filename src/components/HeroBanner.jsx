@@ -1,4 +1,4 @@
-import bannerBg from "../assets/homeBannerBg.webp";
+import bannerBg from "../assets/images/backgrounds/homeBannerBg.webp";
 import { useLanguage } from "../context/LanguageContext.jsx";
 
 const HeroBanner = () => {

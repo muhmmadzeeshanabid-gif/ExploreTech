@@ -1,5 +1,5 @@
 import React from "react";
-import connectImage from "../../../ConnectToExploeTECH.webp";
+import connectImage from "../../assets/images/connect/ConnectToExploeTECH.webp";
 import { useLanguage } from "../../context/LanguageContext.jsx";
 
 const ConnectSection = () => {

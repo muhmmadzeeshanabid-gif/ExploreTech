@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import logo from "../../Explote-Tech-Logo-Black.gif";
+import logo from "../../assets/logo/Explote-Tech-Logo-Black.gif";
 
 const inputFontFamily =
   '"SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';

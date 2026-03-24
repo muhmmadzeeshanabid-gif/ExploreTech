@@ -1,5 +1,5 @@
 ﻿import React, { useEffect, useRef, useState } from "react";
-import verifiedIcon from "../../assets/growing-network/logos/verified.png";
+import verifiedIcon from "../../assets/icon/verified.png";
 import vendorLogoA from "../../assets/growing-network/logos/x5WsbnAfcg.jpg";
 import vendorLogoB from "../../assets/growing-network/logos/gs14qlFntB.webp";
 import { useLanguage } from "../../context/LanguageContext.jsx";

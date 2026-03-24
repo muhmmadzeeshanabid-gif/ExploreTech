@@ -2,7 +2,7 @@
 import { useLanguage } from "../../context/LanguageContext.jsx";
 
 const QuoteIcon = () => (
-  <img src="/quote.png" alt="Quote Icon" className="h-[20px] w-[20px] object-contain" />
+  <img src={quoteIcon} alt="Quote Icon" className="h-[20px] w-[20px] object-contain" />
 );
 
 const TestimonialCard = ({ quote, author, title, company, isArabic = false }) => {
@@ -246,3 +246,4 @@ const TrustedCompanies = () => {
 };
 
 export default TrustedCompanies;
+import quoteIcon from "../../assets/icon/quote.png";

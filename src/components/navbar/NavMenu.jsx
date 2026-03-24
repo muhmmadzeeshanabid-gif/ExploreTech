@@ -1,7 +1,7 @@
 import { ChevronRight, Globe, Menu, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import logoEn from "../../Explote-Tech-Logo-Black.gif";
-import logoAr from "../../../AR-Explote-Tech-Logo-Black.gif";
+import logoEn from "../../assets/logo/Explote-Tech-Logo-Black.gif";
+import logoAr from "../../assets/logo/AR-Explote-Tech-Logo-Black.gif";
 import { useLanguage } from "../../context/LanguageContext.jsx";
 
 const categoriesEn = [

@@ -1,6 +1,6 @@
 import React from "react";
-import logoEn from "../../Explote-Tech-Logo-Black.gif";
-import logoAr from "../../../AR-Explote-Tech-Logo-Black.gif";
+import logoEn from "../../assets/logo/Explote-Tech-Logo-Black.gif";
+import logoAr from "../../assets/logo/AR-Explote-Tech-Logo-Black.gif";
 import NavActions from "./NavActions.jsx";
 import NavMenu from "./NavMenu.jsx";
 import { useLanguage } from "../../context/LanguageContext.jsx";
