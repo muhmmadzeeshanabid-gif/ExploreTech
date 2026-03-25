@@ -44,7 +44,7 @@ const DiscoverSlider = () => {
 
   return (
     <div
-      className={`relative z-10 mt-7 flex w-full justify-center px-4 md:mt-7 md:px-4 lg:mt-0 lg:px-0 ${
+      className={`discover-slider relative z-10 mt-7 flex w-full justify-center px-4 md:mt-7 md:px-4 lg:mt-0 lg:px-0 ${
         isArabic ? "lg:justify-start" : "lg:justify-end"
       }`}
       onMouseEnter={() => setIsPaused(true)}

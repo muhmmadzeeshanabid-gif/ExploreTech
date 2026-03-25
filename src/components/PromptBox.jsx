@@ -6,12 +6,19 @@ const PromptBox = () => {
   const { language } = useLanguage();
   const [message, setMessage] = useState("");
   const canSend = message.trim().length > 0;
+  const isArabic = language === "AR";
+  const headingClassName = isArabic
+    ? "mb-4 w-full px-4 text-center font-['Space_Grotesk'] text-[28px] font-semibold leading-[38px] text-black sm:px-6 lg:text-[40px] lg:leading-[60px]"
+    : "mb-4 w-full px-4 text-center font-['Space_Grotesk'] text-[28px] font-semibold leading-[38px] text-black sm:px-6 lg:text-[40px] lg:leading-[60px]";
 
   return (
     <div className="mx-auto mt-2 w-full max-w-[818px] px-4 sm:px-6 md:max-w-[940px] md:px-8 lg:max-w-[818px]">
-      <div className="relative h-[152px] rounded-[4px] border-2 border-slate-300 bg-white md:h-[176px] lg:h-[161.6px]">
+      <h1 className={headingClassName} dir={isArabic ? "rtl" : "ltr"}>
+        {isArabic ? "اسألني عن أي شيء يخص تقنيات الفنادق" : "Ask me anything about hotel TECH"}
+      </h1>
+      <div className="relative h-[150px] rounded-[4px] border-2 border-slate-300 bg-white md:h-[176px] lg:h-[164px]">
         <textarea
-          className={`h-full w-full resize-none rounded-[4px] px-4 pt-3 pb-4 font-['SF_Pro_Text'] text-[15px] leading-[22px] text-slate-900 placeholder:text-slate-400 focus:outline-none md:px-5 md:pt-[15px] md:text-[16px] md:leading-[24px] ${
+          className={`h-full w-full resize-none rounded-[4px] px-4 pt-2.5 pb-3.5 font-['SF_Pro_Text'] text-[15px] leading-[22px] text-slate-900 placeholder:text-slate-400 focus:outline-none md:px-5 md:pt-3 md:text-[16px] md:leading-[24px] ${
             language === "AR" ? "text-right" : "text-left"
           }`}
           placeholder={
@@ -22,7 +29,7 @@ const PromptBox = () => {
           onChange={(event) => setMessage(event.target.value)}
         />
         <div
-          className={`absolute bottom-3 flex items-center gap-2 md:bottom-4 md:gap-3 ${
+          className={`absolute bottom-2.5 flex items-center gap-2 md:bottom-3 md:gap-3 ${
             language === "AR" ? "left-4 md:left-5 flex-row-reverse" : "right-4 md:right-5"
           }`}
         >
@@ -42,7 +49,7 @@ const PromptBox = () => {
         </div>
       </div>
       <div
-        className={`mt-3 flex w-full items-start justify-center gap-2 bg-white px-3 py-2 font-['SF_Pro_Text'] text-[11px] font-normal leading-[16px] text-[#6B7280] md:px-4 md:text-[12px] ${
+        className={`mt-2.5 flex w-full items-start justify-center gap-2 bg-white px-3 py-1.5 font-['SF_Pro_Text'] text-[11px] font-normal leading-[16px] text-[#6B7280] md:px-4 md:text-[12px] ${
           language === "AR" ? "text-right" : "text-center"
         }`}
       >

@@ -33,23 +33,53 @@ const ProcureSection = () => {
           >
             {isArabic ? "الشراء" : "Procure"}
           </h1>
-          <p
-            className={`mt-4 font-normal leading-[24px] text-white lg:h-[96px] lg:w-[653.025px] ${
-              isArabic ? "text-[18px]" : "text-[16px]"
-            }`}
-            dir={isArabic ? "rtl" : "ltr"}
-            style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 400 }}
-          >
-            {isArabic
-              ? "تبسيط عملية RFI/RFP باستخدام أداة مؤتمتة قادمة قريبًا. أرسل طلبات مخصصة إلى عدة مورّدين، استقبل العروض المنظمة، وقارنها جنبًا إلى جنب. وفر الوقت، قلل التكاليف، واتخذ قرارات أكثر ذكاءً بثقة."
-              : "Streamline your RFI/RFP process with our upcoming automated tool. Effortlessly send customized requests to multiple vendors, receive organized proposals, and compare them side-by-side. Save time, reduce costs, and make smarter decisions with confidence."}
-          </p>
-          <p
-            className="mt-6 text-[16px] font-bold leading-[24px] text-white"
-            style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 700 }}
-          >
-            {isArabic ? "-- قريبًا --" : "--Coming Soon--"}
-          </p>
+          {isArabic ? (
+            <>
+              <p
+                className="mt-4 text-[18px] font-normal leading-[24px] text-white lg:h-[96px] lg:w-[653.025px]"
+                dir="rtl"
+                style={{
+                  fontFamily: '"SF Pro Text", sans-serif',
+                  fontWeight: 400,
+                }}
+              >
+                تبسيط عملية RFI/RFP باستخدام أداة مؤتمتة قادمة قريبًا. أرسل
+                طلبات مخصصة إلى عدة مورّدين، استقبل العروض المنظمة، وقارنها جنبًا
+                إلى جنب. وفر الوقت، قلل التكاليف، واتخذ قرارات أكثر ذكاءً بثقة.
+              </p>
+              <p
+                className="mt-6 block w-full text-right text-[16px] font-bold leading-[24px] text-white lg:w-[653.025px]"
+                style={{
+                  fontFamily: '"SF Pro Text", sans-serif',
+                  fontWeight: 700,
+                }}
+              >
+                -- قريبًا --
+              </p>
+            </>
+          ) : (
+            <>
+              <p
+                className="mt-4 font-normal leading-[24px] text-white lg:h-[96px] lg:w-[653.025px] text-[16px]"
+                dir="ltr"
+                style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 400 }}
+              >
+                Streamline your RFI/RFP process with our upcoming automated tool.
+                Effortlessly send customized requests to multiple vendors, receive
+                organized proposals, and compare them side-by-side. Save time,
+                reduce costs, and make smarter decisions with confidence.
+              </p>
+              <p
+                className="mt-6 text-[16px] font-bold leading-[24px] text-white"
+                style={{
+                  fontFamily: '"SF Pro Text", sans-serif',
+                  fontWeight: 700,
+                }}
+              >
+                --Coming Soon--
+              </p>
+            </>
+          )}
         </div>
       </div>
     </section>

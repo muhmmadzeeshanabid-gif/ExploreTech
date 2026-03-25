@@ -11,11 +11,14 @@ const Navbar = ({ onSignIn, onSignUp }) => {
   return (
     <nav className="sticky top-0 z-50 w-full bg-white">
       <div
-        className={`flex items-center justify-between px-5 py-3 md:pl-[50px] md:pr-[50px] ${
+        className={`flex items-center px-5 py-3 md:pl-[50px] md:pr-[50px] ${
           language === "AR" ? "flex-row-reverse" : ""
         }`}
       >
-        <a href="/" className="flex items-center gap-3 cursor-pointer">
+        <a
+          href="/"
+          className="flex cursor-pointer items-center gap-3"
+        >
           <img
             src={navLogo}
             alt="Explore Tech"
@@ -23,11 +26,19 @@ const Navbar = ({ onSignIn, onSignUp }) => {
           />
         </a>
 
-        <NavMenu onSignIn={onSignIn} onSignUp={onSignUp} />
-        <NavActions
-          onSignIn={onSignIn}
-          onSignUp={onSignUp}
-        />
+        <div className="flex-1" />
+
+        <div
+          className={`flex items-center ${
+            language === "AR" ? "flex-row-reverse gap-[6px]" : "gap-3"
+          }`}
+        >
+          <NavMenu onSignIn={onSignIn} onSignUp={onSignUp} />
+          <NavActions
+            onSignIn={onSignIn}
+            onSignUp={onSignUp}
+          />
+        </div>
       </div>
     </nav>
   );

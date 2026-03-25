@@ -7,6 +7,8 @@ const NavActions = ({ onSignIn, onSignUp }) => {
   const { language, setLanguage } = useLanguage();
   const isArabic = language === "AR";
   const menuRef = useRef(null);
+  const languageMenuItemClass =
+    "w-full px-4 py-2 transition-colors hover:bg-blue-50 hover:text-[#0b56ff]";
 
   useEffect(() => {
     const handleClick = (event) => {
@@ -41,7 +43,7 @@ const NavActions = ({ onSignIn, onSignUp }) => {
         type="button"
         onClick={onSignUp}
       >
-        {language === "AR" ? "إنشاء حساب" : "Sign Up"}
+        {language === "AR" ? "اشتراك" : "Sign Up"}
       </button>
       <div className="relative z-[80] isolate" ref={menuRef}>
         <button
@@ -55,13 +57,17 @@ const NavActions = ({ onSignIn, onSignUp }) => {
           <span>{language}</span>
         </button>
         <div
-          className={`absolute top-full mt-3 w-40 overflow-hidden rounded-xl border border-slate-100 bg-white text-[14px] font-medium text-slate-700 shadow-[0_18px_40px_-20px_rgba(15,23,42,0.45)] transition ${
-            open ? "visible opacity-100" : "invisible opacity-0"
-          } ${isArabic ? "left-0" : "right-0"} z-[90]`}
+          className={`absolute top-full mt-3 overflow-hidden border border-slate-100 bg-white text-[14px] font-medium text-slate-700 shadow-[0_18px_40px_-20px_rgba(15,23,42,0.45)] transition ${
+            isArabic
+              ? "left-0 right-auto w-36 rounded-lg"
+              : "right-0 left-auto w-36 rounded-lg"
+          } ${open ? "visible opacity-100" : "invisible opacity-0"} z-[90]`}
           role="menu"
         >
           <button
-            className="w-full border-b border-slate-100 px-4 py-2 text-left hover:bg-slate-50"
+            className={`${languageMenuItemClass} border-b border-slate-100 ${
+              "text-center"
+            }`}
             type="button"
             role="menuitem"
             onClick={() => selectLanguage("EN")}
@@ -69,7 +75,7 @@ const NavActions = ({ onSignIn, onSignUp }) => {
             English
           </button>
           <button
-            className="w-full px-4 py-2 text-left hover:bg-slate-50"
+            className={`${languageMenuItemClass} text-center`}
             type="button"
             role="menuitem"
             onClick={() => selectLanguage("AR")}

@@ -41,9 +41,9 @@ const CompareSection = () => {
 
   if (isArabic) {
     return (
-      <section className="w-full bg-[#17c53a] py-14 md:py-16">
+      <section className="compare-section compare-section-arabic w-full bg-[#17c53a] py-14 md:py-16">
         <div className="mx-auto grid max-w-[1320px] grid-cols-1 items-start gap-10 px-5 md:gap-12 md:px-8 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16 lg:px-10">
-          <div className="text-right text-white">
+          <div className="compare-content text-right text-white">
             <h1
               className="text-[30px] font-semibold leading-tight text-white md:text-[36px] lg:w-[629px] lg:text-[40px] lg:leading-[50px]"
               style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600 }}
@@ -138,7 +138,7 @@ const CompareSection = () => {
             </div>
           </div>
 
-          <div className="flex h-full items-center justify-end">
+          <div className="compare-trending-heading flex h-full items-center justify-end">
             <h1
               className="text-right text-[30px] font-semibold leading-tight text-white md:text-[36px] lg:text-[40px] lg:leading-[50px]"
               style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600 }}

@@ -7,7 +7,11 @@ const Discover = () => {
   const { language } = useLanguage();
   const isArabic = language === "AR";
   return (
-    <section className="relative w-full overflow-hidden bg-[#0B5BFF] pb-[56px] pt-12 md:pb-[60px] md:pt-14 lg:pt-16">
+    <section
+      className={`discover-section relative w-full overflow-hidden bg-[#0B5BFF] pb-[56px] pt-12 md:pb-[60px] md:pt-14 lg:pt-16 ${
+        isArabic ? "discover-section-arabic" : ""
+      }`}
+    >
       <div
         className={`mx-auto grid grid-cols-1 items-center gap-8 md:gap-10 lg:grid-cols-2 ${
           isArabic

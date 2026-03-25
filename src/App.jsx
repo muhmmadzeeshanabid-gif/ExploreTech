@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Navbar from "./components/navbar/Navbar.jsx";
 import HeroBanner from "./components/HeroBanner.jsx";
-import HeroHeading from "./components/HeroHeading.jsx";
 import PromptBox from "./components/PromptBox.jsx";
 import CommitmentHeading from "./components/CommitmentHeading.jsx";
 import HowToChoose from "./components/HowToChoose.jsx";
@@ -58,7 +57,6 @@ const App = () => {
         youtubeUrl="https://youtu.be/UeZX7_UlF9E"
       />
       <div className="pt-6 pb-12 text-center">
-        <HeroHeading />
         <PromptBox />
       </div>
       <HeroBanner />

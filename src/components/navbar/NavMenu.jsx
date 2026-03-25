@@ -44,9 +44,11 @@ const arrowClasses = "h-4 w-4 text-slate-600";
 
 const NavMenu = ({ onSignIn, onSignUp }) => {
   const { language, setLanguage } = useLanguage();
+  const isArabic = language === "AR";
   const navLogo = language === "AR" ? logoAr : logoEn;
   const categories = language === "AR" ? categoriesAr : categoriesEn;
   const resources = language === "AR" ? resourcesAr : resourcesEn;
+  const drawerResources = resourcesEn;
   const [searchOpen, setSearchOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerSection, setDrawerSection] = useState(null);
@@ -155,6 +157,23 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
     return () => document.removeEventListener("mousedown", handleOutside);
   }, [languageOpen]);
 
+  const drawerRowClass = isArabic
+    ? "flex-row-reverse text-right"
+    : "text-left";
+  const drawerArrow = isArabic ? (
+    <i className="bi bi-chevron-left text-[16px] leading-none text-white" aria-hidden="true" />
+  ) : (
+    <ChevronRight className="h-6 w-6 shrink-0 text-white" strokeWidth={2} />
+  );
+  const drawerActiveArrow = isArabic ? (
+    <i className="bi bi-chevron-up text-[16px] leading-none text-[#18c443]" aria-hidden="true" />
+  ) : (
+    <ChevronRight
+      className="h-6 w-6 shrink-0 text-[#18c443]"
+      strokeWidth={2}
+    />
+  );
+
   return (
     <div
       className={`flex items-center lg:mr-6 ${
@@ -238,7 +257,11 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
         </a>
       </div>
 
-      <div className="hidden items-center gap-2 md:flex lg:hidden">
+      <div
+        className={`hidden items-center gap-2 md:flex lg:hidden ${
+          language === "AR" ? "flex-row-reverse" : ""
+        }`}
+      >
         <button
           className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-[#14c439] shadow-sm"
           aria-label="Search"
@@ -257,7 +280,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             onSignIn();
           }}
         >
-          {language === "AR" ? "تسجيل الدخول / إنشاء حساب" : "Sign In/ Sign Up"}
+          {language === "AR" ? "التوقيع في السجل" : "Sign In/ Sign Up"}
         </a>
         <button
           className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-900"
@@ -269,7 +292,11 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
         </button>
       </div>
 
-      <div className="flex items-center gap-3 md:hidden">
+      <div
+        className={`flex items-center gap-3 md:hidden ${
+          language === "AR" ? "flex-row-reverse" : ""
+        }`}
+      >
         <button
           className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-[#14c439] shadow-sm"
           aria-label="Search"
@@ -288,7 +315,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             onSignIn();
           }}
         >
-          {language === "AR" ? "تسجيل الدخول / إنشاء حساب" : "Sign In/ Sign Up"}
+          {language === "AR" ? "التوقيع في السجل" : "Sign In/ Sign Up"}
         </a>
         <button
           className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-900"
@@ -389,15 +416,25 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
           role="dialog"
           aria-modal="true"
         >
-          <div className="flex items-start justify-between px-6 pb-5 pt-6">
+          <div
+            className={`flex items-start justify-between px-6 pb-4 pt-4 ${
+              isArabic ? "flex-row-reverse" : ""
+            }`}
+          >
             <div>
               <img
                 src={navLogo}
                 alt="Explore Tech"
-                className="-ml-4 h-[86px] w-[176px]"
+                className={`h-[86px] w-[176px] ${
+                  isArabic ? "ml-0 mr-0" : "-ml-4"
+                }`}
                 style={{ filter: "invert(1) brightness(1.2)" }}
               />
-              <div className="-mt-[18px] w-[172px] whitespace-nowrap text-[8px] font-semibold leading-[10px] tracking-[0.18em] text-white">
+              <div
+                className={`-mt-[18px] w-[172px] whitespace-nowrap text-[8px] font-semibold leading-[10px] tracking-[0.18em] text-white ${
+                  isArabic ? "ml-0 mr-0" : ""
+                }`}
+              >
                 THE DIGITAL MARKETPLACE
               </div>
             </div>
@@ -414,7 +451,9 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
           <nav className="relative mt-4 px-6 text-white">
             <button
               type="button"
-              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 text-left text-[16px] font-semibold tracking-wide ${
+              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 text-[16px] font-semibold tracking-wide ${
+                drawerRowClass
+              } ${
                 drawerSection === "categories" ? "text-[#18c443]" : "text-white"
               }`}
               onClick={() => toggleDrawerSection("categories")}
@@ -431,12 +470,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                 {language === "AR" ? "الفئات" : "CATEGORIES"}
                 
               </span>
-              <ChevronRight
-                className={`h-6 w-6 transition-transform duration-200 ${
-                  drawerSection === "categories" ? "rotate-90 text-[#18c443]" : "text-white"
-                }`}
-                strokeWidth={2}
-              />
+              {drawerSection === "categories" ? drawerActiveArrow : drawerArrow}
             </button>
             {drawerSection === "categories" && (
               <div className="border-b border-white/15">
@@ -444,11 +478,11 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   <a
                     key={item}
                     href="#"
-                    className="flex w-full items-center justify-between border-t border-white/15 py-4 text-white"
+                    className={`flex w-full items-center justify-between border-t border-white/15 py-4 text-white ${drawerRowClass}`}
                     onClick={closeDrawer}
                   >
                     <span
-                      className="pr-4 uppercase"
+                      className={`uppercase ${isArabic ? "pl-4 pr-0" : "pr-4"}`}
                       style={{
                         fontFamily: '"SF Pro Text", sans-serif',
                         fontStyle: "normal",
@@ -460,17 +494,14 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                     >
                       {item}
                     </span>
-                    <ChevronRight
-                      className="h-6 w-6 shrink-0 text-white"
-                      strokeWidth={2}
-                    />
+                    {drawerArrow}
                   </a>
                 ))}
               </div>
             )}
             <a
               href="#"
-              className="flex w-full items-center justify-between border-b border-[#18c443] py-4 text-left"
+              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 ${drawerRowClass}`}
               onClick={closeDrawer}
             >
               <span
@@ -487,7 +518,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             </a>
             <a
               href="#"
-              className="flex w-full items-center justify-between border-b border-[#18c443] py-4 text-left"
+              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 ${drawerRowClass}`}
               onClick={closeDrawer}
             >
               <span
@@ -504,7 +535,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             </a>
             <a
               href="#"
-              className="flex w-full items-center justify-between border-b border-[#18c443] py-4 text-left"
+              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 ${drawerRowClass}`}
               onClick={closeDrawer}
             >
               <span
@@ -521,7 +552,9 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             </a>
             <button
               type="button"
-              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 text-left text-[16px] font-semibold tracking-wide ${
+              className={`flex w-full items-center justify-between border-b border-[#18c443] py-3 text-[16px] font-semibold tracking-wide ${
+                drawerRowClass
+              } ${
                 drawerSection === "resources" ? "text-[#18c443]" : "text-white"
               }`}
               onClick={() => toggleDrawerSection("resources")}
@@ -535,26 +568,21 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                {language === "AR" ? "الموارد" : "RESOURCES"}
+                {language === "AR" ? "RESOURCES" : "RESOURCES"}
               </span>
-              <ChevronRight
-                className={`h-6 w-6 transition-transform duration-200 ${
-                  drawerSection === "resources" ? "rotate-90 text-[#18c443]" : "text-white"
-                }`}
-                strokeWidth={2}
-              />
+              {drawerSection === "resources" ? drawerActiveArrow : drawerArrow}
             </button>
             {drawerSection === "resources" && (
-              <div className="border-b border-white/15">
-                {resources.map((item) => (
+              <div className="border-b border-white/15 pt-1">
+                {drawerResources.map((item) => (
                   <a
                     key={item}
                     href="#"
-                    className="flex w-full items-center justify-between border-t border-white/15 py-4 text-white"
+                    className={`flex w-full items-center justify-between border-t border-white/15 py-3 text-white ${drawerRowClass}`}
                     onClick={closeDrawer}
                   >
                     <span
-                      className="pr-4 uppercase"
+                      className={`uppercase ${isArabic ? "pl-4 pr-0" : "pr-4"}`}
                       style={{
                         fontFamily: '"SF Pro Text", sans-serif',
                         fontStyle: "normal",
@@ -566,17 +594,14 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                     >
                       {item}
                     </span>
-                    <ChevronRight
-                      className="h-6 w-6 shrink-0 text-white"
-                      strokeWidth={2}
-                    />
+                    {drawerArrow}
                   </a>
                 ))}
               </div>
             )}
             <a
               href="#"
-              className="flex w-full items-center justify-between border-b border-[#18c443] py-4 text-left"
+              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 ${drawerRowClass}`}
               onClick={closeDrawer}
             >
               <span
@@ -593,7 +618,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             </a>
             <a
               href="#"
-              className="flex w-full items-center justify-between border-b border-[#18c443] py-4 text-left"
+              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 ${drawerRowClass}`}
               onClick={closeDrawer}
             >
               <span

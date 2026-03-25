@@ -26,3 +26,63 @@ a {
 a:hover {
   color: rgb(0, 85, 254);
 }
+
+@media (max-width: 767px) {
+  .discover-section-arabic > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .discover-section-arabic > div > .discover-copy {
+    order: 1;
+  }
+
+  .discover-section-arabic > div > .discover-slider {
+    order: 2;
+  }
+
+  .discover-copy.text-center {
+    text-align: left;
+    align-items: center;
+  }
+
+  .discover-copy.text-center .discover-copy-body {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .discover-copy.text-center .discover-copy-button {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .discover-copy.text-right {
+    text-align: right;
+  }
+
+  .discover-copy.text-right .discover-copy-body {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .discover-copy.text-right .discover-copy-button {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .compare-section-arabic > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .compare-section-arabic .compare-trending-heading {
+    order: 1;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: auto;
+  }
+
+  .compare-section-arabic .compare-content {
+    order: 2;
+  }
+}

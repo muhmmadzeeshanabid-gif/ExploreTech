@@ -25,8 +25,8 @@ const TestimonialCard = ({ quote, author, title, company, isArabic = false }) =>
         </div>
 
         <p
-          className={`mb-6 w-full flex-grow text-[14px] font-normal leading-[22px] text-[#242424] ${
-            isArabic ? "text-right" : "text-left"
+          className={`mb-6 w-full flex-grow text-[12px] font-normal leading-[18px] text-[#242424] ${
+            isArabic ? "text-left" : "text-left"
           }`}
           style={{ fontFamily: '"SF Pro Text", sans-serif' }}
         >
@@ -35,13 +35,31 @@ const TestimonialCard = ({ quote, author, title, company, isArabic = false }) =>
 
         <div
           className={`flex w-full flex-col ${
-            isArabic ? "items-end text-right" : "items-start text-left"
+            isArabic ? "items-start text-left" : "items-start text-left"
           }`}
           style={{ fontFamily: '"SF Pro Text", sans-serif' }}
         >
-          <div className="w-full text-[16px] font-medium leading-[24px] text-[#242424]">{author}</div>
-          <div className="w-full text-[14px] font-normal leading-[21px] text-[#242424]">{title}</div>
-          <div className="w-full text-[14px] font-medium leading-[21px] text-[#242424]">{company}</div>
+          <div
+            className={`w-full text-[18px] font-medium leading-[27px] text-[#242424] ${
+              isArabic ? "text-left" : "text-left"
+            }`}
+          >
+            {author}
+          </div>
+          <div
+            className={`w-full text-[18px] font-normal leading-[27px] text-[#242424] ${
+              isArabic ? "text-left" : "text-left"
+            }`}
+          >
+            {title}
+          </div>
+          <div
+            className={`w-full text-[18px] font-medium leading-[27px] text-[#242424] ${
+              isArabic ? "text-left" : "text-left"
+            }`}
+          >
+            {company}
+          </div>
         </div>
       </div>
     </div>
@@ -163,6 +181,41 @@ const TrustedCompanies = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  React.useEffect(() => {
+    if (!isMobile || !scrollRef.current) return undefined;
+
+    const cards = Array.from(scrollRef.current.querySelectorAll("[data-trusted-card]"));
+    if (!cards.length) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let mostVisibleIndex = currentSlide;
+        let highestRatio = 0;
+
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const index = Number(entry.target.getAttribute("data-trusted-card"));
+          if (Number.isNaN(index)) return;
+          if (entry.intersectionRatio >= highestRatio) {
+            highestRatio = entry.intersectionRatio;
+            mostVisibleIndex = index;
+          }
+        });
+
+        if (highestRatio > 0) {
+          setCurrentSlide(mostVisibleIndex);
+        }
+      },
+      {
+        root: scrollRef.current,
+        threshold: [0.55, 0.7, 0.85],
+      }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, [isMobile, currentSlide]);
+
   const handleDotClick = (index) => {
     if (isMobile) {
       const targetCard = scrollRef.current?.children?.[index];
@@ -200,7 +253,11 @@ const TrustedCompanies = () => {
             }}
           >
             {visibleMobileCards.map((card, index) => (
-              <div key={index} className="flex w-full shrink-0 snap-center items-center justify-center px-6">
+              <div
+                key={index}
+                data-trusted-card={index}
+                className="flex w-full shrink-0 snap-center items-center justify-center px-6"
+              >
                 <div className="w-full max-w-[440px]">
                   <TestimonialCard {...card} isArabic={isArabic} />
                 </div>
@@ -233,9 +290,11 @@ const TrustedCompanies = () => {
             <button
               key={index}
               onClick={() => handleDotClick(index)}
-              className={`cursor-pointer rounded-full transition-all duration-300 ${
-                isMobile ? "h-4 w-4" : "h-2 w-8"
-              } ${currentSlide === index ? "bg-[#0B5BFF] shadow-[0_0_0_2px_rgba(11,91,255,0.14)]" : "bg-[#E0E5ED]"}`}
+              className={`h-2 w-8 cursor-pointer rounded-full transition-all duration-300 ${
+                currentSlide === index
+                  ? "bg-[#0B5BFF] shadow-[0_0_0_2px_rgba(11,91,255,0.14)]"
+                  : "bg-[#E0E5ED]"
+              }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

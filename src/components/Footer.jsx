@@ -270,22 +270,35 @@ const Footer = () => {
         ["Refund Policy", "Cookies Policy", "Privacy Policy", "VOE Terms & Conditions", "Resources", "Cookie Settings"],
       ];
 
+  const displayFooterLinksGroups = isArabic ? [...footerLinksGroups].reverse() : footerLinksGroups;
   const fontSfPro =
     "font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Helvetica,Arial,sans-serif]";
   const footerLinkClass = `${fontSfPro} !text-[#000000] !text-[14px] !leading-[21px] !font-normal tracking-normal no-underline visited:!text-[#000000] hover:!text-[rgb(0,85,254)] hover:underline hover:underline-offset-[2px]`;
+  const countrySelectStyle = {
+    fontFamily:
+      '"SF UI Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    fontWeight: 400,
+    color: "rgb(71, 77, 102)",
+    fontSize: "12px",
+    lineHeight: "16px",
+  };
 
   return (
     <footer className="mt-10 w-full bg-white pt-0" dir={isArabic ? "rtl" : "ltr"}>
       <div className="mx-auto max-w-[1790px] px-5 md:px-10">
         <div className="flex flex-col gap-9 border-t-2 border-[#d9dde3] py-[58px]">
-          <div className={`flex w-full ${isArabic ? "justify-end" : "justify-start"}`}>
+          <div className={`flex w-full ${isArabic ? "justify-start" : "justify-start"}`}>
             <a href="/" className="inline-block w-max">
-              <img src={footerLogo} alt="ExploreTECH Logo" className="h-[63px] w-auto object-contain" />
+              <img
+                src={footerLogo}
+                alt="ExploreTECH Logo"
+                className="h-[56px] w-[110px] object-contain md:h-[70px] md:w-[125px]"
+              />
             </a>
           </div>
 
           <div className="grid w-full grid-cols-1 items-start gap-y-5 md:grid-cols-[max-content_max-content_max-content_auto] md:justify-start md:gap-x-[148px]">
-            {footerLinksGroups.map((group, groupIndex) => (
+            {displayFooterLinksGroups.map((group, groupIndex) => (
               <div key={groupIndex} className={`flex flex-col gap-[10px] ${isArabic ? "text-right" : ""}`}>
                 {group.map((link, idx) => (
                   <a key={idx} href="#" className={footerLinkClass}>
@@ -299,16 +312,19 @@ const Footer = () => {
               <select
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
-                className={`${fontSfPro} h-[36px] w-full appearance-none rounded-[6px] border border-[#c9ced8] bg-white px-3 pr-8 text-[12px] font-normal leading-[18px] outline-none`}
+                style={countrySelectStyle}
+                className="h-[36px] w-full appearance-none rounded-[6px] border border-[#c9ced8] bg-white px-3 pr-8 text-left outline-none"
+                dir="ltr"
+                lang="en"
               >
                 {countries.map((country, idx) => (
-                  <option key={idx} value={country}>
+                  <option key={idx} value={country} dir="ltr">
                     {country}
                   </option>
                 ))}
               </select>
               <i
-                className="bi bi-caret-down-fill pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-[rgb(15,23,42)]"
+                className="bi bi-caret-down-fill pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-[rgb(71,77,102)]"
                 aria-hidden="true"
               />
             </div>
@@ -324,7 +340,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col items-start justify-between gap-8 pb-9 lg:flex-row lg:items-end">
-          <p className={`${fontSfPro} text-[12px] font-normal leading-[21px] text-[rgb(15,23,42)]`}>
+          <p className={`${fontSfPro} text-[12px] font-normal leading-[21px] text-[rgb(15,23,42)] ${isArabic ? "text-right" : ""}`}>
             {isArabic
               ? "مكتب إكسبلورتك في دبي:3906، Mazaya Business Avenue BB1، أبراج بحيرة جميرا، صندوق بريد 333834، دبي، الإمارات العربية المتحدة|اتصل بنا:+971 (0)4 363 6588|راسلنا عبر البريد الإلكتروني:exploremore@exploretech.io"
               : "ExploreTECH Dubai office. 3906, Mazaya Business Avenue BB1, JLT P.O.Box 333834, Dubai, UAE | Call Us: +971 (0)4 363 6588 | Email Us: exploremore@exploretech.io"}
