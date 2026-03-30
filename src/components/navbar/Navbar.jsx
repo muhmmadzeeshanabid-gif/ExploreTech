@@ -9,7 +9,7 @@ const Navbar = ({ onSignIn, onSignUp }) => {
   const { language } = useLanguage();
   const navLogo = language === "AR" ? logoAr : logoEn;
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white">
+    <nav className="fixed top-0 z-50 w-full bg-white">
       <div
         className={`flex items-center px-5 py-3 md:pl-[50px] md:pr-[50px] ${
           language === "AR" ? "flex-row-reverse" : ""

@@ -1,5 +1,4 @@
-﻿import React, { useCallback, useEffect, useState } from "react";
-import Navbar from "./components/navbar/Navbar.jsx";
+﻿import AppHeader from "./components/AppHeader.jsx";
 import HeroBanner from "./components/HeroBanner.jsx";
 import PromptBox from "./components/PromptBox.jsx";
 import CommitmentHeading from "./components/CommitmentHeading.jsx";
@@ -15,73 +14,43 @@ import LogoMarquee from "./components/growing-network/marquee/LogoMarquee.jsx";
 import LatestNews from "./components/growing-network/latest-news/LatestNews.jsx";
 import EarlyAdopters from "./components/growing-network/early-adopters/EarlyAdopters.jsx";
 import Newsletter from "./components/newsletter/Newsletter.jsx";
-import SignInLanding from "./components/signin/SignInLanding.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import CookiesBanner from "./components/cookies-banner/CookiesBanner.jsx";
+import { useSignInState } from "./hooks/useSignInState.js";
 
 const App = () => {
-  const [signInOpen, setSignInOpen] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.location.hash === "#auth";
-  });
-
-  useEffect(() => {
-    const syncAuthStateFromHash = () => {
-      setSignInOpen(window.location.hash === "#auth");
-    };
-
-    window.addEventListener("hashchange", syncAuthStateFromHash);
-    return () => window.removeEventListener("hashchange", syncAuthStateFromHash);
-  }, []);
-
-  const openSignIn = useCallback(() => {
-    if (window.location.hash !== "#auth") {
-      window.location.hash = "auth";
-    }
-    setSignInOpen(true);
-  }, []);
-
-  const closeSignIn = useCallback(() => {
-    if (window.location.hash === "#auth") {
-      const cleanUrl = window.location.pathname + window.location.search;
-      window.history.replaceState({}, document.title, cleanUrl);
-    }
-    setSignInOpen(false);
-  }, []);
+  const { signInOpen, openSignIn, closeSignIn } = useSignInState();
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar onSignIn={openSignIn} onSignUp={openSignIn} />
-      <SignInLanding
-        open={signInOpen}
-        onHome={closeSignIn}
-        youtubeUrl="https://youtu.be/UeZX7_UlF9E"
+    <>
+      <AppHeader
+        signInOpen={signInOpen}
+        openSignIn={openSignIn}
+        closeSignIn={closeSignIn}
       />
-      <div className="pt-6 pb-12 text-center">
-        <PromptBox />
-      </div>
-      <HeroBanner />
-      <CommitmentHeading />
-      <HowToChoose />
-      <Discover />
-      <CompareSection />
-      <ConnectSection />
-      <ProcureSection />
-      <GrowingNetworkHeading />
-      <GrowingNetworkSlider />
-      <TrustedCompanies />
-      <LogoMarquee />
-      <LatestNews />
-      <EarlyAdopters />
-      <Newsletter />
-      <Footer />
-      <CookiesBanner />
-    </div>
+      <main className="pt-24">
+        <div className="pt-6 pb-12 text-center">
+          <PromptBox />
+        </div>
+        <HeroBanner />
+        <CommitmentHeading />
+        <HowToChoose />
+        <Discover />
+        <CompareSection />
+        <ConnectSection />
+        <ProcureSection />
+        <GrowingNetworkHeading />
+        <GrowingNetworkSlider />
+        <TrustedCompanies />
+        <LogoMarquee />
+        <LatestNews />
+        <EarlyAdopters />
+        <Newsletter />
+        <Footer />
+        <CookiesBanner />
+      </main>
+    </>
   );
 };
 
 export default App;
-
-
-
-

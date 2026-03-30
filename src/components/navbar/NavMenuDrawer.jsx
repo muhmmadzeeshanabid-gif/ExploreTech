@@ -87,23 +87,21 @@ const NavMenuDrawer = ({
             isArabic ? "flex-row-reverse" : ""
           }`}
         >
-          <div className={`flex flex-col ${isArabic ? "items-end" : "items-start"}`}>
+          <div>
             <img
               src={navLogo}
               alt="Explore Tech"
-              className={`h-[72px] w-auto object-contain block ${
-                isArabic ? "" : "-ml-2"
+              className={`h-[60px] w-auto object-contain ${
+                isArabic ? "ml-0 mr-0" : "-ml-2"
               }`}
               style={{ filter: "invert(1) brightness(1.2)" }}
             />
             <div
-              className={`-mt-[20px] whitespace-nowrap text-[9px] font-semibold leading-[10px] text-white ${
-                isArabic
-                  ? "w-full text-center tracking-widest pl-2"
-                  : "w-[200px] text-left tracking-[0.16em]"
+              className={`-mt-[18px] w-[172px] whitespace-nowrap text-[8px] font-semibold leading-[10px] tracking-[0.18em] text-white ${
+                isArabic ? "ml-0 mr-0" : ""
               }`}
             >
-              {isArabic ? "السوق الرقمي" : navMenuParagraphs.drawerTagline}
+              {navMenuParagraphs.drawerTagline}
             </div>
           </div>
           <button
@@ -235,22 +233,25 @@ const NavMenuDrawer = ({
             <span style={drawerPrimaryTextStyle}>{drawerLabels.contactUs}</span>
           </a>
 
-          <div ref={mobileLanguageRef} className="relative mt-10 inline-flex pb-10">
+          <div ref={mobileLanguageRef} className="relative mt-10 inline-flex">
             {languageOpen && (
-              <div className="absolute bottom-full left-0 z-10 mb-2 w-36 overflow-hidden rounded-lg border border-slate-100 bg-white text-[14px] font-medium text-slate-700 shadow-[0_18px_40px_-20px_rgba(15,23,42,0.45)]">
+              <div className="absolute bottom-full left-0 z-10 mb-2 w-[170px] overflow-hidden rounded-[14px] border border-[#d7dee8] bg-[#f4f6f9] shadow-[0_10px_28px_-18px_rgba(15,23,42,0.45)]">
                 <button
                   type="button"
-                  className="w-full border-b border-slate-100 px-4 py-2 text-center transition-colors hover:bg-blue-50 hover:text-[#0b56ff]"
+                  className="w-full px-5 py-[10px] text-left transition-colors hover:bg-[#eef2f7]"
                   onClick={() => handleLanguageSelect("EN")}
+                  style={languageOptionStyle}
                 >
-                  English
+                  {languageLabels.english}
                 </button>
+                <div className="h-px w-full bg-[#d7dee8]" />
                 <button
                   type="button"
-                  className="w-full px-4 py-2 text-center transition-colors hover:bg-blue-50 hover:text-[#0b56ff]"
+                  className="w-full px-5 py-[10px] text-left transition-colors hover:bg-[#eef2f7]"
                   onClick={() => handleLanguageSelect("AR")}
+                  style={languageOptionStyle}
                 >
-                  العربية
+                  {languageLabels.arabic}
                 </button>
               </div>
             )}

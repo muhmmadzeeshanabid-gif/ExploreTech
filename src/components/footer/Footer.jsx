@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import logoEn from "../../assets/logo/015303ETLogo-English_Color.png";
 import logoAr from "../../assets/logo/AR-Explote-Tech-Logo-Black.gif";
 import { useLanguage } from "../../context/LanguageContext.jsx";
