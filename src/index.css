@@ -1,16 +1,19 @@
 @import "tailwindcss";
+@import url(https://db.onlinewebfonts.com/c/cfdc7772d1426068d6cc35816bdb06f8?family=Visby+CF+Bold);
 
 body {
   margin: 0;
   font-family: "SF Pro Text", sans-serif;
 }
 
-.hide-scrollbar {
+.hide-scrollbar,
+.no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-.hide-scrollbar::-webkit-scrollbar {
+.hide-scrollbar::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
@@ -77,8 +80,6 @@ a:hover {
 
   .compare-section-arabic .compare-trending-heading {
     order: 1;
-    align-items: flex-end;
-    justify-content: flex-end;
     height: auto;
   }
 
@@ -86,3 +87,41 @@ a:hover {
     order: 2;
   }
 }
+
+/* Trending Product Ribbon Styles */
+.ribbon {
+  position: absolute;
+  top: 14px;
+  left: -32px;
+  width: 140px;
+  transform: rotate(-45deg);
+  padding: 2px 0;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 20;
+}
+
+.ribon-orange {
+  background-color: #ff9900;
+}
+
+/* Global Button Cursor Styles */
+button, 
+[type='button'], 
+[type='submit'], 
+[type='reset'], 
+[role='button'] {
+  cursor: pointer !important;
+}
+
+button:disabled, 
+[type='button']:disabled, 
+[type='submit']:disabled, 
+[type='reset']:disabled {
+  cursor: not-allowed !important;
+}
+

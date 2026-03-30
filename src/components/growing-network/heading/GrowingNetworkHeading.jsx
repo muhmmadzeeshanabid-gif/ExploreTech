@@ -1,4 +1,4 @@
-import { useLanguage } from "../../context/LanguageContext.jsx";
+﻿import { useLanguage } from "../../../context/LanguageContext.jsx";
 
 const GrowingNetworkHeading = () => {
   const { language } = useLanguage();
@@ -12,7 +12,9 @@ const GrowingNetworkHeading = () => {
           style={{ fontFamily: '"Space Grotesk", sans-serif' }}
           dir={isArabic ? "rtl" : "ltr"}
         >
-          {isArabic ? "أحدث الإضافات إلى شبكة مزوّدي التكنولوجيا لدينا" : "Our growing network of tech providers"}
+          {isArabic
+            ? "أحدث الإضافات إلى شبكة مزودي التكنولوجيا لدينا"
+            : "Our growing network of tech providers"}
         </h2>
         <p
           className="mt-4 max-w-[980px] text-[16px] font-normal leading-[24px] text-[#242424] lg:text-[#1F2937]"
@@ -20,7 +22,7 @@ const GrowingNetworkHeading = () => {
           dir={isArabic ? "rtl" : "ltr"}
         >
           {isArabic
-            ? "تعرّف على مزوّدي تكنولوجيا الضيافة الجدد على منصتنا. يجلب هؤلاء الخبراء حلولًا مبتكرة تساعد الفنادق على تطوير بنيتها التقنية والبقاء في الطليعة في سوق سريع التغيّر."
+            ? "تعرّف على مزودي تكنولوجيا الضيافة الجدد على منصتنا. يجلب هؤلاء الخبراء حلولًا مبتكرة تساعد الفنادق على تطوير بنيتها التقنية والبقاء في الطليعة في سوق سريع التغيّر."
             : "Explore the newest hospitality technology providers who've recently joined our platform. These forward-thinking vendors bring fresh innovations and specialized solutions to help hoteliers enhance their tech stack and stay ahead in a competitive market."}
         </p>
       </div>

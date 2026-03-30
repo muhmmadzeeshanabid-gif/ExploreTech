@@ -1,67 +1,108 @@
-import { useState } from "react";
-import { ArrowUp, AudioLines, Info } from "lucide-react";
+﻿import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext.jsx";
 
 const PromptBox = () => {
   const { language } = useLanguage();
   const [message, setMessage] = useState("");
-  const canSend = message.trim().length > 0;
   const isArabic = language === "AR";
-  const headingClassName = isArabic
-    ? "mb-4 w-full px-4 text-center font-['Space_Grotesk'] text-[28px] font-semibold leading-[38px] text-black sm:px-6 lg:text-[40px] lg:leading-[60px]"
-    : "mb-4 w-full px-4 text-center font-['Space_Grotesk'] text-[28px] font-semibold leading-[38px] text-black sm:px-6 lg:text-[40px] lg:leading-[60px]";
+  const canSend = message.trim().length > 0;
+
+  const content = {
+    heading: isArabic
+      ? "اسألني عن أي شيء يخص تقنيات الفنادق"
+      : "Ask me anything about hotel TECH",
+    placeholder: isArabic ? "ابدأ محادثة..." : "Start a conversation...",
+    disclaimer: isArabic
+      ? "ExploreTECH PRO في مرحلة البيتا حاليًا. الروبوت يتعلم ويتطور بشكل مستمر، لذا قد تختلف بعض الردود في الدقة."
+      : "ExploreTECH PRO is currently in BETA. The bot is continuously learning and evolving, so some responses may vary in accuracy.",
+  };
 
   return (
-    <div className="mx-auto mt-2 w-full max-w-[818px] px-4 sm:px-6 md:max-w-[940px] md:px-8 lg:max-w-[818px]">
-      <h1 className={headingClassName} dir={isArabic ? "rtl" : "ltr"}>
-        {isArabic ? "اسألني عن أي شيء يخص تقنيات الفنادق" : "Ask me anything about hotel TECH"}
-      </h1>
-      <div className="relative h-[150px] rounded-[4px] border-2 border-slate-300 bg-white md:h-[176px] lg:h-[164px]">
-        <textarea
-          className={`h-full w-full resize-none rounded-[4px] px-4 pt-2.5 pb-3.5 font-['SF_Pro_Text'] text-[15px] leading-[22px] text-slate-900 placeholder:text-slate-400 focus:outline-none md:px-5 md:pt-3 md:text-[16px] md:leading-[24px] ${
-            language === "AR" ? "text-right" : "text-left"
-          }`}
-          placeholder={
-            language === "AR" ? "ابدأ محادثة..." : "Start a conversation..."
-          }
-          dir={language === "AR" ? "rtl" : "ltr"}
-          value={message}
-          onChange={(event) => setMessage(event.target.value)}
-        />
+    <div className="flex w-full flex-col items-center justify-center px-4">
+      <div className="flex w-[90%] max-w-[850px] flex-col items-center md:w-[70%]">
+        <h1
+          className="mb-6 text-center text-[28px] font-semibold max-sm:mt-10 max-sm:leading-8 md:text-[32px] lg:text-[40px]"
+          dir={isArabic ? "rtl" : "ltr"}
+        >
+          {content.heading}
+        </h1>
+
         <div
-          className={`absolute bottom-2.5 flex items-center gap-2 md:bottom-3 md:gap-3 ${
-            language === "AR" ? "left-4 md:left-5 flex-row-reverse" : "right-4 md:right-5"
-          }`}
+          className={`w-full rounded-md border-2 border-gray-300 bg-white px-2 py-2 ${isArabic ? "rtl" : "ltr"} flex flex-col gap-2 md:block`}
         >
-          <AudioLines className="h-[18px] w-[18px] text-black md:h-5 md:w-5" strokeWidth={2.2} />
-          <button
-            className={`flex h-8 w-8 items-center justify-center rounded-full text-white transition md:h-9 md:w-9 ${
-              canSend
-                ? "bg-[#14c439] hover:bg-[#12b337]"
-                : "cursor-not-allowed bg-[#8be4a4]"
-            }`}
-            type="button"
-            disabled={!canSend}
-            aria-label={language === "AR" ? "إرسال رسالة" : "Send message"}
-          >
-            <ArrowUp className="h-4 w-4" strokeWidth={2.2} />
-          </button>
+          <textarea
+            rows="4"
+            placeholder={content.placeholder}
+            className={`w-full resize-none border-none bg-transparent px-3 text-black focus:outline-none focus:ring-0 ${isArabic ? "text-right" : "text-left"}`}
+            style={{ height: "96px" }}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            dir={isArabic ? "rtl" : "ltr"}
+          />
+
+          <div className="mt-2 flex items-center justify-between px-1">
+            <div />
+            <div
+              className={`flex items-center space-x-1.5 ${isArabic ? "flex-row-reverse space-x-reverse" : ""}`}
+            >
+              <div className="flex h-8 w-8 items-center justify-center rounded-full">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.5 7.33333L1.5 10.6667M5.25 8.16667V9.83333M9 4V14M12.75 1.5V16.5M16.5 7.33333V10.6667"
+                    stroke="#535862"
+                    strokeWidth="1.66667"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <button
+                disabled={!canSend}
+                className={`flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300 ${
+                  canSend
+                    ? "bg-[#12b033] hover:shadow-lg active:scale-95"
+                    : "cursor-not-allowed bg-[#12b033] opacity-50"
+                }`}
+                title={isArabic ? "إرسال رسالة" : "Send message (or press Enter)"}
+              >
+                <div>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-white"
+                  >
+                    <path
+                      d="M12 19V5M12 5L5 12M12 5L19 12"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-      <div
-        className={`mt-2.5 flex w-full items-start justify-center gap-2 bg-white px-3 py-1.5 font-['SF_Pro_Text'] text-[11px] font-normal leading-[16px] text-[#6B7280] md:px-4 md:text-[12px] ${
-          language === "AR" ? "text-right" : "text-center"
-        }`}
-      >
-        <Info className="mt-[2px] h-[11px] w-[11px] shrink-0 text-[#6B7280] md:h-[12px] md:w-[12px]" />
+
         <p
-          className="max-w-[680px] font-['SF_Pro_Text']"
-          dir={language === "AR" ? "rtl" : "ltr"}
-          style={{ fontFamily: '"SF Pro Text", sans-serif' }}
+          className={`mt-3 flex items-center gap-1 text-xs text-gray-500 ${
+            isArabic ? "flex-row-reverse" : ""
+          }`}
+          dir={isArabic ? "rtl" : "ltr"}
         >
-          {language === "AR"
-            ? "ExploreTECH PRO في مرحلة البيتا حاليًا. الروبوت يتعلم ويتطور بشكل مستمر، لذا قد تختلف بعض الردود في الدقة."
-            : "ExploreTECH PRO is in beta. The bot may sometimes provide incorrect responses."}
+          <span aria-hidden="true">ⓘ</span>
+          <span>{content.disclaimer}</span>
         </p>
       </div>
     </div>

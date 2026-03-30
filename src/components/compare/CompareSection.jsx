@@ -1,90 +1,90 @@
-﻿import React from "react";
-import duettoLogo from "../../assets/images/compare/140138TOPjEQ71Ym_50_rsx.jpg";
-import atomizeLogo from "../../assets/images/compare/153556143810075036Atomize_1_50_rsx.png";
-import dotLogo from "../../assets/images/compare/3pjklG8nxF.png";
-import profitLogo from "../../assets/images/compare/081608ProfitIntelligence.png";
-import demandLogo from "../../assets/images/compare/103339Demandcalendar.png";
-import robotsImage from "../../assets/images/compare/113157images4.jpg";
-import robomationLogo from "../../assets/images/compare/101945download4.webp";
-import circuitsImage from "../../assets/images/compare/102645images.webp";
+import React from "react";
+import {
+  comparisons,
+  compareContentEN,
+  compareContentAR,
+} from "../../data/compareData.js";
 import { useLanguage } from "../../context/LanguageContext.jsx";
-
-const comparisons = [
-  {
-    id: 1,
-    items: [
-      { src: atomizeLogo, alt: "Atomize" },
-      { src: duettoLogo, alt: "Duetto" },
-    ],
-  },
-  {
-    id: 2,
-    items: [
-      { src: dotLogo, alt: "Analytics platform" },
-      { src: profitLogo, alt: "Profit Intelligence" },
-      { src: demandLogo, alt: "Demand Calendar" },
-    ],
-  },
-  {
-    id: 3,
-    items: [
-      { src: robomationLogo, alt: "Robomation" },
-      { src: circuitsImage, alt: "Automation" },
-      { src: robotsImage, alt: "Robotics" },
-    ],
-  },
-];
+import TrendingProductsSlider from "./TrendingProductsSlider.jsx";
 
 const CompareSection = () => {
   const { language } = useLanguage();
   const isArabic = language === "AR";
+  const content = isArabic ? compareContentAR : compareContentEN;
 
   if (isArabic) {
     return (
       <section className="compare-section compare-section-arabic w-full bg-[#17c53a] py-14 md:py-16">
         <div className="mx-auto grid max-w-[1320px] grid-cols-1 items-start gap-10 px-5 md:gap-12 md:px-8 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16 lg:px-10">
-          <div className="compare-content text-right text-white">
+          <div className="compare-trending-heading order-1 flex w-full flex-col items-end justify-end lg:order-2 lg:items-center">
             <h1
-              className="text-[30px] font-semibold leading-tight text-white md:text-[36px] lg:w-[629px] lg:text-[40px] lg:leading-[50px]"
-              style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600 }}
+              className="text-white font-visbyCF-bold leading-tight mb-10 font-semibold max-sm:mt-10 text-[24px] md:text-[32px] lg:text-[40px] text-right"
+              style={{
+                fontFamily: '"VisbyCF-Bold", "Space Grotesk", sans-serif',
+                fontWeight: 600,
+              }}
               dir="rtl"
             >
-              قارن
+              {content.trendingProducts}
+            </h1>
+            <TrendingProductsSlider isArabic={isArabic} />
+          </div>
+
+          <div className="compare-content order-2 w-full text-right text-white lg:order-1">
+            <h1
+              className="text-[30px] font-semibold leading-tight text-white md:text-[36px] lg:w-[629px] lg:text-[40px] lg:leading-[50px]"
+              style={{
+                fontFamily: '"Space Grotesk", sans-serif',
+                fontWeight: 600,
+              }}
+              dir="rtl"
+            >
+              {content.compare}
             </h1>
             <p
               className="mt-2 text-[15px] font-normal leading-[23px] text-white md:text-[16px] md:leading-[24px] lg:w-[629px]"
-              style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 400 }}
+              style={{
+                fontFamily: '"SF Pro Text", sans-serif',
+                fontWeight: 400,
+              }}
               dir="rtl"
             >
-              عرض الحلول جنبًا إلى جنب
+              {content.viewSolutions}
             </p>
 
             <div className="mt-5 lg:w-[629px]">
               <p
                 className="text-[15px] font-bold leading-[23px] text-white md:text-[16px] md:leading-[24px]"
-                style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 700 }}
+                style={{
+                  fontFamily: '"SF Pro Text", sans-serif',
+                  fontWeight: 700,
+                }}
                 dir="rtl"
               >
-                أداة المقارنة المتقدمة للمنتجات
+                {content.advancedTool}
               </p>
               <p
                 className="mt-2 text-[15px] font-normal leading-[23px] text-white md:text-[16px] md:leading-[24px] lg:w-[629px]"
-                style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 400 }}
+                style={{
+                  fontFamily: '"SF Pro Text", sans-serif',
+                  fontWeight: 400,
+                }}
                 dir="rtl"
               >
-                قارن تقنيات الضيافة بسهولة جنبًا إلى جنب. قم ببناء ملفك الفندقي وتلقى
-                حلولًا مخصصة تتكامل مع أنظمتك. قارن الميزات، والأسعار، والمواصفات،
-                والتكاملات بكل سهولة.
+                {content.description}
               </p>
             </div>
 
             <div className="relative z-30 mt-8 lg:w-[629px] md:mt-10">
               <p
                 className="mb-4 block text-right text-[15px] font-bold leading-[23px] text-white md:text-[16px] md:leading-[24px]"
-                style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 700 }}
+                style={{
+                  fontFamily: '"SF Pro Text", sans-serif',
+                  fontWeight: 700,
+                }}
                 dir="rtl"
               >
-                أحدث مقارنات تم إجراؤها
+                {content.latestComparisons}
               </p>
             </div>
 
@@ -102,9 +102,12 @@ const CompareSection = () => {
                     <button
                       type="button"
                       className="h-9 w-full max-w-[98px] flex-shrink-0 rounded-[8px] bg-[#365cff] px-2 text-[10px] font-medium leading-[1.1] text-white transition hover:bg-[#2f52e6] sm:h-10 sm:max-w-[138px] sm:text-[11px] md:max-w-[152px] md:text-[12px]"
-                      style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 500 }}
+                      style={{
+                        fontFamily: '"SF Pro Text", sans-serif',
+                        fontWeight: 500,
+                      }}
                     >
-                      أضف للمقارنة
+                      {content.addToCompare}
                     </button>
 
                     <div
@@ -124,9 +127,12 @@ const CompareSection = () => {
                           {index < row.items.length - 1 && (
                             <span
                               className="text-[12px] font-normal leading-normal tracking-normal text-black sm:text-[14px] md:text-[16px]"
-                              style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 400 }}
+                              style={{
+                                fontFamily: '"Space Grotesk", sans-serif',
+                                fontWeight: 400,
+                              }}
                             >
-                              مقابل
+                              {content.vs}
                             </span>
                           )}
                         </React.Fragment>
@@ -137,16 +143,6 @@ const CompareSection = () => {
               ))}
             </div>
           </div>
-
-          <div className="compare-trending-heading flex h-full items-center justify-end">
-            <h1
-              className="text-right text-[30px] font-semibold leading-tight text-white md:text-[36px] lg:text-[40px] lg:leading-[50px]"
-              style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600 }}
-              dir="rtl"
-            >
-              المنتجات الرائجة
-            </h1>
-          </div>
         </div>
       </section>
     );
@@ -155,54 +151,71 @@ const CompareSection = () => {
   return (
     <section className="w-full bg-[#17c53a] py-14 md:py-16">
       <div className="mx-auto grid max-w-[1320px] grid-cols-1 items-start gap-10 px-5 md:gap-12 md:px-8 lg:grid-cols-[0.9fr_1.2fr] lg:gap-16 lg:px-10">
-        <div className="flex h-full items-start justify-start md:items-center lg:-ml-[80px]">
+        <div className="flex w-full h-full flex-col items-start justify-start">
           <h1
-            className="text-left text-[30px] font-semibold leading-tight text-white md:text-[36px] lg:text-[40px] lg:leading-[50px]"
-            style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600 }}
+            className="text-white font-visbyCF-bold leading-tight mb-10 font-semibold max-sm:mt-10 text-[24px] md:text-[32px] lg:text-[40px] text-left"
+            style={{
+              fontFamily: '"VisbyCF-Bold", "Space Grotesk", sans-serif',
+              fontWeight: 600,
+            }}
           >
-            Trending Products
+            {content.trendingProducts}
           </h1>
+          <TrendingProductsSlider isArabic={isArabic} />
         </div>
 
         <div className="text-left text-white md:max-w-[880px] lg:translate-x-[32px]">
           <div>
             <h1
               className="w-full text-[30px] font-semibold leading-tight text-white md:text-[36px] lg:h-[50px] lg:w-[629px] lg:text-[40px] lg:leading-[50px]"
-              style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 600 }}
+              style={{
+                fontFamily: '"Space Grotesk", sans-serif',
+                fontWeight: 600,
+              }}
             >
-              Compare
+              {content.compare}
             </h1>
             <p
               className="mt-2 w-full text-[15px] font-normal leading-[23px] text-white md:text-[16px] md:leading-[24px] lg:h-[24px] lg:w-[629px]"
-              style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 400 }}
+              style={{
+                fontFamily: '"SF Pro Text", sans-serif',
+                fontWeight: 400,
+              }}
             >
-              View side-by-side solutions
+              {content.viewSolutions}
             </p>
           </div>
 
           <div className="mt-5 w-full md:mt-6 lg:max-w-[640px]">
             <p
               className="text-[15px] font-bold leading-[23px] text-white md:text-[16px] md:leading-[24px]"
-              style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 700 }}
+              style={{
+                fontFamily: '"SF Pro Text", sans-serif',
+                fontWeight: 700,
+              }}
             >
-              Advanced Product Comparison Tool
+              {content.advancedTool}
             </p>
             <p
               className="mt-2 w-full text-[15px] font-normal leading-[23px] text-white md:text-[16px] md:leading-[24px] lg:h-[72px] lg:w-[629px]"
-              style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 400 }}
+              style={{
+                fontFamily: '"SF Pro Text", sans-serif',
+                fontWeight: 400,
+              }}
             >
-              Easily compare hospitality technologies side-by-side. Build your hotel profile and
-              receive tailored solutions that integrate with your systems. Compare features,
-              pricing, specs, and integrations effortlessly.
+              {content.description}
             </p>
           </div>
 
           <div className="mt-8 md:mt-10">
             <p
               className="text-[15px] font-bold leading-[23px] text-white md:text-[16px] md:leading-[24px]"
-              style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 700 }}
+              style={{
+                fontFamily: '"SF Pro Text", sans-serif',
+                fontWeight: 700,
+              }}
             >
-              Latest Comparison Conducted
+              {content.latestComparisons}
             </p>
             <div className="mt-4 space-y-3 md:space-y-4">
               {comparisons.map((row) => (
@@ -234,9 +247,12 @@ const CompareSection = () => {
                           {index < row.items.length - 1 && (
                             <span
                               className="text-[12px] font-normal leading-normal tracking-normal text-black sm:text-[14px] md:text-[16px]"
-                              style={{ fontFamily: '"Space Grotesk", sans-serif', fontWeight: 400 }}
+                              style={{
+                                fontFamily: '"Space Grotesk", sans-serif',
+                                fontWeight: 400,
+                              }}
                             >
-                              vs
+                              {content.vs}
                             </span>
                           )}
                         </React.Fragment>
@@ -245,9 +261,12 @@ const CompareSection = () => {
                     <button
                       type="button"
                       className="h-9 w-full max-w-[98px] flex-shrink-0 rounded-[8px] bg-[#365cff] px-2 text-[10px] font-medium leading-[1.1] text-white transition hover:bg-[#2f52e6] sm:h-10 sm:max-w-[138px] sm:text-[11px] md:max-w-[152px] md:text-[12px]"
-                      style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 500 }}
+                      style={{
+                        fontFamily: '"SF Pro Text", sans-serif',
+                        fontWeight: 500,
+                      }}
                     >
-                      Add to Compare
+                      {content.addToCompare}
                     </button>
                   </div>
                 </div>

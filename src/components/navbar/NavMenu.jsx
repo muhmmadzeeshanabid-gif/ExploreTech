@@ -1,62 +1,101 @@
-import { ChevronRight, Globe, Menu, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import logoEn from "../../assets/logo/Explote-Tech-Logo-Black.gif";
 import logoAr from "../../assets/logo/AR-Explote-Tech-Logo-Black.gif";
 import { useLanguage } from "../../context/LanguageContext.jsx";
+import {
+  categoriesEn,
+  categoriesAr,
+  categorySubmenusEn,
+  categorySubmenusAr,
+  resourcesEn,
+  resourcesAr,
+  resourceSubmenusEn,
+  resourceSubmenusAr,
+  menuItemClasses,
+  arrowClasses,
+  arabicEventsStyle,
+  searchSubmitButtonClass,
+} from "./navMenuData.js";
+import {
+  allProductsData,
+  allServiceProvidersData,
+  blogsDataEn,
+  newsItemTitlesAr,
+  productsDataAr,
+  productsDataEn,
+  searchPanelAssets,
+  searchTabsAr,
+  searchTabsEn,
+  serviceProvidersData,
+  subcategoriesAr,
+  subcategoriesEn,
+} from "./search-panel/searchPanelData.js";
+import {
+  clearQueryButton,
+  tabScrollButtonLeft,
+  tabScrollButtonRight,
+  viewMoreButton,
+  compareButton,
+} from "./navMenuButtons.js";
+import { DesktopSearchButton } from "./NavMenuButtons.jsx";
+import {
+  drawerMenuHeadings,
+  languageLabels,
+  navMenuHeadings,
+  searchSectionHeadings,
+  searchTabsLabels,
+} from "./navMenuHeadings.js";
+import { navMenuParagraphs } from "./navMenuParagraphs.js";
+import {
+  getBlogCardsData,
+  getNewsCardsData,
+} from "./search-panel/searchPanelContent.js";
+import NavMenuSearchOverlay from "./NavMenuSearchOverlay.jsx";
+import NavMenuDesktopLinks from "./NavMenuDesktopLinks.jsx";
+import NavMenuResponsiveActions from "./NavMenuResponsiveActions.jsx";
+import NavMenuDrawer from "./NavMenuDrawer.jsx";
 
-const categoriesEn = [
-  "Business intelligence",
-  "Commercial and distribution",
-  "Hospitality operations",
-  "Guest and traveller tech",
-  "In room tech",
-  "Information communication technology",
-  "Finance and payments",
-  "Robotics and automation",
-  "Hospitality services",
-  "Restaurant technology",
-  "Short term/vacation rental solutions",
-  "Sustainability",
-];
-
-const categoriesAr = [
-  "ذكاء الأعمال",
-  "التجاري والتوزيع",
-  "عمليات الضيافة",
-  "تقنيات الضيوف والمسافرين",
-  "تقنيات الغرف",
-  "تقنية المعلومات والاتصالات",
-  "التمويل والمدفوعات",
-  "الروبوتات والأتمتة",
-  "خدمات الضيافة",
-  "تقنية المطاعم",
-  "حلول الإيجار قصير الأمد/العطلات",
-  "الاستدامة",
-];
-
-const resourcesEn = ["Resources", "News", "Blog"];
-const resourcesAr = ["الموارد", "الأخبار", "المدونة"];
-
-const menuItemClasses =
-  "flex items-center justify-between border-b border-slate-100 px-5 py-1.5 text-[14px] font-medium text-slate-700 transition-colors last:border-b-0 hover:bg-slate-50 hover:text-[#0b56ff]";
-
-const arrowClasses = "h-4 w-4 text-slate-600";
-
-const NavMenu = ({ onSignIn, onSignUp }) => {
+const NavMenu = ({ onSignIn }) => {
+  const { latestNewsItems, verifiedIcon } = searchPanelAssets;
   const { language, setLanguage } = useLanguage();
   const isArabic = language === "AR";
   const navLogo = language === "AR" ? logoAr : logoEn;
   const categories = language === "AR" ? categoriesAr : categoriesEn;
+  const categorySubmenus =
+    language === "AR" ? categorySubmenusAr : categorySubmenusEn;
   const resources = language === "AR" ? resourcesAr : resourcesEn;
+  const resourceSubmenus =
+    language === "AR" ? resourceSubmenusAr : resourceSubmenusEn;
   const drawerResources = resourcesEn;
+
   const [searchOpen, setSearchOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerSection, setDrawerSection] = useState(null);
   const [languageOpen, setLanguageOpen] = useState(false);
   const [query, setQuery] = useState("");
+
+  const labels = isArabic ? navMenuHeadings.ar : navMenuHeadings.en;
+  const drawerLabels = isArabic ? drawerMenuHeadings.ar : drawerMenuHeadings.en;
+  const tabLabels = isArabic ? searchTabsLabels.ar : searchTabsLabels.en;
+  const sectionLabels = isArabic
+    ? searchSectionHeadings.ar
+    : searchSectionHeadings.en;
+
+  const blogCardsData = getBlogCardsData(blogsDataEn, latestNewsItems);
+  const newsCardsData = getNewsCardsData(
+    latestNewsItems,
+    newsItemTitlesAr,
+    isArabic,
+  );
+
+  const [activeTab, setActiveTab] = useState(tabLabels.news);
+  const [isSearching, setIsSearching] = useState(false);
+
   const panelRef = useRef(null);
   const inputRef = useRef(null);
   const mobileLanguageRef = useRef(null);
+  const tabsRef = useRef(null);
+
   const hasQuery = query.trim().length > 0;
 
   const closeSearch = () => {
@@ -78,6 +117,22 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
     inputRef.current?.focus();
   };
 
+  const scrollTabs = (direction) => {
+    if (!tabsRef.current) return;
+
+    const scrollAmount =
+      150 *
+      (isArabic
+        ? direction === "left"
+          ? 1
+          : -1
+        : direction === "left"
+          ? -1
+          : 1);
+
+    tabsRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  };
+
   const handleLanguageSelect = (code) => {
     setLanguage(code);
     setLanguageOpen(false);
@@ -90,21 +145,25 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
     if (!searchOpen) {
       return;
     }
+
     const handleClick = (event) => {
       if (panelRef.current && !panelRef.current.contains(event.target)) {
         closeSearch();
       }
     };
+
     const handleKey = (event) => {
       if (event.key === "Escape") {
         closeSearch();
       }
     };
+
     document.addEventListener("mousedown", handleClick);
     document.addEventListener("keydown", handleKey);
     const timeout = setTimeout(() => {
       inputRef.current?.focus();
     }, 0);
+
     return () => {
       clearTimeout(timeout);
       document.removeEventListener("mousedown", handleClick);
@@ -113,14 +172,31 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
   }, [searchOpen]);
 
   useEffect(() => {
+    if (!query) {
+      setIsSearching(false);
+      return;
+    }
+
+    setIsSearching(true);
+    const timeout = setTimeout(() => {
+      setIsSearching(false);
+    }, 4500);
+
+    return () => clearTimeout(timeout);
+  }, [query]);
+
+  useEffect(() => {
     if (!drawerOpen) return;
+
     setDrawerSection(null);
     setLanguageOpen(false);
+
     const handleKey = (event) => {
       if (event.key === "Escape") {
         closeDrawer();
       }
     };
+
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
   }, [drawerOpen]);
@@ -129,14 +205,17 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
     if (!searchOpen && !drawerOpen) {
       return;
     }
+
     const previousOverflow = document.body.style.overflow;
     const previousPaddingRight = document.body.style.paddingRight;
     const scrollbarWidth =
       window.innerWidth - document.documentElement.clientWidth;
+
     document.body.style.overflow = "hidden";
     if (scrollbarWidth > 0) {
       document.body.style.paddingRight = `${scrollbarWidth}px`;
     }
+
     return () => {
       document.body.style.overflow = previousOverflow;
       document.body.style.paddingRight = previousPaddingRight;
@@ -145,6 +224,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
 
   useEffect(() => {
     if (!languageOpen) return;
+
     const handleOutside = (event) => {
       const clickedOutsideMobile =
         mobileLanguageRef.current &&
@@ -153,26 +233,10 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
         setLanguageOpen(false);
       }
     };
+
     document.addEventListener("mousedown", handleOutside);
     return () => document.removeEventListener("mousedown", handleOutside);
   }, [languageOpen]);
-
-  const drawerRowClass = isArabic
-    ? "flex-row-reverse text-right"
-    : "text-left";
-  const drawerArrow = isArabic ? (
-    <i className="bi bi-chevron-left text-[16px] leading-none text-white" aria-hidden="true" />
-  ) : (
-    <ChevronRight className="h-6 w-6 shrink-0 text-white" strokeWidth={2} />
-  );
-  const drawerActiveArrow = isArabic ? (
-    <i className="bi bi-chevron-up text-[16px] leading-none text-[#18c443]" aria-hidden="true" />
-  ) : (
-    <ChevronRight
-      className="h-6 w-6 shrink-0 text-[#18c443]"
-      strokeWidth={2}
-    />
-  );
 
   return (
     <div
@@ -185,515 +249,86 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
           language === "AR" ? "flex-row-reverse" : ""
         }`}
       >
-        <button
-          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-slate-200 text-[#14c439] shadow-sm"
-          aria-label="Search"
-          type="button"
-          onClick={() => setSearchOpen(true)}
-        >
-          <Search className="h-[28px] w-[28px]" strokeWidth={2.5} />
-        </button>
-        <div className="group relative">
-          <a
-            className="text-sm font-medium tracking-wide uppercase text-slate-700 transition-colors group-hover:text-[#0b56ff]"
-            href="#"
-          >
-            {language === "AR" ? "الفئات" : "Categories"}
-          </a>
-          <div className="invisible absolute left-0 top-full z-50 mt-4 w-72 translate-y-2 rounded-2xl border border-slate-100 bg-white py-2 opacity-0 shadow-[0_20px_40px_-18px_rgba(15,23,42,0.35)] transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-            {categories.map((item) => (
-              <a key={item} href="#" className={menuItemClasses}>
-                <span>{item}</span>
-                <ChevronRight className={arrowClasses} strokeWidth={2.4} />
-              </a>
-            ))}
-          </div>
-        </div>
-        <a
-          className="text-sm font-medium tracking-wide uppercase text-slate-700"
-          href="#"
-        >
-          {language === "AR" ? "المنتجات" : "Products"}
-        </a>
-        <a
-          className="text-sm font-medium tracking-wide uppercase text-slate-700"
-          href="#"
-        >
-          {language === "AR" ? "المورّدون" : "Vendors"}
-        </a>
-        <a
-          className="text-sm font-medium tracking-wide uppercase text-slate-700"
-          href="#"
-        >
-          {language === "AR" ? "الخدمات الاستشارية" : "Advisory Services"}
-        </a>
-        <div className="group relative">
-          <a
-            className="text-sm font-medium tracking-wide uppercase text-slate-700 transition-colors group-hover:text-[#0b56ff]"
-            href="#"
-          >
-            {language === "AR" ? "الموارد" : "Resources"}
-          </a>
-          <div className="invisible absolute left-0 top-full z-50 mt-4 w-56 translate-y-2 rounded-2xl border border-slate-100 bg-white py-2 opacity-0 shadow-[0_20px_40px_-18px_rgba(15,23,42,0.35)] transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-            {resources.map((item) => (
-              <a key={item} href="#" className={menuItemClasses}>
-                <span>{item}</span>
-                <ChevronRight className={arrowClasses} strokeWidth={2.4} />
-              </a>
-            ))}
-          </div>
-        </div>
-        <a
-          className="text-sm font-medium tracking-wide uppercase text-slate-700"
-          href="#"
-        >
-          {language === "AR" ? "الفعاليات" : "Events"}
-        </a>
-        <a
-          className="text-sm font-medium tracking-wide uppercase text-slate-700"
-          href="#"
-        >
-          {language === "AR" ? "اتصل بنا" : "Contact Us"}
-        </a>
-      </div>
-
-      <div
-        className={`hidden items-center gap-2 md:flex lg:hidden ${
-          language === "AR" ? "flex-row-reverse" : ""
-        }`}
-      >
-        <button
-          className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-[#14c439] shadow-sm"
-          aria-label="Search"
-          type="button"
-          onClick={() => setSearchOpen(true)}
-        >
-          <Search className="h-5 w-5" strokeWidth={2.5} />
-        </button>
-        <a
-          href="#"
-          className="inline-flex h-9 items-center justify-center whitespace-nowrap rounded-lg bg-[#0b56ff] px-4 text-[10px] font-semibold uppercase tracking-wide !text-white shadow-sm min-[370px]:px-5 min-[370px]:text-[11px]"
-          style={{ fontFamily: '"Space Grotesk", sans-serif' }}
-          onClick={(event) => {
-            if (!onSignIn) return;
-            event.preventDefault();
-            onSignIn();
-          }}
-        >
-          {language === "AR" ? "التوقيع في السجل" : "Sign In/ Sign Up"}
-        </a>
-        <button
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-900"
-          type="button"
-          aria-label="Open menu"
-          onClick={() => setDrawerOpen(true)}
-        >
-          <Menu className="h-6 w-6" strokeWidth={2.3} />
-        </button>
-      </div>
-
-      <div
-        className={`flex items-center gap-3 md:hidden ${
-          language === "AR" ? "flex-row-reverse" : ""
-        }`}
-      >
-        <button
-          className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-[#14c439] shadow-sm"
-          aria-label="Search"
-          type="button"
-          onClick={() => setSearchOpen(true)}
-        >
-          <Search className="h-5 w-5" strokeWidth={2.5} />
-        </button>
-        <a
-          href="#"
-          className="inline-flex h-9 items-center justify-center whitespace-nowrap rounded-lg bg-[#0b56ff] px-4 text-[10px] font-semibold uppercase tracking-wide !text-white shadow-sm min-[370px]:px-5 min-[370px]:text-[11px]"
-          style={{ fontFamily: '"Space Grotesk", sans-serif' }}
-          onClick={(event) => {
-            if (!onSignIn) return;
-            event.preventDefault();
-            onSignIn();
-          }}
-        >
-          {language === "AR" ? "التوقيع في السجل" : "Sign In/ Sign Up"}
-        </a>
-        <button
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-900"
-          type="button"
-          aria-label="Open menu"
-          onClick={() => setDrawerOpen(true)}
-        >
-          <Menu className="h-6 w-6" strokeWidth={2.3} />
-        </button>
-      </div>
-
-      {searchOpen && (
-        <div className="fixed inset-0 z-40">
-          <div className="absolute inset-0 bg-black/45" />
-          <div className="absolute left-0 right-0 top-10 z-50 pl-4 pr-4 sm:pl-5 sm:pr-[21px]">
-            <div ref={panelRef} className="mx-auto w-full max-w-[1265px]">
-              <div className="flex h-[70px] items-center gap-4 rounded-xl bg-white pl-6 pr-6 shadow-[0_24px_50px_-30px_rgba(15,23,42,0.6)]">
-                <input
-                  ref={inputRef}
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  style={{ fontFamily: '"Space Grotesk", sans-serif' }}
-                  className="min-w-0 flex-1 bg-transparent pl-0 pr-[6px] text-[14px] font-medium leading-[20px] tracking-normal text-black placeholder:text-slate-400 focus:outline-none sm:pr-[10px] sm:text-[18px] sm:leading-[28px]"
-                  placeholder={
-                    language === "AR"
-                      ? "أدخل عبارة البحث هنا"
-                      : "Enter your search term here"
-                  }
-                />
-                {hasQuery && (
-                  <button
-                    type="button"
-                    className="p-2 text-slate-400 transition hover:text-slate-600"
-                    onClick={clearQuery}
-                    aria-label="Clear search"
-                  >
-                    <X className="h-5 w-5" strokeWidth={2.5} />
-                  </button>
-                )}
-                <button
-                  type="button"
-                  disabled={!hasQuery}
-                  className={`ml-2 rounded-lg bg-[#0b56ff] px-5 py-2 text-[14px] font-semibold text-white transition ${
-                    hasQuery ? "opacity-100" : "cursor-not-allowed opacity-50"
-                  }`}
-                  style={{ fontFamily: '"Space Grotesk", sans-serif' }}
-                >
-                  {language === "AR" ? "بحث" : "Search"}
-                </button>
-              </div>
-
-              {hasQuery && (
-                <div className="mt-5 rounded-2xl border border-slate-200 bg-white px-8 py-10 text-center shadow-[0_24px_50px_-30px_rgba(15,23,42,0.35)]">
-                  <p
-                    className="text-[14px] font-normal leading-[23px] text-black"
-                    style={{
-                      fontFamily: '"SF Pro Text", sans-serif',
-                      fontWeight: 400,
-                    }}
-                  >
-                    {language === "AR"
-                      ? "لم يتم العثور على نتائج. هل تريد البحث في "
-                      : "No Result found. Do you want to get result on "}
-                    <a
-                      href="#"
-                      className="text-[14px] font-[600] leading-[23px] !text-[#0055fe] hover:!text-[#0055fe]"
-                      style={{
-                        fontFamily: '"SF Pro Text", sans-serif',
-                        fontWeight: 600,
-                      }}
-                    >
-                      {language === "AR" ? "ExploreTECH PRO؟" : "ExploreTECH PRO?"}
-                    </a>
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      <div
-        className={`fixed inset-0 z-50 lg:hidden ${
-          drawerOpen ? "pointer-events-auto" : "pointer-events-none"
-        }`}
-        aria-hidden={!drawerOpen}
-      >
-        <div
-          className={`absolute inset-0 bg-black transition-opacity ${
-            drawerOpen ? "opacity-100" : "opacity-0"
-          }`}
-          onClick={closeDrawer}
+        <DesktopSearchButton onClick={() => setSearchOpen(true)} />
+        <NavMenuDesktopLinks
+          language={language}
+          isArabic={isArabic}
+          labels={labels}
+          categories={categories}
+          categorySubmenus={categorySubmenus}
+          resources={resources}
+          resourceSubmenus={resourceSubmenus}
+          menuItemClasses={menuItemClasses}
+          arrowClasses={arrowClasses}
+          arabicEventsStyle={arabicEventsStyle}
         />
-        <aside
-          className={`absolute right-0 top-0 h-full w-full bg-black text-white shadow-[-24px_0_60px_-30px_rgba(0,0,0,0.75)] transition-transform duration-300 ${
-            drawerOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div
-            className={`flex items-start justify-between px-6 pb-4 pt-4 ${
-              isArabic ? "flex-row-reverse" : ""
-            }`}
-          >
-            <div>
-              <img
-                src={navLogo}
-                alt="Explore Tech"
-                className={`h-[86px] w-[176px] ${
-                  isArabic ? "ml-0 mr-0" : "-ml-4"
-                }`}
-                style={{ filter: "invert(1) brightness(1.2)" }}
-              />
-              <div
-                className={`-mt-[18px] w-[172px] whitespace-nowrap text-[8px] font-semibold leading-[10px] tracking-[0.18em] text-white ${
-                  isArabic ? "ml-0 mr-0" : ""
-                }`}
-              >
-                THE DIGITAL MARKETPLACE
-              </div>
-            </div>
-            <button
-              type="button"
-              className="mt-1 rounded-md p-2 text-white"
-              aria-label="Close menu"
-              onClick={closeDrawer}
-            >
-              <X className="h-7 w-7" strokeWidth={2.4} />
-            </button>
-          </div>
-
-          <nav className="relative mt-4 px-6 text-white">
-            <button
-              type="button"
-              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 text-[16px] font-semibold tracking-wide ${
-                drawerRowClass
-              } ${
-                drawerSection === "categories" ? "text-[#18c443]" : "text-white"
-              }`}
-              onClick={() => toggleDrawerSection("categories")}
-            >
-              <span
-                style={{
-                  fontFamily: '"SF Pro Text", sans-serif',
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  color: "rgb(214, 245, 220)",
-                }}
-              >
-                {language === "AR" ? "الفئات" : "CATEGORIES"}
-                
-              </span>
-              {drawerSection === "categories" ? drawerActiveArrow : drawerArrow}
-            </button>
-            {drawerSection === "categories" && (
-              <div className="border-b border-white/15">
-                {categories.map((item) => (
-                  <a
-                    key={item}
-                    href="#"
-                    className={`flex w-full items-center justify-between border-t border-white/15 py-4 text-white ${drawerRowClass}`}
-                    onClick={closeDrawer}
-                  >
-                    <span
-                      className={`uppercase ${isArabic ? "pl-4 pr-0" : "pr-4"}`}
-                      style={{
-                        fontFamily: '"SF Pro Text", sans-serif',
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        fontSize: "16px",
-                        lineHeight: "24px",
-                        color: "rgb(215, 245, 222)",
-                      }}
-                    >
-                      {item}
-                    </span>
-                    {drawerArrow}
-                  </a>
-                ))}
-              </div>
-            )}
-            <a
-              href="#"
-              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 ${drawerRowClass}`}
-              onClick={closeDrawer}
-            >
-              <span
-                style={{
-                  fontFamily: '"SF Pro Text", sans-serif',
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  color: "rgb(214, 245, 220)",
-                }}
-              >
-                {language === "AR" ? "المنتجات" : "PRODUCTS"}
-              </span>
-            </a>
-            <a
-              href="#"
-              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 ${drawerRowClass}`}
-              onClick={closeDrawer}
-            >
-              <span
-                style={{
-                  fontFamily: '"SF Pro Text", sans-serif',
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  color: "rgb(214, 245, 220)",
-                }}
-              >
-                {language === "AR" ? "المورّدون" : "VENDORS"}
-              </span>
-            </a>
-            <a
-              href="#"
-              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 ${drawerRowClass}`}
-              onClick={closeDrawer}
-            >
-              <span
-                style={{
-                  fontFamily: '"SF Pro Text", sans-serif',
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  color: "rgb(214, 245, 220)",
-                }}
-              >
-                {language === "AR" ? "الخدمات الاستشارية" : "ADVISORY SERVICES"}
-              </span>
-            </a>
-            <button
-              type="button"
-              className={`flex w-full items-center justify-between border-b border-[#18c443] py-3 text-[16px] font-semibold tracking-wide ${
-                drawerRowClass
-              } ${
-                drawerSection === "resources" ? "text-[#18c443]" : "text-white"
-              }`}
-              onClick={() => toggleDrawerSection("resources")}
-            >
-              <span
-                style={{
-                  fontFamily: '"SF Pro Text", sans-serif',
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  color: "rgb(214, 245, 220)",
-                }}
-              >
-                {language === "AR" ? "RESOURCES" : "RESOURCES"}
-              </span>
-              {drawerSection === "resources" ? drawerActiveArrow : drawerArrow}
-            </button>
-            {drawerSection === "resources" && (
-              <div className="border-b border-white/15 pt-1">
-                {drawerResources.map((item) => (
-                  <a
-                    key={item}
-                    href="#"
-                    className={`flex w-full items-center justify-between border-t border-white/15 py-3 text-white ${drawerRowClass}`}
-                    onClick={closeDrawer}
-                  >
-                    <span
-                      className={`uppercase ${isArabic ? "pl-4 pr-0" : "pr-4"}`}
-                      style={{
-                        fontFamily: '"SF Pro Text", sans-serif',
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        fontSize: "16px",
-                        lineHeight: "24px",
-                        color: "rgb(215, 245, 222)",
-                      }}
-                    >
-                      {item}
-                    </span>
-                    {drawerArrow}
-                  </a>
-                ))}
-              </div>
-            )}
-            <a
-              href="#"
-              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 ${drawerRowClass}`}
-              onClick={closeDrawer}
-            >
-              <span
-                style={{
-                  fontFamily: '"SF Pro Text", sans-serif',
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  color: "rgb(214, 245, 220)",
-                }}
-              >
-                {language === "AR" ? "الفعاليات" : "EVENTS"}
-              </span>
-            </a>
-            <a
-              href="#"
-              className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 ${drawerRowClass}`}
-              onClick={closeDrawer}
-            >
-              <span
-                style={{
-                  fontFamily: '"SF Pro Text", sans-serif',
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  color: "rgb(214, 245, 220)",
-                }}
-              >
-                {language === "AR" ? "اتصل بنا" : "CONTACT US"}
-              </span>
-            </a>
-
-            <div ref={mobileLanguageRef} className="relative mt-10 inline-flex">
-              {languageOpen && (
-                <div className="absolute bottom-full left-0 z-10 mb-2 w-[170px] overflow-hidden rounded-[14px] border border-[#d7dee8] bg-[#f4f6f9] shadow-[0_10px_28px_-18px_rgba(15,23,42,0.45)]">
-                  <button
-                    type="button"
-                    className="w-full px-5 py-[10px] text-left transition-colors hover:bg-[#eef2f7]"
-                    onClick={() => handleLanguageSelect("EN")}
-                    style={{
-                      fontFamily: '"SF Pro Text", sans-serif',
-                      fontStyle: "normal",
-                      fontWeight: 400,
-                      fontSize: "13px",
-                      lineHeight: "20px",
-                      color: "rgb(87, 106, 160)",
-                    }}
-                  >
-                    English
-                  </button>
-                  <div className="h-px w-full bg-[#d7dee8]" />
-                  <button
-                    type="button"
-                    className="w-full px-5 py-[10px] text-left transition-colors hover:bg-[#eef2f7]"
-                    onClick={() => handleLanguageSelect("AR")}
-                    style={{
-                      fontFamily: '"SF Pro Text", sans-serif',
-                      fontStyle: "normal",
-                      fontWeight: 400,
-                      fontSize: "13px",
-                      lineHeight: "20px",
-                      color: "rgb(87, 106, 160)",
-                    }}
-                  >
-                    {"\u0627\u0644\u0639\u0631\u0628\u064a\u0629"}
-                  </button>
-                </div>
-              )}
-              <button
-                type="button"
-                className="inline-flex items-center gap-2"
-                onClick={() => setLanguageOpen((current) => !current)}
-                style={{
-                  fontFamily: '"SF Pro Text", sans-serif',
-                  fontStyle: "normal",
-                  fontWeight: 400,
-                  fontSize: "13px",
-                  lineHeight: "20px",
-                  color: languageOpen ? "#0b56ff" : "rgb(87, 106, 160)",
-                }}
-              >
-                <Globe className="h-4 w-4" />
-                <span>{language}</span>
-              </button>
-            </div>
-          </nav>
-        </aside>
       </div>
+
+      <NavMenuResponsiveActions
+        language={language}
+        onSignIn={onSignIn}
+        onOpenSearch={() => setSearchOpen(true)}
+        onOpenDrawer={() => setDrawerOpen(true)}
+      />
+
+      <NavMenuSearchOverlay
+        searchOpen={searchOpen}
+        panelRef={panelRef}
+        inputRef={inputRef}
+        tabsRef={tabsRef}
+        language={language}
+        isArabic={isArabic}
+        query={query}
+        setQuery={setQuery}
+        hasQuery={hasQuery}
+        searchSubmitButtonClass={searchSubmitButtonClass}
+        clearQuery={clearQuery}
+        clearQueryButton={clearQueryButton}
+        tabScrollButtonLeft={tabScrollButtonLeft}
+        tabScrollButtonRight={tabScrollButtonRight}
+        scrollTabs={scrollTabs}
+        searchTabsAr={searchTabsAr}
+        searchTabsEn={searchTabsEn}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        isSearching={isSearching}
+        viewMoreButton={viewMoreButton}
+        tabLabels={tabLabels}
+        sectionLabels={sectionLabels}
+        subcategoriesAr={subcategoriesAr}
+        subcategoriesEn={subcategoriesEn}
+        allProductsData={allProductsData}
+        verifiedIcon={verifiedIcon}
+        navMenuParagraphs={navMenuParagraphs}
+        compareButton={compareButton}
+        allServiceProvidersData={allServiceProvidersData}
+        blogCardsData={blogCardsData}
+        newsCardsData={newsCardsData}
+        productsDataAr={productsDataAr}
+        productsDataEn={productsDataEn}
+        serviceProvidersData={serviceProvidersData}
+      />
+
+      <NavMenuDrawer
+        drawerOpen={drawerOpen}
+        closeDrawer={closeDrawer}
+        isArabic={isArabic}
+        navLogo={navLogo}
+        navMenuParagraphs={navMenuParagraphs}
+        drawerSection={drawerSection}
+        toggleDrawerSection={toggleDrawerSection}
+        drawerLabels={drawerLabels}
+        categories={categories}
+        drawerResources={drawerResources}
+        mobileLanguageRef={mobileLanguageRef}
+        languageOpen={languageOpen}
+        setLanguageOpen={setLanguageOpen}
+        handleLanguageSelect={handleLanguageSelect}
+        languageLabels={languageLabels}
+        language={language}
+      />
     </div>
   );
 };
 
 export default NavMenu;
-
-

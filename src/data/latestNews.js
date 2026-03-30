@@ -9,7 +9,7 @@ export const latestNewsItems = [
   {
     id: 1,
     date: "26-02-2026",
-    title: "IDeaS unveils hotel technology predictions for 2024",
+    title: "IDeaS unveils hotel technology roadmap",
     company: "IDeaS - a SAS Company",
     image: newsImage1,
   },

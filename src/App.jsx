@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+﻿import React, { useCallback, useEffect, useState } from "react";
 import Navbar from "./components/navbar/Navbar.jsx";
 import HeroBanner from "./components/HeroBanner.jsx";
 import PromptBox from "./components/PromptBox.jsx";
@@ -8,15 +8,16 @@ import Discover from "./components/discover/Discover.jsx";
 import CompareSection from "./components/compare/CompareSection.jsx";
 import ConnectSection from "./components/connect/ConnectSection.jsx";
 import ProcureSection from "./components/ProcureSection.jsx";
-import GrowingNetworkHeading from "./components/growing-network/GrowingNetworkHeading.jsx";
-import GrowingNetworkSlider from "./components/growing-network/GrowingNetworkSlider.jsx";
-import TrustedCompanies from "./components/growing-network/TrustedCompanies.jsx";
-import LogoMarquee from "./components/growing-network/LogoMarquee.jsx";
-import LatestNews from "./components/growing-network/LatestNews.jsx";
-import EarlyAdopters from "./components/growing-network/EarlyAdopters.jsx";
-import Newsletter from "./components/Newsletter.jsx";
+import GrowingNetworkHeading from "./components/growing-network/heading/GrowingNetworkHeading.jsx";
+import GrowingNetworkSlider from "./components/growing-network/slider/GrowingNetworkSlider.jsx";
+import TrustedCompanies from "./components/growing-network/trusted-companies/TrustedCompanies.jsx";
+import LogoMarquee from "./components/growing-network/marquee/LogoMarquee.jsx";
+import LatestNews from "./components/growing-network/latest-news/LatestNews.jsx";
+import EarlyAdopters from "./components/growing-network/early-adopters/EarlyAdopters.jsx";
+import Newsletter from "./components/newsletter/Newsletter.jsx";
 import SignInLanding from "./components/signin/SignInLanding.jsx";
-import Footer from "./components/Footer.jsx";
+import Footer from "./components/footer/Footer.jsx";
+import CookiesBanner from "./components/cookies-banner/CookiesBanner.jsx";
 
 const App = () => {
   const [signInOpen, setSignInOpen] = useState(() => {
@@ -74,8 +75,13 @@ const App = () => {
       <EarlyAdopters />
       <Newsletter />
       <Footer />
+      <CookiesBanner />
     </div>
   );
 };
 
 export default App;
+
+
+
+

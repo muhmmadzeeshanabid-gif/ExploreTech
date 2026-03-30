@@ -18,6 +18,7 @@ const DiscoverSlideCard = ({ cat, onClick, isOut, style }) => {
       <img
         src={cat.image}
         alt={cardTitle}
+        loading="lazy"
         className="w-full h-full object-cover"
       />
 
@@ -26,9 +27,9 @@ const DiscoverSlideCard = ({ cat, onClick, isOut, style }) => {
           isArabic ? "text-right" : "text-left"
         }`}
       >
-        <div className="flex w-full items-end gap-2 lg:gap-4">
+        <div className="flex w-full items-end justify-between gap-1 lg:gap-2">
           <h3
-            className="max-w-[80%] flex-1 text-[12px] font-semibold leading-[16px] text-white lg:max-w-[82%] lg:text-[16px] lg:leading-[24px]"
+            className="flex-1 min-w-0 text-[12px] font-semibold leading-[16px] text-white lg:text-[18px] lg:leading-[24px]"
             dir={isArabic ? "rtl" : "ltr"}
             style={{
               fontFamily: '"SF Pro Text", sans-serif',
@@ -46,15 +47,15 @@ const DiscoverSlideCard = ({ cat, onClick, isOut, style }) => {
             {cardTitle}
           </h3>
 
-          <div className="ml-auto flex flex-col items-center text-center">
+          <div className="flex-shrink-0 flex flex-col items-center text-center">
             <span
-              className="text-[14px] font-bold leading-[18px] text-[#4ADE80] lg:text-[20px] lg:leading-[28px]"
+              className="text-[15px] font-bold leading-[1] text-[#4ADE80] lg:text-[22px]"
               style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 700 }}
             >
               {cat.products}
             </span>
             <span
-              className="text-[9px] font-bold tracking-[0.1em] text-[#34D399] lg:text-[12px] lg:tracking-[0.16em]"
+              className="text-[8px] font-bold tracking-[0.05em] text-[#4ADE80] lg:text-[11px]"
               style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 700 }}
             >
               {isArabic ? "منتجات" : "Products"}
