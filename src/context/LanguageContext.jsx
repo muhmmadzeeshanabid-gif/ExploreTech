@@ -17,10 +17,7 @@ const seoContent = {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState(() => {
-    if (typeof window === "undefined") return "EN";
-    return window.localStorage.getItem("selectedLanguage") || "EN";
-  });
+  const [language, setLanguage] = useState("EN");
 
   useEffect(() => {
     window.localStorage.setItem("selectedLanguage", language);

@@ -1,4 +1,4 @@
-﻿import { ChevronRight, Globe, Menu, Search, X } from "lucide-react";
+import { ChevronRight, Globe, Menu, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import logoEn from "../../assets/logo/Explote-Tech-Logo-Black.gif";
 import logoAr from "../../assets/logo/AR-Explote-Tech-Logo-Black.gif";
@@ -32,22 +32,22 @@ const categoriesEn = [
 ];
 
 const categoriesAr = [
-  "╪░┘â╪º╪í ╪º┘ä╪ú╪╣┘à╪º┘ä",
-  "╪º┘ä╪¬╪¼╪º╪▒┘è ┘ê╪º┘ä╪¬┘ê╪▓┘è╪╣",
-  "╪╣┘à┘ä┘è╪º╪¬ ╪º┘ä╪╢┘è╪º┘ü╪⌐",
-  "╪¬┘é┘å┘è╪º╪¬ ╪º┘ä╪╢┘è┘ê┘ü ┘ê╪º┘ä┘à╪│╪º┘ü╪▒┘è┘å",
-  "╪¬┘é┘å┘è╪º╪¬ ╪º┘ä╪║╪▒┘ü",
-  "╪¬┘é┘å┘è╪⌐ ╪º┘ä┘à╪╣┘ä┘ê┘à╪º╪¬ ┘ê╪º┘ä╪º╪¬╪╡╪º┘ä╪º╪¬",
-  "╪º┘ä╪¬┘à┘ê┘è┘ä ┘ê╪º┘ä┘à╪»┘ü┘ê╪╣╪º╪¬",
-  "╪º┘ä╪▒┘ê╪¿┘ê╪¬╪º╪¬ ┘ê╪º┘ä╪ú╪¬┘à╪¬╪⌐",
-  "╪«╪»┘à╪º╪¬ ╪º┘ä╪╢┘è╪º┘ü╪⌐",
-  "╪¬┘é┘å┘è╪⌐ ╪º┘ä┘à╪╖╪º╪╣┘à",
-  "╪¡┘ä┘ê┘ä ╪º┘ä╪Ñ┘è╪¼╪º╪▒ ┘é╪╡┘è╪▒ ╪º┘ä╪ú┘à╪»/╪º┘ä╪╣╪╖┘ä╪º╪¬",
-  "╪º┘ä╪º╪│╪¬╪»╪º┘à╪⌐",
+  "ذكاء الأعمال",
+  "التجاري والتوزيع",
+  "عمليات الضيافة",
+  "تقنيات الضيوف والمسافرين",
+  "تقنيات الغرف",
+  "تقنية المعلومات والاتصالات",
+  "التمويل والمدفوعات",
+  "الروبوتات والأتمتة",
+  "خدمات الضيافة",
+  "تقنية المطاعم",
+  "حلول الإيجار قصير الأمد/العطلات",
+  "الاستدامة",
 ];
 
 const resourcesEn = ["Resources", "News", "Blog"];
-const resourcesAr = ["╪º┘ä┘à┘ê╪º╪▒╪»", "╪º┘ä╪ú╪«╪¿╪º╪▒", "╪º┘ä┘à╪»┘ê┘å╪⌐"];
+const resourcesAr = ["الموارد", "الأخبار", "المدونة"];
 
 const menuItemClasses =
   "flex items-center justify-between border-b border-slate-100 px-5 py-1.5 text-[14px] font-medium text-slate-700 transition-colors last:border-b-0 hover:bg-slate-50 hover:text-[#0b56ff]";
@@ -78,7 +78,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
   const [drawerSection, setDrawerSection] = useState(null);
   const [languageOpen, setLanguageOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [activeTab, setActiveTab] = useState(isArabic ? "╪º┘ä╪ú╪«╪¿╪º╪▒" : "News");
+  const [activeTab, setActiveTab] = useState(isArabic ? "الأخبار" : "News");
   const panelRef = useRef(null);
   const inputRef = useRef(null);
   const mobileLanguageRef = useRef(null);
@@ -223,7 +223,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             className="text-sm font-medium tracking-wide uppercase text-slate-700 transition-colors group-hover:text-[#0b56ff]"
             href="#"
           >
-            {language === "AR" ? "╪º┘ä┘ü╪ª╪º╪¬" : "Categories"}
+            {language === "AR" ? "الفئات" : "Categories"}
           </a>
           <div className="invisible absolute left-0 top-full z-50 mt-4 w-72 translate-y-2 rounded-2xl border border-slate-100 bg-white py-2 opacity-0 shadow-[0_20px_40px_-18px_rgba(15,23,42,0.35)] transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
             {categories.map((item) => (
@@ -245,26 +245,26 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
           className="text-sm font-medium tracking-wide uppercase text-slate-700"
           href="#"
         >
-          {language === "AR" ? "╪º┘ä┘à┘å╪¬╪¼╪º╪¬" : "Products"}
+          {language === "AR" ? "المنتجات" : "Products"}
         </a>
         <a
           className="text-sm font-medium tracking-wide uppercase text-slate-700"
           href="#"
         >
-          {language === "AR" ? "┘à╪▓┘ê╪»┘ê╪º ╪º┘ä╪«╪»┘à╪º╪¬" : "Vendors"}
+          {language === "AR" ? "مزودوا الخدمات" : "Vendors"}
         </a>
         <a
           className="text-sm font-medium tracking-wide uppercase text-slate-700"
           href="#"
         >
-          {language === "AR" ? "╪«╪»┘à╪º╪¬ ╪º╪│╪¬╪┤╪º╪▒┘è╪⌐" : "Advisory Services"}
+          {language === "AR" ? "خدمات استشارية" : "Advisory Services"}
         </a>
         <div className="group relative">
           <a
             className="text-sm font-medium tracking-wide uppercase text-slate-700 transition-colors group-hover:text-[#0b56ff]"
             href="#"
           >
-            {language === "AR" ? "╪º┘ä┘à┘ê╪º╪▒╪»" : "Resources"}
+            {language === "AR" ? "الموارد" : "Resources"}
           </a>
           <div className="invisible absolute left-0 top-full z-50 mt-4 w-56 translate-y-2 rounded-2xl border border-slate-100 bg-white py-2 opacity-0 shadow-[0_20px_40px_-18px_rgba(15,23,42,0.35)] transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
             {resources.map((item) => (
@@ -280,13 +280,13 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
           href="#"
           style={language === "AR" ? arabicEventsStyle : undefined}
         >
-          {language === "AR" ? "╪º┘ä╪ú╪¡╪»╪º╪½" : "Events"}
+          {language === "AR" ? "الأحداث" : "Events"}
         </a>
         <a
           className="text-sm font-medium tracking-wide uppercase text-slate-700"
           href="#"
         >
-          {language === "AR" ? "╪º╪¬╪╡┘ä ╪¿┘å╪º" : "Contact Us"}
+          {language === "AR" ? "اتصل بنا" : "Contact Us"}
         </a>
       </div>
 
@@ -313,7 +313,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             onSignIn();
           }}
         >
-          {language === "AR" ? "╪º┘ä╪¬┘ê┘é┘è╪╣ ┘ü┘è ╪º┘ä╪│╪¼┘ä" : "Sign In/ Sign Up"}
+          {language === "AR" ? "التوقيع في السجل" : "Sign In/ Sign Up"}
         </a>
         <button
           className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-900"
@@ -348,7 +348,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
             onSignIn();
           }}
         >
-          {language === "AR" ? "╪º┘ä╪¬┘ê┘é┘è╪╣ ┘ü┘è ╪º┘ä╪│╪¼┘ä" : "Sign In/ Sign Up"}
+          {language === "AR" ? "التوقيع في السجل" : "Sign In/ Sign Up"}
         </a>
         <button
           className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-900"
@@ -389,7 +389,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   dir={language === "AR" ? "rtl" : "ltr"}
                   placeholder={
                     language === "AR"
-                      ? "╪ú╪»╪«┘ä ┘à╪╡╪╖┘ä╪¡ ╪º┘ä╪¿╪¡╪½ ╪º┘ä╪«╪º╪╡ ╪¿┘â ┘ç┘å╪º"
+                      ? "أدخل مصطلح البحث الخاص بك هنا"
                       : "Enter your search term here"
                   }
                 />
@@ -435,12 +435,12 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                       }`}
                     >
                       {[
-                        isArabic ? "╪º┘ä╪¼┘à┘è╪╣" : "All",
-                        isArabic ? "╪º┘ä┘ü╪ª╪º╪¬ ╪º┘ä┘ü╪▒╪╣┘è╪⌐" : "Subcategories",
-                        isArabic ? "╪º┘ä┘à┘å╪¬╪¼╪º╪¬" : "Products",
-                        isArabic ? "┘à╪▓┘ê╪»┘ê╪º ╪º┘ä╪«╪»┘à╪º╪¬" : "Service Providers",
-                        isArabic ? "╪º┘ä┘à╪»┘ê┘å╪º╪¬" : "Blogs",
-                        isArabic ? "╪º┘ä╪ú╪«╪¿╪º╪▒" : "News",
+                        isArabic ? "الجميع" : "All",
+                        isArabic ? "الفئات الفرعية" : "Subcategories",
+                        isArabic ? "المنتجات" : "Products",
+                        isArabic ? "مزودوا الخدمات" : "Service Providers",
+                        isArabic ? "المدونات" : "Blogs",
+                        isArabic ? "الأخبار" : "News",
                       ].map((tab) => (
                         <button
                           key={tab}
@@ -469,42 +469,42 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   {/* Results List */}
                   <div className="max-h-[500px] overflow-y-auto px-8 py-4">
                     <div className="flex flex-col gap-2">
-                      {activeTab === (isArabic ? "╪º┘ä╪¼┘à┘è╪╣" : "All") ? (
+                      {activeTab === (isArabic ? "الجميع" : "All") ? (
                         <div className="flex flex-col gap-6">
                           {/* Products Section */}
                           <div>
                             <h3 className="mb-2 text-[16px] font-bold text-[#1f2937]">
-                              {isArabic ? "╪º┘ä┘à┘å╪¬╪¼╪º╪¬:" : "Products:"}
+                              {isArabic ? "المنتجات:" : "Products:"}
                             </h3>
                             <div className="flex flex-col">
                               {[
                                 {
                                   title: "MeetingPackage Venue Sales Management",
-                                  subtitle: "╪Ñ╪»╪º╪▒╪⌐ ╪º┘ä┘à┘å╪º╪│╪¿╪º╪¬",
+                                  subtitle: "إدارة المناسبات",
                                   logo: productLogo1,
                                 },
                                 {
-                                  title: "┘å╪╕╪º┘à Vento ╪º┘ä┘à╪¬╪«╪╡╪╡ ┘ä┘å┘é╪º╪╖ ╪º┘ä╪¿┘è╪╣ ┘à┘å HotelTime",
-                                  subtitle: "┘à┘å╪╡╪º╪¬ ╪º┘ä╪»┘ü╪╣ ┘ü┘è ╪º┘ä┘à╪╖╪º╪╣┘à & ╪¿╪▒╪º┘à╪¼ ╪Ñ╪»╪º╪▒╪⌐ ╪º┘ä┘à╪╖╪º╪╣┘à",
+                                  title: "نظام Vento المتخصص لنقاط البيع من HotelTime",
+                                  subtitle: "منصات الدفع في المطاعم & برامج إدارة المطاعم",
                                   logo: productLogo2,
                                   hasAI: true,
                                   verified: true,
                                 },
                                 {
-                                  title: "┘å╪╕╪º┘à ╪¿╪▒┘ê╪¬┘â╪¬ (Pro-Techt) ┘à┘å ╪┤╪▒┘â╪⌐ ┘ü┘è╪│┘è╪▒┘ü",
-                                  subtitle: "╪º┘ä┘ü┘å╪»┘é ╪¡┘ä┘ê┘ä ╪¿╪»┘ê┘å ╪¬┘ä╪º┘à╪│",
+                                  title: "نظام بروتكت (Pro-Techt) من شركة فيسيرف",
+                                  subtitle: "الفندق حلول بدون تلامس",
                                   logo: productLogo3,
                                   verified: true,
                                 },
                                 {
                                   title: "Kwentra Point of Sale",
-                                  subtitle: "┘å╪╕╪º┘à ┘å┘é╪º╪╖ ╪º┘ä╪¿┘è╪╣ (POS)",
+                                  subtitle: "نظام نقاط البيع (POS)",
                                   logo: productLogo4,
                                   verified: true,
                                 },
                                 {
-                                  title: "┘å╪╕╪º┘à ╪º┘ä╪¡╪¼╪▓ ╪╣╪¿╪▒ ╪º┘ä╪Ñ┘å╪¬╪▒┘å╪¬ ┘à┘å Hotelogix",
-                                  subtitle: "┘à╪¡╪▒┘â ╪º┘ä╪¡╪¼╪▓ (IBE)",
+                                  title: "نظام الحجز عبر الإنترنت من Hotelogix",
+                                  subtitle: "محرك الحجز (IBE)",
                                   logo: providerLogo4,
                                   hasAI: true,
                                   verified: true,
@@ -557,7 +557,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                                     {item.hasAI && (
                                       <div className="relative flex h-[22px] items-center">
                                         <div className="rounded-[4px] bg-[#f86d2d] px-2 py-0.5 text-[9px] font-bold text-white uppercase tracking-tight">
-                                          {isArabic ? "┘à╪»╪╣┘ê┘à ╪¿╪º┘ä╪░┘â╪º╪í ╪º┘ä╪º╪╡╪╖┘å╪º╪╣┘è" : "AI Powered"}
+                                          {isArabic ? "مدعوم بالذكاء الاصطناعي" : "AI Powered"}
                                         </div>
                                       </div>
                                     )}
@@ -583,9 +583,9 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                                           >
                                             {isArabic ? (
                                               <>
-                                                ╪¬┘à ╪º┘ä╪¬╪¡┘é┘é
+                                                تم التحقق
                                                 <br />
-                                                ┘à┘å ╪º┘ä╪¿╪º╪ª╪╣
+                                                من البائع
                                               </>
                                             ) : (
                                               "Verified Vendor"
@@ -611,11 +611,11 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                           {/* Service Providers Section */}
                           <div>
                             <h3 className="mb-2 text-[16px] font-bold text-[#1f2937]">
-                              {isArabic ? "┘à╪▓┘ê╪»┘ê╪º ╪º┘ä╪«╪»┘à╪º╪¬:" : "Service Providers:"}
+                              {isArabic ? "مزودوا الخدمات:" : "Service Providers:"}
                             </h3>
                             <div className="flex flex-col">
                               {[
-                                { name: "╪┤╪▒┘â╪⌐ Viralops", logo: providerLogo3, verified: true },
+                                { name: "شركة Viralops", logo: providerLogo3, verified: true },
                               ].map((item, idx) => (
                                 <div
                                   key={idx}
@@ -671,9 +671,9 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                                         >
                                           {isArabic ? (
                                             <>
-                                              ╪¬┘à ╪º┘ä╪¬╪¡┘é┘é
+                                              تم التحقق
                                               <br />
-                                              ┘à┘å ╪º┘ä╪¿╪º╪ª╪╣
+                                              من البائع
                                             </>
                                           ) : (
                                             "Verified Vendor"
@@ -687,13 +687,13 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                             </div>
                           </div>
                         </div>
-                      ) : activeTab === (isArabic ? "╪º┘ä┘ü╪ª╪º╪¬ ╪º┘ä┘ü╪▒╪╣┘è╪⌐" : "Subcategories") ? (
+                      ) : activeTab === (isArabic ? "الفئات الفرعية" : "Subcategories") ? (
                         [
-                          isArabic ? "╪¿╪▒┘à╪¼┘è╪º╪¬ ╪┤╪▒╪º╪í ╪º┘ä╪╢┘è╪º┘ü╪⌐" : "Hospitality Purchasing Software",
-                          isArabic ? "╪ú┘å╪╕┘à╪⌐ ╪º┘ä┘ê┘é╪¬ ┘ê╪º┘ä╪¡╪╢┘ê╪▒" : "Time and Attendance Systems",
-                          isArabic ? "╪«╪»┘à╪º╪¬ ╪¬╪»┘é┘è┘é" : "Audit Services",
-                          isArabic ? "╪¡┘ä┘ê┘ä ╪º┘ä┘à┘ê┘é╪╣" : "Location Solutions",
-                          isArabic ? "╪º┘ä╪ú┘à┘å" : "Security",
+                          isArabic ? "برمجيات شراء الضيافة" : "Hospitality Purchasing Software",
+                          isArabic ? "أنظمة الوقت والحضور" : "Time and Attendance Systems",
+                          isArabic ? "خدمات تدقيق" : "Audit Services",
+                          isArabic ? "حلول الموقع" : "Location Solutions",
+                          isArabic ? "الأمن" : "Security",
                         ].map((item, idx) => (
                           <div
                             key={idx}
@@ -711,36 +711,36 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                             </h3>
                           </div>
                         ))
-                      ) : activeTab === (isArabic ? "╪º┘ä┘à┘å╪¬╪¼╪º╪¬" : "Products") ? (
+                      ) : activeTab === (isArabic ? "المنتجات" : "Products") ? (
                         [
                           {
-                            title: isArabic ? "╪º┘ä┘à╪»┘ü┘ê╪╣╪º╪¬ ╪º┘ä╪┤╪«╪╡┘è╪⌐" : "Personal Payments",
-                            subtitle: isArabic ? "┘à┘å╪╡╪º╪¬ ╪º┘ä╪»┘ü╪╣" : "Payment Platforms",
+                            title: isArabic ? "المدفوعات الشخصية" : "Personal Payments",
+                            subtitle: isArabic ? "منصات الدفع" : "Payment Platforms",
                             logo: productLogo1,
                             verified: true,
                           },
                           {
-                            title: isArabic ? "┘à┘å╪╡╪⌐ ╪º┘ä┘à╪»┘ü┘ê╪╣╪º╪¬ ╪º┘ä╪Ñ┘ä┘â╪¬╪▒┘ê┘å┘è╪⌐" : "Electronic Payments Platform",
-                            subtitle: isArabic ? "┘å╪╕╪º┘à ┘å┘é╪º╪╖ ╪º┘ä╪¿┘è╪╣ (POS)" : "POS System",
+                            title: isArabic ? "منصة المدفوعات الإلكترونية" : "Electronic Payments Platform",
+                            subtitle: isArabic ? "نظام نقاط البيع (POS)" : "POS System",
                             logo: productLogo1,
                             verified: true,
                           },
                           {
                             title: "WiFi Guest Management",
-                            subtitle: isArabic ? "╪Ñ┘å╪¬╪▒┘å╪¬ ╪º┘ä╪╢┘è┘ü" : "Guest Internet",
+                            subtitle: isArabic ? "إنترنت الضيف" : "Guest Internet",
                             logo: productLogo3,
                             verified: true,
                             hasAI: true,
                           },
                           {
                             title: "Alliants Guest App",
-                            subtitle: isArabic ? "╪º┘ä┘ü┘å╪»┘é ╪¡┘ä┘ê┘ä ╪¿╪»┘ê┘å ╪¬┘ä╪º┘à╪│" : "Contactless Hotel Solutions",
+                            subtitle: isArabic ? "الفندق حلول بدون تلامس" : "Contactless Hotel Solutions",
                             logo: productLogo2,
                             verified: true,
                           },
                           {
                             title: "Alliants Experience Platform",
-                            subtitle: isArabic ? "╪¬╪¼╪º╪▒╪¿ ╪º┘ä╪╢┘è┘ê┘ü" : "Guest Experiences",
+                            subtitle: isArabic ? "تجارب الضيوف" : "Guest Experiences",
                             logo: productLogo2,
                             verified: true,
                           },
@@ -792,7 +792,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                               {item.hasAI && (
                                 <div className="relative flex h-[22px] items-center">
                                   <div className="rounded-[4px] bg-[#f86d2d] px-2 py-0.5 text-[9px] font-bold text-white uppercase tracking-tight">
-                                    {isArabic ? "┘à╪»╪╣┘ê┘à ╪¿╪º┘ä╪░┘â╪º╪í ╪º┘ä╪º╪╡╪╖┘å╪º╪╣┘è" : "AI Powered"}
+                                    {isArabic ? "مدعوم بالذكاء الاصطناعي" : "AI Powered"}
                                   </div>
                                 </div>
                               )}
@@ -818,9 +818,9 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                                     >
                                       {isArabic ? (
                                         <>
-                                          ╪¬┘à ╪º┘ä╪¬╪¡┘é┘é
+                                          تم التحقق
                                           <br />
-                                          ┘à┘å ╪º┘ä╪¿╪º╪ª╪╣
+                                          من البائع
                                         </>
                                       ) : (
                                         "Verified Vendor"
@@ -840,7 +840,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                             </button>
                           </div>
                         ))
-                      ) : activeTab === (isArabic ? "┘à╪▓┘ê╪»┘ê╪º ╪º┘ä╪«╪»┘à╪º╪¬" : "Service Providers") ? (
+                      ) : activeTab === (isArabic ? "مزودوا الخدمات" : "Service Providers") ? (
                         [
                           { name: "Hosdu", logo: providerLogo1, verified: true },
                           { name: "Hotel Benchmark", logo: providerLogo2, verified: true },
@@ -903,9 +903,9 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                                   >
                                     {isArabic ? (
                                       <>
-                                        ╪¬┘à ╪º┘ä╪¬╪¡┘é┘é
+                                        تم التحقق
                                         <br />
-                                        ┘à┘å ╪º┘ä╪¿╪º╪ª╪╣
+                                        من البائع
                                       </>
                                     ) : (
                                       "Verified Vendor"
@@ -916,7 +916,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                             </div>
                           </div>
                         ))
-                      ) : activeTab === (isArabic ? "╪º┘ä┘à╪»┘ê┘å╪º╪¬" : "Blogs") ? (
+                      ) : activeTab === (isArabic ? "المدونات" : "Blogs") ? (
                         [
                           {
                             title: "Reshaping the Hospitality Industry through VR and AR",
@@ -1078,7 +1078,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                {language === "AR" ? "╪º┘ä┘ü╪ª╪º╪¬" : "CATEGORIES"}
+                {language === "AR" ? "الفئات" : "CATEGORIES"}
                 
               </span>
               {drawerSection === "categories" ? drawerActiveArrow : drawerArrow}
@@ -1129,7 +1129,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                {language === "AR" ? "╪º┘ä┘à┘å╪¬╪¼╪º╪¬" : "PRODUCTS"}
+                {language === "AR" ? "المنتجات" : "PRODUCTS"}
               </span>
             </a>
             <a
@@ -1147,7 +1147,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                {language === "AR" ? "┘à╪▓┘ê╪»┘ê╪º ╪º┘ä╪«╪»┘à╪º╪¬" : "VENDORS"}
+                {language === "AR" ? "مزودوا الخدمات" : "VENDORS"}
               </span>
             </a>
             <a
@@ -1165,7 +1165,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                {language === "AR" ? "╪«╪»┘à╪º╪¬ ╪º╪│╪¬╪┤╪º╪▒┘è╪⌐" : "ADVISORY SERVICES"}
+                {language === "AR" ? "خدمات استشارية" : "ADVISORY SERVICES"}
               </span>
             </a>
             <button
@@ -1236,7 +1236,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                {language === "AR" ? "╪º┘ä╪ú╪¡╪»╪º╪½" : "EVENTS"}
+                {language === "AR" ? "الأحداث" : "EVENTS"}
               </span>
             </a>
             <a
@@ -1253,7 +1253,7 @@ const NavMenu = ({ onSignIn, onSignUp }) => {
                   color: "rgb(214, 245, 220)",
                 }}
               >
-                {language === "AR" ? "╪º╪¬╪╡┘ä ╪¿┘å╪º" : "CONTACT US"}
+                {language === "AR" ? "اتصل بنا" : "CONTACT US"}
               </span>
             </a>
 
