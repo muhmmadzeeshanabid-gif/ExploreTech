@@ -1,11 +1,27 @@
 import { useState } from "react";
 
 const useNewsletterForm = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    agreed: false,
+  const [formData, setFormData] = useState(() => {
+    const saved = localStorage.getItem("newsletter_subscriber");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return {
+          firstName: parsed.firstName || "",
+          lastName: parsed.lastName || "",
+          email: parsed.email || "",
+          agreed: true, // If they already subscribed, we can assume agreement for pre-fill
+        };
+      } catch (e) {
+        console.error("Error parsing saved newsletter data", e);
+      }
+    }
+    return {
+      firstName: "",
+      lastName: "",
+      email: "",
+      agreed: false,
+    };
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -16,6 +32,15 @@ const useNewsletterForm = () => {
 
     setIsSubmitting(true);
     setTimeout(() => {
+      // Save data to localStorage
+      const userData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        subscribedAt: new Date().toISOString()
+      };
+      localStorage.setItem("newsletter_subscriber", JSON.stringify(userData));
+
       setIsSubmitting(false);
       setIsSuccess(true);
       
