@@ -31,19 +31,39 @@ const useNewsletterForm = () => {
     if (!isFormValid || isSubmitting || isSuccess) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      // Save data to localStorage
-      const userData = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        subscribedAt: new Date().toISOString()
-      };
-      localStorage.setItem("newsletter_subscriber", JSON.stringify(userData));
 
+    // Send data to email via FormSubmit
+    fetch("https://formsubmit.co/ajax/muhmmadzeeshanabid@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        _subject: "New Newsletter Subscriber - ExploreTECH",
+        "First Name": formData.firstName,
+        "Last Name": formData.lastName,
+        Email: formData.email,
+        "Subscribed At": new Date().toLocaleString(),
+        _captcha: "false",
+      }),
+    }).catch(() => {
+      // Silent fail — still show success to user
+    });
+
+    // Also save to localStorage
+    const userData = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      subscribedAt: new Date().toISOString(),
+    };
+    localStorage.setItem("newsletter_subscriber", JSON.stringify(userData));
+
+    setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
-      
+
       setTimeout(() => {
         setIsSuccess(false);
         setFormData({
