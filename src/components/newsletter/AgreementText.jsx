@@ -1,21 +1,14 @@
 ﻿import React from "react";
+import { useTranslation } from "react-i18next";
 
 const AgreementText = ({ isArabic }) => {
-  if (isArabic) {
-    return (
-      <span>
-        بالاشتراك، أوافق على تلقي رسائل البريد الإلكتروني التسويقية من إكسبلورتك
-        وأقبل <span className="underline">سياسة الخصوصية</span>
-      </span>
-    );
-  }
+  const { t } = useTranslation("common");
 
   return (
-    <span>
-      By subscribing, I agree to receive marketing emails from ExploreTECH and
-      accept the{" "}
+    <span dir={isArabic ? "rtl" : "ltr"}>
+      {t("newsletter.agreementPrefix")} {" "}
       <span className="font-normal text-white underline decoration-white decoration-1 underline-offset-2">
-        Privacy Policy
+        {t("newsletter.privacyPolicy")}
       </span>
     </span>
   );

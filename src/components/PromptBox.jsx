@@ -1,20 +1,18 @@
 ﻿import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useLanguage } from "../context/LanguageContext.jsx";
 
 const PromptBox = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation("common");
   const [message, setMessage] = useState("");
   const isArabic = language === "AR";
   const canSend = message.trim().length > 0;
 
   const content = {
-    heading: isArabic
-      ? "اسألني عن أي شيء يخص تقنيات الفنادق"
-      : "Ask me anything about hotel TECH",
-    placeholder: isArabic ? "ابدأ محادثة..." : "Start a conversation...",
-    disclaimer: isArabic
-      ? "ExploreTECH PRO في مرحلة البيتا حاليًا. الروبوت يتعلم ويتطور بشكل مستمر، لذا قد تختلف بعض الردود في الدقة."
-      : "ExploreTECH PRO is currently in BETA. The bot is continuously learning and evolving, so some responses may vary in accuracy.",
+    heading: t("promptBox.heading"),
+    placeholder: t("promptBox.placeholder"),
+    disclaimer: t("promptBox.disclaimer"),
   };
 
   return (
@@ -70,7 +68,7 @@ const PromptBox = () => {
                     ? "bg-[#12b033] hover:shadow-lg active:scale-95"
                     : "cursor-not-allowed bg-[#12b033] opacity-50"
                 }`}
-                title={isArabic ? "إرسال رسالة" : "Send message (or press Enter)"}
+                title={t("promptBox.sendTitle")}
               >
                 <div>
                   <svg

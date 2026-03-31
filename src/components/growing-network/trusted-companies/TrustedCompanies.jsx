@@ -1,10 +1,12 @@
-import React from "react";
+﻿import React from "react";
+import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../../context/LanguageContext.jsx";
 import TestimonialCard from "./TestimonialCard.jsx";
 import useTrustedCompaniesCarousel from "./useTrustedCompaniesCarousel.js";
 
 const TrustedCompanies = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation("common");
   const isArabic = language === "AR";
   const {
     currentSlide,
@@ -26,9 +28,7 @@ const TrustedCompanies = () => {
           className="mx-auto max-w-[1040px] text-[24px] font-semibold leading-[1.3] text-black lg:text-[42px] lg:font-bold"
           style={{ fontFamily: '"Space Grotesk", sans-serif' }}
         >
-          {isArabic
-            ? "البائعون: منصة موثوق بها عالميًا ومعتمدة من قبل مزودي التكنولوجيا المعروفين."
-            : "Trusted and recognized by renowned global hospitality tech companies."}
+          {t("trustedCompanies.title")}
         </h2>
       </div>
 

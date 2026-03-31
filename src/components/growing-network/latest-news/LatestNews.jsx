@@ -1,4 +1,5 @@
 ﻿import React from "react";
+import { useTranslation } from "react-i18next";
 import { latestNewsItems } from "../../../data/latestNews";
 import { useLanguage } from "../../../context/LanguageContext.jsx";
 import LatestNewsCard from "./LatestNewsCard.jsx";
@@ -6,6 +7,7 @@ import LatestNewsHeader from "./LatestNewsHeader.jsx";
 
 const LatestNews = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation("common");
   const isArabic = language === "AR";
   const displayNewsItems = isArabic
     ? [...latestNewsItems].reverse()
@@ -30,7 +32,7 @@ const LatestNews = () => {
             type="button"
             className="h-[46px] w-[122.5px] rounded-[4px] bg-blue-600 text-[15px] font-medium uppercase leading-[32px] text-white transition hover:bg-blue-700"
           >
-            {isArabic ? "قراءة المزيد" : "Read More"}
+            {t("latestNews.readMore")}
           </button>
         </div>
       </div>

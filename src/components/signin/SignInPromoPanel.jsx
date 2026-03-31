@@ -1,7 +1,9 @@
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { getYouTubeEmbedUrl } from "./youtube.js";
 
 const SignInPromoPanel = ({ youtubeUrl }) => {
+  const { t } = useTranslation("common");
   const embedUrl = useMemo(() => getYouTubeEmbedUrl(youtubeUrl), [youtubeUrl]);
 
   return (
@@ -17,7 +19,7 @@ const SignInPromoPanel = ({ youtubeUrl }) => {
           color: "rgb(255, 255, 255)",
         }}
       >
-        ExploreTECH Launches Native Comparison Tool
+        {t("signIn.promo.heading")}
       </h2>
 
       <div className="mx-auto mt-4 w-full max-w-[570px] overflow-hidden rounded-xl bg-black shadow-2xl">
@@ -25,13 +27,13 @@ const SignInPromoPanel = ({ youtubeUrl }) => {
           <iframe
             className="h-[323px] w-full"
             src={embedUrl}
-            title="ExploreTECH Video"
+            title={t("signIn.promo.videoTitle")}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
         ) : (
           <div className="flex aspect-video items-center justify-center px-6 text-center text-sm text-slate-200">
-            Invalid YouTube link.
+            {t("signIn.promo.invalidYoutubeLink")}
           </div>
         )}
       </div>
@@ -47,10 +49,7 @@ const SignInPromoPanel = ({ youtubeUrl }) => {
           color: "rgb(255, 255, 255)",
         }}
       >
-        Our state-of-the-art Product Comparison Tool enables you to compare
-        multiple technologies side by side over a comprehensive list of product
-        features, pricing models, technical specifications, and technology
-        integrations.
+        {t("signIn.promo.description")}
       </p>
 
       <button
@@ -65,7 +64,7 @@ const SignInPromoPanel = ({ youtubeUrl }) => {
           color: "rgb(255, 255, 255)",
         }}
       >
-        Learn More{" "}
+        {t("signIn.promo.learnMore")}{" "}
         <svg
           aria-hidden="true"
           viewBox="0 0 24 24"

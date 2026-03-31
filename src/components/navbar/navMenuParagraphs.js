@@ -1,21 +1,37 @@
-﻿// Paragraph/long text content for NavMenu
+﻿import enCommon from "../../i18n/locales/en/common.json";
+import arCommon from "../../i18n/locales/ar/common.json";
+
+const enNavMenu = enCommon.navMenu || {};
+const arNavMenu = arCommon.navMenu || {};
+
 export const navMenuParagraphs = {
   searchPlaceholder: {
-    en: "Enter your search term here",
-    ar: "أدخل مصطلح البحث الخاص بك هنا",
+    en: enNavMenu.searchPlaceholder || "",
+    ar: arNavMenu.searchPlaceholder || "",
   },
   verifiedVendor: {
-    en: "Verified Vendor",
-    arLine1: "تم التحقق",
-    arLine2: "من البائع",
+    en: enNavMenu.verifiedVendor?.label || "",
+    arLine1: arNavMenu.verifiedVendor?.line1 || "",
+    arLine2: arNavMenu.verifiedVendor?.line2 || "",
   },
   aiPowered: {
-    en: "AI Powered",
-    ar: "مدعوم بالذكاء الاصطناعي",
+    en: enNavMenu.aiPowered || "",
+    ar: arNavMenu.aiPowered || "",
   },
-  drawerTagline: "THE DIGITAL MARKETPLACE",
+  drawerTagline: {
+    en: enNavMenu.drawerTagline || "",
+    ar: arNavMenu.drawerTagline || "",
+  },
   viewMore: {
-    en: "View More",
-    ar: "View More",
+    en: enNavMenu.viewMore || "",
+    ar: arNavMenu.viewMore || "",
+  },
+  searchButton: {
+    en: enNavMenu.searchButton || "",
+    ar: arNavMenu.searchButton || "",
+  },
+  compareButton: {
+    en: enNavMenu.compareButton || "",
+    ar: arNavMenu.compareButton || "",
   },
 };

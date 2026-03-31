@@ -1,10 +1,13 @@
-import React from "react";
+﻿import React from "react";
+import { useTranslation } from "react-i18next";
 import connectImage from "../../assets/images/connect/ConnectToExploeTECH.webp";
 import { useLanguage } from "../../context/LanguageContext.jsx";
 
 const ConnectSection = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation("common");
   const isArabic = language === "AR";
+
   return (
     <section className="w-full bg-[#0B5BFF] py-16">
       <div className="mx-auto grid max-w-[1320px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1.1fr_1.2fr] lg:gap-16 lg:px-10">
@@ -13,14 +16,14 @@ const ConnectSection = () => {
             className="text-[32px] font-semibold leading-tight lg:text-[40px] lg:leading-[50px]"
             style={{ fontFamily: '"Space Grotesk", sans-serif' }}
           >
-            {isArabic ? "تواصل" : "Connect"}
+            {t("connect.title")}
           </h1>
           <p
             className="mt-2 text-[16px] font-normal leading-[24px] text-white"
             dir={isArabic ? "rtl" : "ltr"}
             style={{ fontFamily: '"SF Pro Text", sans-serif' }}
           >
-            {isArabic ? "الوصول إلى خدماتنا بسهولة" : "Easily access our services"}
+            {t("connect.subtitle")}
           </p>
 
           <div className="mt-8 space-y-8">
@@ -29,23 +32,21 @@ const ConnectSection = () => {
                 className="text-[18px] font-bold leading-[26px]"
                 style={{ fontFamily: '"SF Pro Text", sans-serif' }}
               >
-                {isArabic ? "تواصل مع المورّدين" : "Connect with Vendors"}
+                {t("connect.vendorsTitle")}
               </h3>
               <p
                 className="mt-2 max-w-[700px] text-[16px] font-normal leading-[24px] text-white"
                 dir={isArabic ? "rtl" : "ltr"}
                 style={{ fontFamily: '"SF Pro Text", sans-serif' }}
               >
-                {isArabic
-                  ? "تواصل وتفاعل مع قاعدة بيانات متنامية من أفضل مزودي تقنيات الضيافة للعثور على الحلول المثالية لعملك."
-                  : "Connect and engage with a growing database of top hospitality tech providers to find the perfect solutions for your business."}
+                {t("connect.vendorsDescription")}
               </p>
               <button
                 type="button"
                 className="mt-4 inline-flex h-[41.6px] w-[208.55px] items-center justify-center rounded-[8px] bg-white text-[12px] font-normal leading-[16px] text-[#0055FE] shadow-[0_10px_22px_-16px_rgba(0,0,0,0.5)] transition hover:bg-[#e9f1ff]"
                 style={{ fontFamily: '"SF Pro Text", sans-serif' }}
               >
-                {isArabic ? "استكشف قاعدة بيانات المورّدين" : "Explore Our Vendor Database"}
+                {t("connect.vendorsCta")}
               </button>
             </div>
 
@@ -54,23 +55,21 @@ const ConnectSection = () => {
                 className="text-[18px] font-bold leading-[26px]"
                 style={{ fontFamily: '"SF Pro Text", sans-serif' }}
               >
-                {isArabic ? "تواصل مع خبراء ExploreTech" : "Connect with ExploreTech Experts"}
+                {t("connect.expertsTitle")}
               </h3>
               <p
                 className="mt-2 max-w-[700px] text-[16px] font-normal leading-[24px] text-white"
                 dir={isArabic ? "rtl" : "ltr"}
                 style={{ fontFamily: '"SF Pro Text", sans-serif' }}
               >
-                {isArabic
-                  ? "تواصل مع متخصص في تقنيات الضيافة للحصول على إرشاد خبير حول تحسين أعمالك أو اختيار التقنية المناسبة لاحتياجاتك."
-                  : "Get in touch with a hospitality technology specialist for expert guidance on optimizing your business or selecting the right technology for your needs."}
+                {t("connect.expertsDescription")}
               </p>
               <button
                 type="button"
                 className="mt-4 inline-flex h-[41.6px] w-[208.55px] items-center justify-center rounded-[8px] bg-white text-[12px] font-normal leading-[16px] text-[#0055FE] shadow-[0_10px_22px_-16px_rgba(0,0,0,0.5)] transition hover:bg-[#e9f1ff]"
                 style={{ fontFamily: '"SF Pro Text", sans-serif' }}
               >
-                {isArabic ? "تحدث مع خبير" : "Speak with an Expert"}
+                {t("connect.expertsCta")}
               </button>
             </div>
 
@@ -79,23 +78,21 @@ const ConnectSection = () => {
                 className="text-[18px] font-bold leading-[26px]"
                 style={{ fontFamily: '"SF Pro Text", sans-serif' }}
               >
-                {isArabic ? "تواصل مع خدمات الدعم" : "Connect with Support Services"}
+                {t("connect.supportTitle")}
               </h3>
               <p
                 className="mt-2 max-w-[700px] text-[16px] font-normal leading-[24px] text-white"
                 dir={isArabic ? "rtl" : "ltr"}
                 style={{ fontFamily: '"SF Pro Text", sans-serif' }}
               >
-                {isArabic
-                  ? "استمتع بالوصول السريع إلى مجموعتنا الواسعة من خدمات الدعم."
-                  : "Enjoy quick access to our wide range of support services."}
+                {t("connect.supportDescription")}
               </p>
               <button
                 type="button"
                 className="mt-4 inline-flex h-[41.6px] w-[208.55px] items-center justify-center rounded-[8px] bg-white text-[12px] font-normal leading-[16px] text-[#0055FE] shadow-[0_10px_22px_-16px_rgba(0,0,0,0.5)] transition hover:bg-[#e9f1ff]"
                 style={{ fontFamily: '"SF Pro Text", sans-serif' }}
               >
-                {isArabic ? "احصل على الدعم الآن" : "Get Support Now"}
+                {t("connect.supportCta")}
               </button>
             </div>
           </div>
@@ -107,7 +104,7 @@ const ConnectSection = () => {
           }`}>
             <img
               src={connectImage}
-              alt={isArabic ? "تواصل مع ExploreTech" : "Connect with ExploreTech"}
+              alt={t("connect.imageAlt")}
               className="h-full w-full rounded-[12px] object-cover shadow-[0_24px_50px_-30px_rgba(0,0,0,0.7)] lg:rounded-[20px]"
             />
           </div>

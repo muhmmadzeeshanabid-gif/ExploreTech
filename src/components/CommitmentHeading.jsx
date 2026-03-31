@@ -1,7 +1,9 @@
+﻿import { useTranslation } from "react-i18next";
 import { useLanguage } from "../context/LanguageContext.jsx";
 
 const CommitmentHeading = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation("common");
 
   return (
     <section className="mt-0 w-full bg-white pb-8 pt-3 md:mt-0 md:pt-3 lg:mt-0 lg:pt-4">
@@ -25,7 +27,7 @@ const CommitmentHeading = () => {
                 color: "rgb(0, 0, 0)",
               }}
             >
-              المشترون: منصة تحظى بثقة شركات الضيافة العالمية في جميع أنحاء الشرق الأوسط وأفريقيا.
+              {t("commitment.title")}
             </span>
             <span
               className="commitment-heading-ar hidden max-w-[1120px] lg:mx-auto lg:block lg:w-full"
@@ -38,16 +40,12 @@ const CommitmentHeading = () => {
                 color: "rgb(0, 0, 0)",
               }}
             >
-              <span className="block whitespace-nowrap">
-                المشترون: منصة تحظى بثقة شركات الضيافة العالمية في جميع أنحاء
-              </span>
-              <span className="block whitespace-nowrap">
-                الشرق الأوسط وأفريقيا.
-              </span>
+              <span className="block whitespace-nowrap">{t("commitment.titleLine1")}</span>
+              <span className="block whitespace-nowrap">{t("commitment.titleLine2")}</span>
             </span>
           </>
         ) : (
-          "Committed to serving all hospitality companies throughout the Middle East and Africa."
+          t("commitment.title")
         )}
       </h2>
     </section>

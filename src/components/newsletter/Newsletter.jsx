@@ -1,12 +1,13 @@
 ﻿import React from "react";
+import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext.jsx";
 import AgreementText from "./AgreementText.jsx";
 import NewsletterInput from "./NewsletterInput.jsx";
-import { NEWSLETTER_TEXT } from "./newsletterContent.js";
 import useNewsletterForm from "./useNewsletterForm.js";
 
 const Newsletter = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation("common");
   const isArabic = language === "AR";
   const { formData, isSubmitting, isSuccess, isFormValid, handleSubmit, handleChange } =
     useNewsletterForm();
@@ -29,7 +30,7 @@ const Newsletter = () => {
           }`}
           style={{ fontFamily: '"SF Pro Text", sans-serif' }}
         >
-          {isArabic ? NEWSLETTER_TEXT.heading.ar : NEWSLETTER_TEXT.heading.en}
+          {t("newsletter.heading")}
         </h2>
 
         <p
@@ -40,7 +41,7 @@ const Newsletter = () => {
           }`}
           style={{ fontFamily: '"SF Pro Text", sans-serif' }}
         >
-          {isArabic ? NEWSLETTER_TEXT.subheading.ar : NEWSLETTER_TEXT.subheading.en}
+          {t("newsletter.subheading")}
         </p>
 
         <form onSubmit={(event) => handleSubmit(event, isFormValid)} className="mx-auto w-full max-w-[1062px]">
@@ -54,16 +55,8 @@ const Newsletter = () => {
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
-              label={
-                isArabic
-                  ? NEWSLETTER_TEXT.labels.firstName.ar
-                  : NEWSLETTER_TEXT.labels.firstName.en
-              }
-              placeholder={
-                isArabic
-                  ? NEWSLETTER_TEXT.placeholders.firstName.ar
-                  : NEWSLETTER_TEXT.placeholders.firstName.en
-              }
+              label={t("newsletter.labels.firstName")}
+              placeholder={t("newsletter.placeholders.firstName")}
             />
 
             <NewsletterInput
@@ -71,16 +64,8 @@ const Newsletter = () => {
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              label={
-                isArabic
-                  ? NEWSLETTER_TEXT.labels.lastName.ar
-                  : NEWSLETTER_TEXT.labels.lastName.en
-              }
-              placeholder={
-                isArabic
-                  ? NEWSLETTER_TEXT.placeholders.lastName.ar
-                  : NEWSLETTER_TEXT.placeholders.lastName.en
-              }
+              label={t("newsletter.labels.lastName")}
+              placeholder={t("newsletter.placeholders.lastName")}
             />
 
             <NewsletterInput
@@ -89,12 +74,8 @@ const Newsletter = () => {
               type="email"
               value={formData.email}
               onChange={handleChange}
-              label={isArabic ? NEWSLETTER_TEXT.labels.email.ar : NEWSLETTER_TEXT.labels.email.en}
-              placeholder={
-                isArabic
-                  ? NEWSLETTER_TEXT.placeholders.email.ar
-                  : NEWSLETTER_TEXT.placeholders.email.en
-              }
+              label={t("newsletter.labels.email")}
+              placeholder={t("newsletter.placeholders.email")}
             />
           </div>
 
@@ -165,10 +146,10 @@ const Newsletter = () => {
               {isSubmitting ? (
                 <div className="mt-[2px] flex items-center justify-center gap-2" dir={isArabic ? "rtl" : "ltr"}>
                   <div className="h-4 w-4 flex-shrink-0 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                  <span>{isArabic ? NEWSLETTER_TEXT.subscribe.ar : NEWSLETTER_TEXT.subscribe.en}</span>
+                  <span>{t("newsletter.subscribe")}</span>
                 </div>
               ) : (
-                isArabic ? NEWSLETTER_TEXT.subscribe.ar : NEWSLETTER_TEXT.subscribe.en
+                t("newsletter.subscribe")
               )}
             </button>
             {isSuccess && (
@@ -176,7 +157,7 @@ const Newsletter = () => {
                 className="animate-in mt-6 text-center text-[16px] font-medium text-white fade-in duration-500"
                 style={{ fontFamily: '"SF Pro Text", sans-serif' }}
               >
-                {isArabic ? NEWSLETTER_TEXT.success.ar : NEWSLETTER_TEXT.success.en}
+                {t("newsletter.success")}
               </p>
             )}
           </div>

@@ -58,7 +58,7 @@ const NavMenuSearchOverlay = ({
                       }`}
                       style={{ fontFamily: '"SF Pro Text", sans-serif' }}
                     >
-                      Search
+                      {navMenuParagraphs.searchButton.ar}
                     </button>
                     {hasQuery && (
                       <button
@@ -106,7 +106,7 @@ const NavMenuSearchOverlay = ({
                       }`}
                       style={{ fontFamily: '"SF Pro Text", sans-serif' }}
                     >
-                      Search
+                      {navMenuParagraphs.searchButton.en}
                     </button>
                   </div>
                 )}
@@ -259,8 +259,8 @@ const NavMenuSearchOverlay = ({
                                         <div className={`mt-1.5 flex h-[18px] items-center ${isArabic ? "ml-auto" : "mr-auto"}`}>
                                           <div className="rounded-[4px] bg-[#f86d2d] px-1.5 text-[8px] font-bold text-white uppercase tracking-tight">
                                             {isArabic
-                                              ? navMenuParagraphs.aiPowered?.ar || "مدعوم بالذكاء الاصطناعي"
-                                              : navMenuParagraphs.aiPowered?.en || "AI Powered"}
+                                              ? navMenuParagraphs.aiPowered.ar
+                                              : navMenuParagraphs.aiPowered.en}
                                           </div>
                                         </div>
                                       )}
@@ -297,7 +297,9 @@ const NavMenuSearchOverlay = ({
                                         </div>
                                       )}
                                       <button className="rounded-[4px] px-3 py-1.5 text-[11px] font-medium border border-slate-200 text-slate-700 hover:bg-slate-50 transition bg-white shadow-sm" style={{ fontFamily: '"SF Pro Text", sans-serif' }}>
-                                        Compare
+                                        {isArabic
+                                          ? navMenuParagraphs.compareButton.ar
+                                          : navMenuParagraphs.compareButton.en}
                                       </button>
                                     </div>
                                   </div>
@@ -531,8 +533,8 @@ const NavMenuSearchOverlay = ({
                                     <div className={`mt-1.5 flex h-[18px] items-center ${isArabic ? "ml-auto" : "mr-auto"}`}>
                                       <div className="rounded-[4px] bg-[#f86d2d] px-1.5 text-[8px] font-bold text-white uppercase tracking-tight">
                                         {isArabic
-                                          ? navMenuParagraphs.aiPowered?.ar || "مدعوم بالذكاء الاصطناعي"
-                                          : navMenuParagraphs.aiPowered?.en || "AI Powered"}
+                                          ? navMenuParagraphs.aiPowered.ar
+                                          : navMenuParagraphs.aiPowered.en}
                                       </div>
                                     </div>
                                   )}
@@ -569,7 +571,9 @@ const NavMenuSearchOverlay = ({
                                     </div>
                                   )}
                                   <button className="rounded-[4px] px-3 py-1.5 text-[11px] font-medium border border-slate-200 text-slate-700 hover:bg-slate-50 transition bg-white shadow-sm" style={{ fontFamily: '"SF Pro Text", sans-serif' }}>
-                                    Compare
+                                    {isArabic
+                                      ? navMenuParagraphs.compareButton.ar
+                                      : navMenuParagraphs.compareButton.en}
                                   </button>
                                 </div>
                               </div>

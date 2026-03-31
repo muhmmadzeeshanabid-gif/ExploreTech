@@ -1,8 +1,10 @@
+﻿import { useTranslation } from "react-i18next";
 import howToChooseImage from "../assets/images/how-to-choose.webp";
 import { useLanguage } from "../context/LanguageContext.jsx";
 
 const HowToChoose = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation("common");
   const isArabic = language === "AR";
 
   return (
@@ -21,7 +23,7 @@ const HowToChoose = () => {
         >
           <img
             src={howToChooseImage}
-            alt={isArabic ? "توضيح لاختيار التقنية" : "Technology selection illustration"}
+            alt={t("howToChoose.imageAlt")}
             className="h-auto w-full max-w-[900px] rounded-[20px] object-cover shadow-[0_18px_40px_-24px_rgba(0,0,0,0.45)] md:h-[390px] md:rounded-[22px] lg:h-[445px] lg:rounded-[26px]"
           />
         </div>
@@ -41,9 +43,7 @@ const HowToChoose = () => {
             }`}
             style={{ fontFamily: '"Space Grotesk", sans-serif' }}
           >
-            {isArabic
-              ? "كيفية اختيار أفضل تقنية تناسب احتياجاتك"
-              : "How to choose the best technology for your needs"}
+            {t("howToChoose.title")}
           </h1>
 
           <p
@@ -51,9 +51,7 @@ const HowToChoose = () => {
             dir={isArabic ? "rtl" : "ltr"}
             style={{ fontFamily: '"SF Pro Text", sans-serif' }}
           >
-            {isArabic
-              ? "اختيار التقنية التي تتماشى مع أهدافك وتندمج بسلاسة مع الحلول الحالية أمر بالغ الأهمية. تقوم ExploreTECH بتبسيط هذه العملية من خلال توصيات مدعومة بالذكاء الاصطناعي، مما يساعدك على اتخاذ قرارات مستنيرة في دقائق بدلاً من أيام."
-              : "Choosing technology that fits your goals and integrates with existing solutions is vital. ExploreTECH simplifies the process with AI-powered recommendations, helping you make informed decisions in minutes, not days."}
+            {t("howToChoose.description")}
           </p>
 
           <p
@@ -61,7 +59,7 @@ const HowToChoose = () => {
             dir={isArabic ? "rtl" : "ltr"}
             style={{ fontFamily: '"SF Pro Text", sans-serif' }}
           >
-            {isArabic ? "استعد للعثور على الخيار الأنسب لك" : "Get ready to find your perfect fit:"}
+            {t("howToChoose.ctaIntro")}
           </p>
         </div>
       </div>

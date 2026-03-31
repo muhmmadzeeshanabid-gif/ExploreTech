@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import logo from "../../assets/logo/Explote-Tech-Logo-Black.gif";
 
 const inputFontFamily =
@@ -7,6 +8,7 @@ const bodyFontFamily = '"SF Pro Text", sans-serif';
 const headingFontFamily = '"Space Grotesk", sans-serif';
 
 const SignInFormPanel = ({ onHome }) => {
+  const { t } = useTranslation("common");
   const [email, setEmail] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
 
@@ -49,7 +51,7 @@ const SignInFormPanel = ({ onHome }) => {
               color: "rgb(0, 0, 0)",
             }}
           >
-            Welcome to{" "}
+            {t("signIn.form.welcomePrefix")}{" "}
             <span
               className="text-[24px] leading-[40px] md:text-[32px]"
               style={{
@@ -72,7 +74,7 @@ const SignInFormPanel = ({ onHome }) => {
                 color: "rgb(71, 77, 102)",
               }}
             >
-              Please enter your email to Sign in / Sign up
+              {t("signIn.form.emailLabel")}
             </label>
 
             <input
@@ -91,7 +93,7 @@ const SignInFormPanel = ({ onHome }) => {
                 borderColor: "rgba(214, 224, 255, 0.82)",
                 boxShadow: "0 0 0 0.166485px rgba(214, 224, 255, 0.82)",
               }}
-              placeholder="Enter your email address"
+              placeholder={t("signIn.form.emailPlaceholder")}
               type="email"
             />
 
@@ -104,7 +106,7 @@ const SignInFormPanel = ({ onHome }) => {
                   : "cursor-not-allowed bg-[rgba(0,85,254,0.28)]"
               }`}
             >
-              Continue
+              {t("signIn.form.continue")}
             </button>
           </div>
 
@@ -120,7 +122,7 @@ const SignInFormPanel = ({ onHome }) => {
                 color: "rgb(126, 118, 143)",
               }}
             >
-              or
+              {t("signIn.form.or")}
             </span>
             <div className="flex-1 border-t border-slate-200" />
           </div>
@@ -159,7 +161,7 @@ const SignInFormPanel = ({ onHome }) => {
                 color: "rgb(0, 85, 254)",
               }}
             >
-              Terms and Conditions
+              {t("signIn.form.termsAndConditions")}
             </span>
           </label>
 
@@ -212,7 +214,7 @@ const SignInFormPanel = ({ onHome }) => {
             color: "rgb(105, 111, 140)",
           }}
         >
-          © Copyright 2024, All Rights Reserved
+          {t("signIn.form.copyright")}
         </div>
       </div>
     </div>

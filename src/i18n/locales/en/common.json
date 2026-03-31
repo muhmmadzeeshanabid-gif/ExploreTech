@@ -1,0 +1,414 @@
+﻿{
+  "seo": {
+    "title": "ExploreTECH | Hospitality Technology Marketplace",
+    "description": "ExploreTECH connects hospitality professionals with trusted technology solutions, industry news, and vendors across the global hospitality market."
+  },
+  "navbar": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "language": {
+    "english": "English",
+    "arabic": "Arabic"
+  },
+  "headings": {
+    "discover": "Discover",
+    "compare": "Compare",
+    "connect": "Connect",
+    "procure": "Procure",
+    "howToChoose": "How to choose the best technology for your needs",
+    "latestNews": "Latest News",
+    "trustedCompanies": "Trusted and recognized by renowned global hospitality tech companies.",
+    "earlyAdopters": "ExploreTECH Early Adopters",
+    "newsletter": "Subscribe to Our Newsletter to Stay Informed.",
+    "categories": "Categories",
+    "products": "Products",
+    "vendors": "Vendors",
+    "resources": "Resources",
+    "events": "Events",
+    "contactUs": "Contact Us"
+  },
+  "commitment": {
+    "title": "Committed to serving all hospitality companies throughout the Middle East and Africa.",
+    "titleLine1": ""
+  },
+  "heroBanner": {
+    "headingPart1": "ExploreTECH:",
+    "headingPart2": "Your omnichannel for all things hospitality tech",
+    "paragraph": "Your AI-driven gateway to 2000+ hospitality tech solutions, streamlining the process from discovery to procurement.",
+    "buttonText": "Start exploring",
+    "buttonLink": "/search"
+  },
+  "promptBox": {
+    "heading": "Ask me anything about hotel TECH",
+    "placeholder": "Start a conversation...",
+    "disclaimer": "ExploreTECH PRO is currently in BETA. The bot is continuously learning and evolving, so some responses may vary in accuracy.",
+    "sendTitle": "Send message (or press Enter)"
+  },
+  "signIn": {
+    "form": {
+      "welcomePrefix": "Welcome to",
+      "emailLabel": "Please enter your email to Sign in / Sign up",
+      "emailPlaceholder": "Enter your email address",
+      "continue": "Continue",
+      "or": "or",
+      "termsAndConditions": "Terms and Conditions",
+      "copyright": "© Copyright 2024, All Rights Reserved"
+    },
+    "promo": {
+      "heading": "ExploreTECH Launches Native Comparison Tool",
+      "videoTitle": "ExploreTECH Video",
+      "invalidYoutubeLink": "Invalid YouTube link.",
+      "description": "Our state-of-the-art Product Comparison Tool enables you to compare multiple technologies side by side over a comprehensive list of product features, pricing models, technical specifications, and technology integrations.",
+      "learnMore": "Learn More"
+    }
+  },
+  "howToChoose": {
+    "imageAlt": "Technology selection illustration",
+    "title": "How to choose the best technology for your needs",
+    "description": "Choosing technology that fits your goals and integrates with existing solutions is vital. ExploreTECH simplifies the process with AI-powered recommendations, helping you make informed decisions in minutes, not days.",
+    "ctaIntro": "Get ready to find your perfect fit:"
+  },
+  "discover": {
+    "title": "Discover",
+    "subtitle": "Browse possibilities by category",
+    "bodyTitle": "Simplified Technology Exploration",
+    "bodyDescription": "Explore the best solutions across 12 categories. ExploreTECH simplifies your search for the ideal Hotel Management Software, including cloud-based systems.",
+    "browseAll": "Browse all categories",
+    "products": "Products"
+  },
+  "compare": {
+    "trendingProducts": "Trending Products",
+    "compare": "Compare",
+    "viewSolutions": "View side-by-side solutions",
+    "advancedTool": "Advanced Product Comparison Tool",
+    "description": "Easily compare hospitality technologies side-by-side. Build your hotel profile and receive tailored solutions that integrate with your systems. Compare features, pricing, specs, and integrations effortlessly.",
+    "latestComparisons": "Latest Comparison Conducted",
+    "addToCompare": "Add to Compare",
+    "vs": "vs",
+    "vendorVerified": "Vendor verified",
+    "unverified": "Unverified",
+    "category": "Category:",
+    "subcategory": "Subcategory:",
+    "aiPowered": "AI Powered"
+  },
+  "connect": {
+    "title": "Connect",
+    "subtitle": "Easily access our services",
+    "vendorsTitle": "Connect with Vendors",
+    "vendorsDescription": "Connect and engage with a growing database of top hospitality tech providers to find the perfect solutions for your business.",
+    "vendorsCta": "Explore Our Vendor Database",
+    "expertsTitle": "Connect with ExploreTech Experts",
+    "expertsDescription": "Get in touch with a hospitality technology specialist for expert guidance on optimizing your business or selecting the right technology for your needs.",
+    "expertsCta": "Speak with an Expert",
+    "supportTitle": "Connect with Support Services",
+    "supportDescription": "Enjoy quick access to our wide range of support services.",
+    "supportCta": "Get Support Now",
+    "imageAlt": "Connect with ExploreTech"
+  },
+  "procure": {
+    "title": "Procure",
+    "imageAlt": "Procure preview",
+    "description": "Streamline your RFI/RFP process with our upcoming automated tool. Effortlessly send customized requests to multiple vendors, receive organized proposals, and compare them side-by-side. Save time, reduce costs, and make smarter decisions with confidence.",
+    "comingSoon": "--Coming Soon--"
+  },
+  "growingNetwork": {
+    "title": "Our growing network of tech providers",
+    "description": "Explore the newest hospitality technology providers who've recently joined our platform. These forward-thinking vendors bring fresh innovations and specialized solutions to help hoteliers enhance their tech stack and stay ahead in a competitive market."
+  },
+  "trustedCompanies": {
+    "title": "Trusted and recognized by renowned global hospitality tech companies."
+  },
+  "latestNews": {
+    "title": "Latest News",
+    "description": "Stay informed with the latest and most relevant news from ExploreTECH and our featured hospitality industry experts.",
+    "readMore": "Read More"
+  },
+  "earlyAdopters": {
+    "title": "ExploreTECH Early Adopters",
+    "description": "We are immensely thankful to the visionary technology brands who, as early adopters, have played a crucial role in validating ExploreTECH's value proposition right from the outset."
+  },
+  "newsletter": {
+    "heading": "Keep up with the latest industry news & trends.",
+    "subheading": "Subscribe to Our Newsletter to Stay Informed.",
+    "labels": {
+      "firstName": "First Name:",
+      "lastName": "Last name:",
+      "email": "Email:"
+    },
+    "placeholders": {
+      "firstName": "Enter your First name",
+      "lastName": "Enter your Last name",
+      "email": "Enter your email address"
+    },
+    "subscribe": "Subscribe Newsletter",
+    "success": "Congratulations! You have successfully subscribed.",
+    "agreementPrefix": "By subscribing, I agree to receive marketing emails from ExploreTECH and accept the",
+    "privacyPolicy": "Privacy Policy"
+  },
+  "cookies": {
+    "message": "ExploreTECH uses Cookies in order to offer you the most relevant information. Please accept Cookies for optimal performance. To learn more, read our",
+    "policy": "Cookies Policy",
+    "settings": "Cookies Settings",
+    "rejectAll": "Reject All",
+    "acceptAll": "Accept All"
+  },
+  "navMenu": {
+    "categories": "Categories",
+    "products": "Products",
+    "vendors": "Vendors",
+    "advisoryServices": "Advisory Services",
+    "resources": "Resources",
+    "events": "Events",
+    "contactUs": "Contact Us",
+    "categoriesUpper": "CATEGORIES",
+    "productsUpper": "PRODUCTS",
+    "vendorsUpper": "VENDORS",
+    "advisoryServicesUpper": "ADVISORY SERVICES",
+    "resourcesUpper": "RESOURCES",
+    "eventsUpper": "EVENTS",
+    "contactUsUpper": "CONTACT US",
+    "languageOptions": {
+      "english": "English",
+      "arabic": "العربية"
+    },
+    "searchPlaceholder": "Enter your search term here",
+    "verifiedVendor": {
+      "label": "Verified Vendor",
+      "line1": "Verified",
+      "line2": "Vendor"
+    },
+    "aiPowered": "AI Powered",
+    "drawerTagline": "THE DIGITAL MARKETPLACE",
+    "viewMore": "View More",
+    "searchButton": "Search",
+    "compareButton": "Compare",
+    "menuCategoriesOrder": [
+      "businessIntelligence",
+      "commercialAndDistribution",
+      "hospitalityOperations",
+      "guestAndTravellerTech",
+      "inRoomTech",
+      "informationCommunicationTechnology",
+      "financeAndPayments",
+      "roboticsAndAutomation",
+      "hospitalityServices",
+      "restaurantTechnology",
+      "shortTermVacationRentalSolutions",
+      "sustainability"
+    ],
+    "menuCategories": {
+      "businessIntelligence": "Business intelligence",
+      "commercialAndDistribution": "Commercial and distribution",
+      "hospitalityOperations": "Hospitality operations",
+      "guestAndTravellerTech": "Guest and traveller tech",
+      "inRoomTech": "In room tech",
+      "informationCommunicationTechnology": "Information communication technology",
+      "financeAndPayments": "Finance and payments",
+      "roboticsAndAutomation": "Robotics and automation",
+      "hospitalityServices": "Hospitality services",
+      "restaurantTechnology": "Restaurant technology",
+      "shortTermVacationRentalSolutions": "Short term/vacation rental solutions",
+      "sustainability": "Sustainability"
+    },
+    "menuCategorySubmenus": {
+      "businessIntelligence": [
+        "Rate Shopping Tools",
+        "Market Intelligence Tools",
+        "Business Intelligence Tools (BI)",
+        "Customer Data Platform (CDP)",
+        "Reputation Management",
+        "Competitive Benchmarking",
+        "Financial planning and reporting"
+      ],
+      "commercialAndDistribution": [
+        "Channel Management",
+        "Central Reservation Systems (CRS)",
+        "Revenue Management Systems",
+        "Online Travel Agents (OTA)",
+        "Global Distribution Systems (GDS)"
+      ],
+      "hospitalityOperations": [
+        "Property Management Systems (PMS)",
+        "Hotel Operations Software",
+        "Staff Management",
+        "Housekeeping Management",
+        "Maintenance Management"
+      ],
+      "guestAndTravellerTech": [
+        "Guest Experience Platforms",
+        "Mobile Check-In",
+        "Digital Concierge",
+        "Guest Feedback & Surveys",
+        "Loyalty Programs"
+      ],
+      "inRoomTech": [
+        "In-Room Entertainment",
+        "Smart Room Controls",
+        "In-Room Tablets",
+        "Voice Assistants",
+        "High-Speed Internet"
+      ],
+      "informationCommunicationTechnology": [
+        "Hotel Wi-Fi Solutions",
+        "Cybersecurity",
+        "Cloud Computing",
+        "Data Analytics",
+        "IT Infrastructure"
+      ],
+      "financeAndPayments": [
+        "Payment Gateways",
+        "Accounting Software",
+        "Invoicing & Billing",
+        "Expense Management",
+        "Financial Reporting"
+      ],
+      "roboticsAndAutomation": [
+        "Chatbots & AI Assistants",
+        "Service Robots",
+        "Process Automation",
+        "AI-Powered Operations",
+        "Self-Service Kiosks"
+      ],
+      "hospitalityServices": [
+        "Spa & Wellness Management",
+        "Event Management",
+        "Catering Management",
+        "Tour & Activity Booking",
+        "Transportation Management"
+      ],
+      "restaurantTechnology": [
+        "Point of Sale (POS)",
+        "Online Ordering",
+        "Table Management",
+        "Kitchen Display Systems",
+        "Food & Beverage Management"
+      ],
+      "shortTermVacationRentalSolutions": [
+        "Vacation Rental PMS",
+        "Dynamic Pricing",
+        "Booking Engine",
+        "Guest Communication",
+        "Cleaning Management"
+      ],
+      "sustainability": [
+        "Energy Management",
+        "Waste Reduction",
+        "Carbon Footprint Tracking",
+        "Green Certification",
+        "Sustainable Supply Chain"
+      ]
+    },
+    "resourceItemsOrder": [
+      "resources",
+      "news",
+      "blog"
+    ],
+    "resourceItems": {
+      "resources": "Resources",
+      "news": "News",
+      "blog": "Blog"
+    },
+    "resourceSubmenus": {
+      "resources": [
+        "Articles",
+        "Guides",
+        "Research reports",
+        "Case studies",
+        "Webinars & videos",
+        "Vendor spotlights",
+        "Newsletters"
+      ],
+      "news": [
+        "Industry News",
+        "Product Updates",
+        "Press Releases",
+        "Announcements"
+      ],
+      "blog": [
+        "How-to Guides",
+        "Thought Leadership",
+        "Customer Stories",
+        "Tech Trends"
+      ]
+    }
+  },
+  "searchPanel": {
+    "tabs": {
+      "all": "All",
+      "subcategories": "Subcategories",
+      "products": "Products",
+      "serviceProviders": "Service Providers",
+      "blogs": "Blogs",
+      "news": "News"
+    },
+    "sections": {
+      "subcategories": "Subcategories:",
+      "products": "Products:",
+      "serviceProviders": "Service Providers:",
+      "blogs": "Blogs:",
+      "news": "News:"
+    },
+    "subcategories": {
+      "hospitalityPurchasingSoftware": "Hospitality Purchasing Software",
+      "timeAndAttendanceSystems": "Time and Attendance Systems",
+      "auditServices": "Audit Services",
+      "locationSolutions": "Location Solutions",
+      "security": "Security"
+    },
+    "products": {
+      "personalPayments": {
+        "title": "Personal Payments",
+        "subtitle": "Payment Platforms"
+      },
+      "electronicPaymentsPlatform": {
+        "title": "Electronic Payments Platform",
+        "subtitle": "POS System"
+      },
+      "wifiGuestManagement": {
+        "title": "WiFi Guest Management",
+        "subtitle": "Guest Internet"
+      },
+      "alliantsGuestApp": {
+        "title": "Alliants Guest App",
+        "subtitle": "Contactless Hotel Solutions"
+      },
+      "alliantsExperiencePlatform": {
+        "title": "Alliants Experience Platform",
+        "subtitle": "Guest Experiences"
+      }
+    },
+    "allProducts": {
+      "meetingPackageVenueSalesManagement": {
+        "title": "MeetingPackage Venue Sales Management",
+        "subtitle": "Event Management"
+      },
+      "ventoSpecializedPosByHotelTime": {
+        "title": "Vento Specialized POS by HotelTime",
+        "subtitle": "Restaurant Payment Platforms & Restaurant Management Software"
+      },
+      "proTechtSystemByFiserv": {
+        "title": "Pro-Techt System by Fiserv",
+        "subtitle": "Contactless Hotel Solutions"
+      },
+      "kwentraPointOfSale": {
+        "title": "Kwentra Point of Sale",
+        "subtitle": "Point of Sale (POS) System"
+      },
+      "hotelogixOnlineBookingSystem": {
+        "title": "Hotelogix Online Booking System",
+        "subtitle": "Internet Booking Engine (IBE)"
+      }
+    },
+    "blogs": {
+      "reshapingHospitalityIndustryThroughVrAndAr": "Reshaping the Hospitality Industry through VR and AR",
+      "navigatingFutureSustainableTourism": "Navigating the Future of Sustainable Tourism"
+    },
+    "newsItemTitles": [
+      "Paid News Check",
+      "Shady Brand News",
+      "Email Test New Shady News",
+      "Shady News Edit"
+    ]
+  }
+}

@@ -1,33 +1,97 @@
+﻿/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const LanguageContext = createContext(null);
 const faviconHref = "/favicon.png";
+const LANGUAGE_PATH_REGEX = /^\/(en|ar)(?=\/|$)/i;
 
-const seoContent = {
-  EN: {
-    title: "ExploreTECH | Hospitality Technology Marketplace",
-    description:
-      "ExploreTECH connects hospitality professionals with trusted technology solutions, industry news, and vendors across the global hospitality market.",
-  },
-  AR: {
-    title: "إكسبلور تك | سوق تقنيات الضيافة",
-    description:
-      "إكسبلور تك تربط المتخصصين في قطاع الضيافة بحلول تقنية موثوقة، وأحدث الأخبار، والموردين عبر سوق الضيافة العالمي.",
-  },
+const normalizeLanguage = (value) => {
+  if (!value) return "EN";
+  const upper = String(value).toUpperCase();
+  return upper === "AR" ? "AR" : "EN";
+};
+
+const getLanguageFromPath = (pathname) => {
+  if (!pathname) return null;
+  const match = pathname.match(LANGUAGE_PATH_REGEX);
+  if (!match?.[1]) return null;
+  return normalizeLanguage(match[1]);
+};
+
+const getPathWithoutLanguagePrefix = (pathname) => {
+  if (!pathname) return "/";
+  const cleanPath = pathname.replace(LANGUAGE_PATH_REGEX, "");
+  return cleanPath || "/";
+};
+
+const getPathWithLanguagePrefix = (pathname, languageCode) => {
+  const cleanPath = getPathWithoutLanguagePrefix(pathname);
+  return cleanPath === "/" ? `/${languageCode}` : `/${languageCode}${cleanPath}`;
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState(() => {
+  const { t, i18n } = useTranslation("common");
+
+  const [language, setLanguageState] = useState(() => {
     if (typeof window === "undefined") return "EN";
-    return window.localStorage.getItem("selectedLanguage") || "EN";
+
+    const pathLanguage = getLanguageFromPath(window.location.pathname);
+    if (pathLanguage) return pathLanguage;
+
+    return "EN";
   });
 
-  useEffect(() => {
-    window.localStorage.setItem("selectedLanguage", language);
-    document.documentElement.lang = language === "AR" ? "ar" : "en";
-    document.documentElement.dir = "ltr";
+  const setLanguage = (nextLanguage) => {
+    setLanguageState(normalizeLanguage(nextLanguage));
+  };
 
-    const { title, description } = seoContent[language] || seoContent.EN;
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const languageCode = language === "AR" ? "ar" : "en";
+
+    window.localStorage.setItem("selectedLanguage", language);
+    window.localStorage.setItem("selectedLanguageCode", languageCode);
+
+    if (i18n.language !== languageCode) {
+      i18n.changeLanguage(languageCode);
+    }
+
+    const nextPathname = getPathWithLanguagePrefix(
+      window.location.pathname,
+      languageCode,
+    );
+
+    const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    const nextUrl = `${nextPathname}${window.location.search}${window.location.hash}`;
+
+    if (currentUrl !== nextUrl) {
+      window.history.replaceState(window.history.state, "", nextUrl);
+    }
+
+    document.documentElement.lang = languageCode;
+    document.documentElement.dir = "ltr";
+  }, [language, i18n]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handlePopState = () => {
+      const pathLanguage = getLanguageFromPath(window.location.pathname);
+      if (pathLanguage && pathLanguage !== language) {
+        setLanguageState(pathLanguage);
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [language]);
+
+  useEffect(() => {
+    const title = t("seo.title");
+    const description = t("seo.description");
+
     document.title = title;
 
     let metaDescription = document.querySelector('meta[name="description"]');
@@ -46,9 +110,10 @@ export const LanguageProvider = ({ children }) => {
     }
     iconLink.setAttribute("type", "image/png");
     iconLink.setAttribute("href", faviconHref);
-  }, [language]);
+  }, [language, t]);
 
   const value = useMemo(() => ({ language, setLanguage }), [language]);
+
   return (
     <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
   );

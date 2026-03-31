@@ -101,7 +101,9 @@ const NavMenuDrawer = ({
                 isArabic ? "ml-0 mr-0" : ""
               }`}
             >
-              {navMenuParagraphs.drawerTagline}
+              {isArabic
+                ? navMenuParagraphs.drawerTagline.ar
+                : navMenuParagraphs.drawerTagline.en}
             </div>
           </div>
           <button

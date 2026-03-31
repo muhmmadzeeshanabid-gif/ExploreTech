@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import logoEn from "../../assets/logo/Explote-Tech-Logo-Black.gif";
 import logoAr from "../../assets/logo/AR-Explote-Tech-Logo-Black.gif";
 import { useLanguage } from "../../context/LanguageContext.jsx";
@@ -17,7 +18,8 @@ import {
   searchSubmitButtonClass,
 } from "./navMenuData.js";
 import {
-  allProductsData,
+  allProductsDataAr,
+  allProductsDataEn,
   allServiceProvidersData,
   blogsDataEn,
   newsItemTitlesAr,
@@ -39,11 +41,11 @@ import {
 } from "./navMenuButtons.js";
 import { DesktopSearchButton } from "./NavMenuButtons.jsx";
 import {
-  drawerMenuHeadings,
-  languageLabels,
-  navMenuHeadings,
-  searchSectionHeadings,
-  searchTabsLabels,
+  getDrawerMenuHeadings,
+  getLanguageLabels,
+  getNavMenuHeadings,
+  getSearchSectionHeadings,
+  getSearchTabsLabels,
 } from "./navMenuHeadings.js";
 import { navMenuParagraphs } from "./navMenuParagraphs.js";
 import {
@@ -58,6 +60,7 @@ import NavMenuDrawer from "./NavMenuDrawer.jsx";
 const NavMenu = ({ onSignIn }) => {
   const { latestNewsItems, verifiedIcon } = searchPanelAssets;
   const { language, setLanguage } = useLanguage();
+  const { t } = useTranslation("common");
   const isArabic = language === "AR";
   const navLogo = language === "AR" ? logoAr : logoEn;
   const categories = language === "AR" ? categoriesAr : categoriesEn;
@@ -66,7 +69,8 @@ const NavMenu = ({ onSignIn }) => {
   const resources = language === "AR" ? resourcesAr : resourcesEn;
   const resourceSubmenus =
     language === "AR" ? resourceSubmenusAr : resourceSubmenusEn;
-  const drawerResources = resourcesEn;
+  const drawerResources = resources;
+  const allProducts = isArabic ? allProductsDataAr : allProductsDataEn;
 
   const [searchOpen, setSearchOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -74,12 +78,11 @@ const NavMenu = ({ onSignIn }) => {
   const [languageOpen, setLanguageOpen] = useState(false);
   const [query, setQuery] = useState("");
 
-  const labels = isArabic ? navMenuHeadings.ar : navMenuHeadings.en;
-  const drawerLabels = isArabic ? drawerMenuHeadings.ar : drawerMenuHeadings.en;
-  const tabLabels = isArabic ? searchTabsLabels.ar : searchTabsLabels.en;
-  const sectionLabels = isArabic
-    ? searchSectionHeadings.ar
-    : searchSectionHeadings.en;
+  const labels = getNavMenuHeadings(t);
+  const drawerLabels = getDrawerMenuHeadings(t);
+  const languageLabels = getLanguageLabels(t);
+  const tabLabels = getSearchTabsLabels(t);
+  const sectionLabels = getSearchSectionHeadings(t);
 
   const blogCardsData = getBlogCardsData(blogsDataEn, latestNewsItems);
   const newsCardsData = getNewsCardsData(
@@ -88,7 +91,7 @@ const NavMenu = ({ onSignIn }) => {
     isArabic,
   );
 
-  const [activeTab, setActiveTab] = useState(tabLabels.news);
+  const [activeTab, setActiveTab] = useState(tabLabels.all);
   const [isSearching, setIsSearching] = useState(false);
 
   const panelRef = useRef(null);
@@ -177,13 +180,14 @@ const NavMenu = ({ onSignIn }) => {
       return;
     }
 
+    setActiveTab(tabLabels.all);
     setIsSearching(true);
     const timeout = setTimeout(() => {
       setIsSearching(false);
     }, 4500);
 
     return () => clearTimeout(timeout);
-  }, [query]);
+  }, [query, tabLabels.all]);
 
   useEffect(() => {
     if (!drawerOpen) return;
@@ -297,7 +301,7 @@ const NavMenu = ({ onSignIn }) => {
         sectionLabels={sectionLabels}
         subcategoriesAr={subcategoriesAr}
         subcategoriesEn={subcategoriesEn}
-        allProductsData={allProductsData}
+        allProductsData={allProducts}
         verifiedIcon={verifiedIcon}
         navMenuParagraphs={navMenuParagraphs}
         compareButton={compareButton}

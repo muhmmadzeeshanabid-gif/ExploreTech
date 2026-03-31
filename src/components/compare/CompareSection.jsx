@@ -1,16 +1,24 @@
-import React from "react";
-import {
-  comparisons,
-  compareContentEN,
-  compareContentAR,
-} from "../../data/compareData.js";
+﻿import React from "react";
+import { useTranslation } from "react-i18next";
+import { comparisons } from "../../data/compareData.js";
 import { useLanguage } from "../../context/LanguageContext.jsx";
 import TrendingProductsSlider from "./TrendingProductsSlider.jsx";
 
 const CompareSection = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation("common");
   const isArabic = language === "AR";
-  const content = isArabic ? compareContentAR : compareContentEN;
+
+  const content = {
+    trendingProducts: t("compare.trendingProducts"),
+    compare: t("compare.compare"),
+    viewSolutions: t("compare.viewSolutions"),
+    advancedTool: t("compare.advancedTool"),
+    description: t("compare.description"),
+    latestComparisons: t("compare.latestComparisons"),
+    addToCompare: t("compare.addToCompare"),
+    vs: t("compare.vs"),
+  };
 
   if (isArabic) {
     return (

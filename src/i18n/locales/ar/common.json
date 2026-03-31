@@ -1,0 +1,415 @@
+﻿{
+  "seo": {
+    "title": "إكسبلور تك | سوق تقنيات الضيافة",
+    "description": "إكسبلور تك تربط المتخصصين في قطاع الضيافة بحلول تقنية موثوقة، وأحدث الأخبار، والموردين عبر سوق الضيافة العالمي."
+  },
+  "navbar": {
+    "signIn": "تسجيل الدخول",
+    "signUp": "اشتراك"
+  },
+  "language": {
+    "english": "الإنجليزية",
+    "arabic": "العربية"
+  },
+  "headings": {
+    "discover": "الاكتشاف",
+    "compare": "مقارنة",
+    "connect": "تواصل",
+    "procure": "الشراء",
+    "howToChoose": "كيفية اختيار أفضل تقنية لاحتياجاتك",
+    "latestNews": "آخر الأخبار",
+    "trustedCompanies": "موثوق ومعترف به من قبل شركات تقنية الضيافة العالمية الرائدة.",
+    "earlyAdopters": "المتبنون الأوائل لـ ExploreTECH",
+    "newsletter": "اشترك في نشرتنا الإخبارية للبقاء على اطلاع.",
+    "categories": "الفئات",
+    "products": "المنتجات",
+    "vendors": "الموردون",
+    "resources": "الموارد",
+    "events": "الأحداث",
+    "contactUs": "اتصل بنا"
+  },
+  "commitment": {
+    "title": "المشترون: منصة تحظى بثقة شركات الضيافة العالمية في جميع أنحاء الشرق الأوسط وأفريقيا.",
+    "titleLine1": "المشترون: منصة تحظى بثقة شركات الضيافة العالمية في جميع أنحاء",
+    "titleLine2": "الشرق الأوسط وأفريقيا."
+  },
+  "heroBanner": {
+    "headingPart1": "إكسبلورتك:",
+    "headingPart2": "مصدر واحد | موقع واحد | منصة واحدة | عدة عملاء | حلول متعددة",
+    "paragraph": "بوابتك الذكية المدعومة بالذكاء الاصطناعي لأكثر من 2000 حل تقني في مجال الضيافة، لتبسيط العملية من الاكتشاف وحتى الشراء.",
+    "buttonText": "ابدأ الاستكشاف",
+    "buttonLink": "/ar/search"
+  },
+  "promptBox": {
+    "heading": "اسألني عن أي شيء يخص تقنيات الفنادق",
+    "placeholder": "ابدأ محادثة...",
+    "disclaimer": "ExploreTECH PRO في مرحلة البيتا حاليًا. الروبوت يتعلم ويتطور بشكل مستمر، لذا قد تختلف بعض الردود في الدقة.",
+    "sendTitle": "إرسال رسالة"
+  },
+  "signIn": {
+    "form": {
+      "welcomePrefix": "مرحبًا بك في",
+      "emailLabel": "يرجى إدخال بريدك الإلكتروني لتسجيل الدخول / الاشتراك",
+      "emailPlaceholder": "أدخل عنوان بريدك الإلكتروني",
+      "continue": "متابعة",
+      "or": "أو",
+      "termsAndConditions": "الشروط والأحكام",
+      "copyright": "© حقوق الطبع والنشر 2024، جميع الحقوق محفوظة"
+    },
+    "promo": {
+      "heading": "ExploreTECH تطلق أداة مقارنة أصلية",
+      "videoTitle": "فيديو ExploreTECH",
+      "invalidYoutubeLink": "رابط يوتيوب غير صالح.",
+      "description": "تُمكّنك أداة مقارنة المنتجات المتطورة لدينا من مقارنة عدة تقنيات جنبًا إلى جنب عبر قائمة شاملة من خصائص المنتجات ونماذج التسعير والمواصفات التقنية وتكاملات التكنولوجيا.",
+      "learnMore": "اعرف المزيد"
+    }
+  },
+  "howToChoose": {
+    "imageAlt": "توضيح لاختيار التقنية",
+    "title": "كيفية اختيار أفضل تقنية تناسب احتياجاتك",
+    "description": "اختيار التقنية التي تتماشى مع أهدافك وتندمج بسلاسة مع الحلول الحالية أمر بالغ الأهمية. تقوم ExploreTECH بتبسيط هذه العملية من خلال توصيات مدعومة بالذكاء الاصطناعي، مما يساعدك على اتخاذ قرارات مستنيرة في دقائق بدلًا من أيام.",
+    "ctaIntro": "استعد للعثور على الخيار الأنسب لك"
+  },
+  "discover": {
+    "title": "الاكتشاف",
+    "subtitle": "تصفّح الاحتمالات حسب الفئة",
+    "bodyTitle": "استكشاف مبسّط للتقنية",
+    "bodyDescription": "اكتشف أفضل الحلول عبر 12 فئة مختلفة. تقوم ExploreTECH بتبسيط بحثك عن برنامج إدارة الفنادق المثالي، بما في ذلك الأنظمة القائمة على السحابة.",
+    "browseAll": "تصفح جميع الفئات",
+    "products": "منتجات"
+  },
+  "compare": {
+    "trendingProducts": "المنتجات الرائجة",
+    "compare": "Compare",
+    "viewSolutions": "عرض الحلول جنبًا إلى جنب",
+    "advancedTool": "أداة المقارنة المتقدمة للمنتجات",
+    "description": "قارن تقنيات الضيافة بسهولة جنبًا إلى جنب. قم ببناء ملفك الفندقي وتلقَّ حلولًا مخصصة تتكامل مع أنظمتك. قارن الميزات والأسعار والمواصفات والتكاملات بكل سهولة.",
+    "latestComparisons": "أحدث مقارنات تم إجراؤها",
+    "addToCompare": "أضف للمقارنة",
+    "vs": "مقابل",
+    "vendorVerified": "تم التحقق من البائع",
+    "unverified": "غير موثق",
+    "category": "الفئة:",
+    "subcategory": "الفئة الفرعية:",
+    "aiPowered": "مدعوم بالذكاء الاصطناعي"
+  },
+  "connect": {
+    "title": "تواصل",
+    "subtitle": "الوصول إلى خدماتنا بسهولة",
+    "vendorsTitle": "تواصل مع المورّدين",
+    "vendorsDescription": "تواصل وتفاعل مع قاعدة بيانات متنامية من أفضل مزودي تقنيات الضيافة للعثور على الحلول المثالية لعملك.",
+    "vendorsCta": "استكشف قاعدة بيانات المورّدين",
+    "expertsTitle": "تواصل مع خبراء ExploreTech",
+    "expertsDescription": "تواصل مع متخصص في تقنيات الضيافة للحصول على إرشاد خبير حول تحسين أعمالك أو اختيار التقنية المناسبة لاحتياجاتك.",
+    "expertsCta": "تحدث مع خبير",
+    "supportTitle": "تواصل مع خدمات الدعم",
+    "supportDescription": "استمتع بالوصول السريع إلى مجموعتنا الواسعة من خدمات الدعم.",
+    "supportCta": "احصل على الدعم الآن",
+    "imageAlt": "تواصل مع ExploreTech"
+  },
+  "procure": {
+    "title": "الشراء",
+    "imageAlt": "معاينة الشراء",
+    "description": "تبسيط عملية RFI/RFP باستخدام أداة مؤتمتة قادمة قريبًا. أرسل طلبات مخصصة إلى عدة مورّدين، استقبل العروض المنظمة، وقارنها جنبًا إلى جنب. وفر الوقت، قلل التكاليف، واتخذ قرارات أكثر ذكاءً بثقة.",
+    "comingSoon": "-- قريبًا --"
+  },
+  "growingNetwork": {
+    "title": "أحدث الإضافات إلى شبكة مزودي التكنولوجيا لدينا",
+    "description": "تعرّف على مزودي تكنولوجيا الضيافة الجدد على منصتنا. يجلب هؤلاء الخبراء حلولًا مبتكرة تساعد الفنادق على تطوير بنيتها التقنية والبقاء في الطليعة في سوق سريع التغيّر."
+  },
+  "trustedCompanies": {
+    "title": "البائعون: منصة موثوق بها عالميًا ومعتمدة من قبل مزودي التكنولوجيا المعروفين."
+  },
+  "latestNews": {
+    "title": "ماذا يحدث؟",
+    "description": "اقرأ أحدث الأخبار وأكثرها صلة والتي ينشرها مزودو الخدمات المسجلون معنا وإكسبلورتك",
+    "readMore": "قراءة المزيد"
+  },
+  "earlyAdopters": {
+    "title": "أوائل من انضموا إلى إكسبلورتك",
+    "description": "قمنا بإدراج 13 علامة تجارية على منصة إكسبلورتك الرقمية منذ اليوم الأول، تشاركنا جميعها الرؤية والرسالة لتمكين الابتكار من خلال التكنولوجيا في قطاع الضيافة في الشرق الأوسط وأفريقيا"
+  },
+  "newsletter": {
+    "heading": "واكب آخر أخبار الصناعة وتحديثاتها.",
+    "subheading": "اشترك في النشرة الإخبارية لتبقى على اطلاع",
+    "labels": {
+      "firstName": "الاسم الأول:",
+      "lastName": "اسم العائلة:",
+      "email": "بريد إلكتروني:"
+    },
+    "placeholders": {
+      "firstName": "أدخل اسمك الأول",
+      "lastName": "أدخل اسمك الأخير",
+      "email": "أدخل عنوان بريدك الإلكتروني"
+    },
+    "subscribe": "اشترك في النشرة الإخبارية",
+    "success": "تهانينا! لقد اشتركت بنجاح.",
+    "agreementPrefix": "بالاشتراك، أوافق على تلقي رسائل البريد الإلكتروني التسويقية من إكسبلورتك وأقبل",
+    "privacyPolicy": "سياسة الخصوصية"
+  },
+  "cookies": {
+    "message": "تستخدم ExploreTECH ملفات تعريف الارتباط لتقديم المعلومات الأكثر صلة بك. يرجى قبول ملفات تعريف الارتباط للحصول على أفضل أداء. لمعرفة المزيد، اقرأ",
+    "policy": "اتفاقية ملفات تعريف الارتباط",
+    "settings": "إعدادات ملفات تعريف الارتباط",
+    "rejectAll": "رفض الكل",
+    "acceptAll": "قبول الكل"
+  },
+  "navMenu": {
+    "categories": "الفئات",
+    "products": "المنتجات",
+    "vendors": "مزودوا الخدمات",
+    "advisoryServices": "خدمات استشارية",
+    "resources": "الموارد",
+    "events": "الأحداث",
+    "contactUs": "اتصل بنا",
+    "categoriesUpper": "الفئات",
+    "productsUpper": "المنتجات",
+    "vendorsUpper": "مزودوا الخدمات",
+    "advisoryServicesUpper": "خدمات استشارية",
+    "resourcesUpper": "الموارد",
+    "eventsUpper": "الأحداث",
+    "contactUsUpper": "اتصل بنا",
+    "languageOptions": {
+      "english": "English",
+      "arabic": "العربية"
+    },
+    "searchPlaceholder": "أدخل مصطلح البحث الخاص بك هنا",
+    "verifiedVendor": {
+      "label": "تم التحقق من البائع",
+      "line1": "تم التحقق",
+      "line2": "من البائع"
+    },
+    "aiPowered": "مدعوم بالذكاء الاصطناعي",
+    "drawerTagline": "السوق الرقمي",
+    "viewMore": "عرض المزيد",
+    "searchButton": "بحث",
+    "compareButton": "Compare",
+    "menuCategoriesOrder": [
+      "businessIntelligence",
+      "commercialAndDistribution",
+      "hospitalityOperations",
+      "guestAndTravellerTech",
+      "inRoomTech",
+      "informationCommunicationTechnology",
+      "financeAndPayments",
+      "roboticsAndAutomation",
+      "hospitalityServices",
+      "restaurantTechnology",
+      "shortTermVacationRentalSolutions",
+      "sustainability"
+    ],
+    "menuCategories": {
+      "businessIntelligence": "ذكاء الأعمال",
+      "commercialAndDistribution": "التجاري والتوزيع",
+      "hospitalityOperations": "عمليات الضيافة",
+      "guestAndTravellerTech": "تقنيات الضيوف والمسافرين",
+      "inRoomTech": "تقنيات الغرف",
+      "informationCommunicationTechnology": "تقنية المعلومات والاتصالات",
+      "financeAndPayments": "التمويل والمدفوعات",
+      "roboticsAndAutomation": "الروبوتات والأتمتة",
+      "hospitalityServices": "خدمات الضيافة",
+      "restaurantTechnology": "تقنية المطاعم",
+      "shortTermVacationRentalSolutions": "حلول الإيجار قصير الأمد/العطلات",
+      "sustainability": "الاستدامة"
+    },
+    "menuCategorySubmenus": {
+      "businessIntelligence": [
+        "أدوات التسوق بالأسعار",
+        "أدوات ذكاء السوق",
+        "أدوات ذكاء الأعمال (BI)",
+        "منصة بيانات العملاء (CDP)",
+        "إدارة السمعة",
+        "المقارنة التنافسية",
+        "التخطيط المالي وإعداد التقارير"
+      ],
+      "commercialAndDistribution": [
+        "إدارة القنوات",
+        "أنظمة الحجز المركزية (CRS)",
+        "أنظمة إدارة الإيرادات",
+        "وكالات السفر الإلكترونية (OTA)",
+        "أنظمة التوزيع العالمية (GDS)"
+      ],
+      "hospitalityOperations": [
+        "أنظمة إدارة الممتلكات (PMS)",
+        "برامج عمليات الفندق",
+        "إدارة الموظفين",
+        "إدارة التدبير المنزلي",
+        "إدارة الصيانة"
+      ],
+      "guestAndTravellerTech": [
+        "منصات تجربة الضيوف",
+        "تسجيل الوصول عبر الهاتف",
+        "خدمة الكونسيرج الرقمية",
+        "ملاحظات وتقييمات الضيوف",
+        "برامج الولاء"
+      ],
+      "inRoomTech": [
+        "ترفيه داخل الغرفة",
+        "تحكم ذكي في الغرف",
+        "أجهزة لوحية داخل الغرفة",
+        "المساعدون الصوتيون",
+        "إنترنت عالي السرعة"
+      ],
+      "informationCommunicationTechnology": [
+        "حلول Wi-Fi الفندقية",
+        "الأمن السيبراني",
+        "الحوسبة السحابية",
+        "تحليل البيانات",
+        "البنية التحتية لتكنولوجيا المعلومات"
+      ],
+      "financeAndPayments": [
+        "بوابات الدفع",
+        "برامج المحاسبة",
+        "الفواتير والفوترة",
+        "إدارة النفقات",
+        "التقارير المالية"
+      ],
+      "roboticsAndAutomation": [
+        "روبوتات الدردشة والمساعدون بالذكاء الاصطناعي",
+        "روبوتات الخدمة",
+        "أتمتة العمليات",
+        "العمليات المدعومة بالذكاء الاصطناعي",
+        "أكشاك الخدمة الذاتية"
+      ],
+      "hospitalityServices": [
+        "إدارة السبا والعافية",
+        "إدارة الفعاليات",
+        "إدارة خدمات الطعام",
+        "حجز الجولات والأنشطة",
+        "إدارة النقل"
+      ],
+      "restaurantTechnology": [
+        "نقاط البيع (POS)",
+        "الطلب عبر الإنترنت",
+        "إدارة الطاولات",
+        "أنظمة عرض المطبخ",
+        "إدارة الأغذية والمشروبات"
+      ],
+      "shortTermVacationRentalSolutions": [
+        "نظام إدارة الإيجارات السياحية",
+        "التسعير الديناميكي",
+        "محرك الحجز",
+        "التواصل مع الضيوف",
+        "إدارة التنظيف"
+      ],
+      "sustainability": [
+        "إدارة الطاقة",
+        "تقليل النفايات",
+        "تتبع البصمة الكربونية",
+        "الشهادات الخضراء",
+        "سلسلة التوريد المستدامة"
+      ]
+    },
+    "resourceItemsOrder": [
+      "resources",
+      "news",
+      "blog"
+    ],
+    "resourceItems": {
+      "resources": "الموارد",
+      "news": "الأخبار",
+      "blog": "المدونة"
+    },
+    "resourceSubmenus": {
+      "resources": [
+        "مقالات",
+        "أدلة",
+        "تقارير بحثية",
+        "دراسات حالة",
+        "ندوات ومقاطع فيديو",
+        "تسليط الضوء على الموردين",
+        "نشرات إخبارية"
+      ],
+      "news": [
+        "أخبار الصناعة",
+        "تحديثات المنتجات",
+        "بيانات صحفية",
+        "إعلانات"
+      ],
+      "blog": [
+        "أدلة إرشادية",
+        "قيادة فكرية",
+        "قصص العملاء",
+        "اتجاهات تقنية"
+      ]
+    }
+  },
+  "searchPanel": {
+    "tabs": {
+      "all": "الجميع",
+      "subcategories": "الفئات الفرعية",
+      "products": "المنتجات",
+      "serviceProviders": "مزودوا الخدمات",
+      "blogs": "المدونات",
+      "news": "الأخبار"
+    },
+    "sections": {
+      "subcategories": "الفئات الفرعية:",
+      "products": "المنتجات:",
+      "serviceProviders": "مزودوا الخدمات:",
+      "blogs": "المدونات:",
+      "news": "الأخبار:"
+    },
+    "subcategories": {
+      "hospitalityPurchasingSoftware": "برمجيات شراء الضيافة",
+      "timeAndAttendanceSystems": "أنظمة الوقت والحضور",
+      "auditServices": "خدمات تدقيق",
+      "locationSolutions": "حلول الموقع",
+      "security": "الأمن"
+    },
+    "products": {
+      "personalPayments": {
+        "title": "المدفوعات الشخصية",
+        "subtitle": "منصات الدفع"
+      },
+      "electronicPaymentsPlatform": {
+        "title": "منصة المدفوعات الإلكترونية",
+        "subtitle": "نظام نقاط البيع (POS)"
+      },
+      "wifiGuestManagement": {
+        "title": "WiFi Guest Management",
+        "subtitle": "إنترنت الضيف"
+      },
+      "alliantsGuestApp": {
+        "title": "Alliants Guest App",
+        "subtitle": "حلول الفندق بدون تلامس"
+      },
+      "alliantsExperiencePlatform": {
+        "title": "Alliants Experience Platform",
+        "subtitle": "تجارب الضيوف"
+      }
+    },
+    "allProducts": {
+      "meetingPackageVenueSalesManagement": {
+        "title": "MeetingPackage Venue Sales Management",
+        "subtitle": "إدارة المناسبات"
+      },
+      "ventoSpecializedPosByHotelTime": {
+        "title": "نظام Vento المتخصص لنقاط البيع من HotelTime",
+        "subtitle": "منصات الدفع في المطاعم وبرامج إدارة المطاعم"
+      },
+      "proTechtSystemByFiserv": {
+        "title": "نظام Pro-Techt من Fiserv",
+        "subtitle": "حلول الفندق بدون تلامس"
+      },
+      "kwentraPointOfSale": {
+        "title": "Kwentra Point of Sale",
+        "subtitle": "نظام نقاط البيع (POS)"
+      },
+      "hotelogixOnlineBookingSystem": {
+        "title": "نظام الحجز عبر الإنترنت من Hotelogix",
+        "subtitle": "محرك الحجز عبر الإنترنت (IBE)"
+      }
+    },
+    "blogs": {
+      "reshapingHospitalityIndustryThroughVrAndAr": "إعادة تشكيل صناعة الضيافة من خلال الواقع الافتراضي والمعزز",
+      "navigatingFutureSustainableTourism": "التنقل في مستقبل السياحة المستدامة"
+    },
+    "newsItemTitles": [
+      "فحص الأخبار المدفوعة",
+      "أخبار علامة تجارية مشبوهة",
+      "اختبار بريد إلكتروني لخبر مشبوه جديد",
+      "تعديل خبر مشبوه"
+    ]
+  }
+}

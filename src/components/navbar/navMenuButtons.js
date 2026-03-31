@@ -1,3 +1,17 @@
+import enCommon from "../../i18n/locales/en/common.json";
+import arCommon from "../../i18n/locales/ar/common.json";
+
+const enNavbar = enCommon.navbar || {};
+const arNavbar = arCommon.navbar || {};
+const enNavMenu = enCommon.navMenu || {};
+const arNavMenu = arCommon.navMenu || {};
+
+const pickByLanguage = (language, enValue, arValue) =>
+  language === "AR" ? arValue : enValue;
+
+const signInSignUpLabel = (language) =>
+  `${pickByLanguage(language, enNavbar.signIn, arNavbar.signIn)} / ${pickByLanguage(language, enNavbar.signUp, arNavbar.signUp)}`;
+
 // ============================================================================
 // NAVBAR MENU BUTTONS - All button configurations and styles
 // ============================================================================
@@ -41,8 +55,7 @@ export const searchButtonMobile = {
 // Sign In / Sign Up Button - Desktop
 // Used in: Tablet size for initiating authentication
 export const signInButtonTablet = {
-  label: (language) =>
-    language === "AR" ? "التوقيع في السجل" : "Sign In/ Sign Up",
+  label: (language) => signInSignUpLabel(language),
   className:
     "inline-flex h-9 items-center justify-center whitespace-nowrap rounded-lg bg-[#0b56ff] px-4 text-[10px] font-semibold uppercase tracking-wide !text-white shadow-sm min-[370px]:px-5 min-[370px]:text-[11px]",
   style: { fontFamily: '"Space Grotesk", sans-serif' },
@@ -53,8 +66,7 @@ export const signInButtonTablet = {
 // Sign In / Sign Up Button - Mobile
 // Used in: Mobile screens for initiating authentication
 export const signInButtonMobile = {
-  label: (language) =>
-    language === "AR" ? "التوقيع في السجل" : "Sign In/ Sign Up",
+  label: (language) => signInSignUpLabel(language),
   className:
     "inline-flex h-9 items-center justify-center whitespace-nowrap rounded-lg bg-[#0b56ff] px-4 text-[10px] font-semibold uppercase tracking-wide !text-white shadow-sm min-[370px]:px-5 min-[370px]:text-[11px]",
   style: { fontFamily: '"Space Grotesk", sans-serif' },
@@ -89,7 +101,8 @@ export const menuButtonMobile = {
 // Search Panel Submit Button
 // Used in: Search panel for submitting search query
 export const searchSubmitButton = {
-  label: "Search",
+  label: (language) =>
+    pickByLanguage(language, enNavMenu.searchButton, arNavMenu.searchButton),
   className:
     "h-[37px] min-w-[79.1125px] rounded-[4px] bg-[#0055FE] px-4 text-[10px] font-medium leading-[15px] text-white transition sm:px-4 sm:text-[14px] sm:leading-[21px]",
   style: { fontFamily: '"SF Pro Text", sans-serif' },
@@ -147,7 +160,8 @@ export const tabScrollButtonRight = {
 // View More Button (Desktop)
 // Used in: Desktop search panel for viewing more results
 export const viewMoreButton = {
-  label: (language) => (language === "AR" ? "View More" : "View More"),
+  label: (language) =>
+    pickByLanguage(language, enNavMenu.viewMore, arNavMenu.viewMore),
   className:
     "hidden sm:block text-[13px] shrink-0 font-semibold text-[#0b56ff] hover:underline",
   style: { fontFamily: '"SF Pro Text", sans-serif' },
@@ -158,7 +172,12 @@ export const viewMoreButton = {
 // Compare Button
 // Used in: Search results for adding items to comparison
 export const compareButton = {
-  label: "Compare",
+  label: (language) =>
+    pickByLanguage(
+      language,
+      enNavMenu.compareButton,
+      arNavMenu.compareButton,
+    ),
   className:
     "rounded-[4px] border border-slate-200 px-4 py-1.5 text-[12px] font-medium text-slate-500 transition hover:bg-slate-50",
   style: { fontFamily: '"SF Pro Text", sans-serif' },
@@ -253,7 +272,8 @@ export const languageOptionButton = {
 // Categories Dropdown Toggle Button
 // Used in: Desktop navigation for toggling categories menu
 export const categoriesDropdownButton = {
-  label: (language) => (language === "AR" ? "الفئات" : "Categories"),
+  label: (language) =>
+    pickByLanguage(language, enNavMenu.categories, arNavMenu.categories),
   className:
     "text-sm font-medium tracking-wide uppercase text-slate-700 transition-colors group-hover:text-[#0b56ff]",
   ariaLabel: "Toggle categories dropdown",
@@ -263,7 +283,8 @@ export const categoriesDropdownButton = {
 // Resources Dropdown Toggle Button
 // Used in: Desktop navigation for toggling resources menu
 export const resourcesDropdownButton = {
-  label: (language) => (language === "AR" ? "الموارد" : "Resources"),
+  label: (language) =>
+    pickByLanguage(language, enNavMenu.resources, arNavMenu.resources),
   className:
     "text-sm font-medium tracking-wide uppercase text-slate-700 transition-colors group-hover:text-[#0b56ff]",
   ariaLabel: "Toggle resources dropdown",
@@ -274,40 +295,50 @@ export const resourcesDropdownButton = {
 // Used in: Desktop navigation bar for main menu items
 export const navLinkButtons = [
   {
-    label: (language) => (language === "AR" ? "الفئات" : "Categories"),
+    label: (language) =>
+      pickByLanguage(language, enNavMenu.categories, arNavMenu.categories),
     href: "#",
     type: "dropdown",
     icon: "ChevronRight",
   },
   {
-    label: (language) => (language === "AR" ? "المنتجات" : "Products"),
-    href: "#",
-    type: "link",
-  },
-  {
-    label: (language) => (language === "AR" ? "مزودوا الخدمات" : "Vendors"),
+    label: (language) =>
+      pickByLanguage(language, enNavMenu.products, arNavMenu.products),
     href: "#",
     type: "link",
   },
   {
     label: (language) =>
-      language === "AR" ? "خدمات استشارية" : "Advisory Services",
+      pickByLanguage(language, enNavMenu.vendors, arNavMenu.vendors),
     href: "#",
     type: "link",
   },
   {
-    label: (language) => (language === "AR" ? "الموارد" : "Resources"),
+    label: (language) =>
+      pickByLanguage(
+        language,
+        enNavMenu.advisoryServices,
+        arNavMenu.advisoryServices,
+      ),
+    href: "#",
+    type: "link",
+  },
+  {
+    label: (language) =>
+      pickByLanguage(language, enNavMenu.resources, arNavMenu.resources),
     href: "#",
     type: "dropdown",
     icon: "ChevronRight",
   },
   {
-    label: (language) => (language === "AR" ? "الأحداث" : "Events"),
+    label: (language) =>
+      pickByLanguage(language, enNavMenu.events, arNavMenu.events),
     href: "#",
     type: "link",
   },
   {
-    label: (language) => (language === "AR" ? "اتصل بنا" : "Contact Us"),
+    label: (language) =>
+      pickByLanguage(language, enNavMenu.contactUs, arNavMenu.contactUs),
     href: "#",
     type: "link",
   },

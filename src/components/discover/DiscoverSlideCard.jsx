@@ -1,8 +1,10 @@
-import React from "react";
+﻿import React from "react";
+import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext.jsx";
 
 const DiscoverSlideCard = ({ cat, onClick, isOut, style }) => {
   const { language } = useLanguage();
+  const { t } = useTranslation("common");
   const isArabic = language === "AR";
   const cardTitle = isArabic ? cat.arTitle || cat.title : cat.title;
 
@@ -58,7 +60,7 @@ const DiscoverSlideCard = ({ cat, onClick, isOut, style }) => {
               className="text-[8px] font-bold tracking-[0.05em] text-[#4ADE80] lg:text-[11px]"
               style={{ fontFamily: '"SF Pro Text", sans-serif', fontWeight: 700 }}
             >
-              {isArabic ? "منتجات" : "Products"}
+              {t("discover.products")}
             </span>
           </div>
         </div>

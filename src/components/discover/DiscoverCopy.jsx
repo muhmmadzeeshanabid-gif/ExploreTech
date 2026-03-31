@@ -1,8 +1,10 @@
-import React from "react";
+﻿import React from "react";
+import { useTranslation } from "react-i18next";
 import { useLanguage } from "../../context/LanguageContext.jsx";
 
 const DiscoverCopy = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation("common");
   const isArabic = language === "AR";
 
   return (
@@ -16,7 +18,7 @@ const DiscoverCopy = () => {
         dir={isArabic ? "rtl" : "ltr"}
         style={{ fontFamily: '"Space Grotesk", sans-serif' }}
       >
-        {isArabic ? "الاكتشاف" : "Discover"}
+        {t("discover.title")}
       </h1>
 
       <p
@@ -26,7 +28,7 @@ const DiscoverCopy = () => {
         dir={isArabic ? "rtl" : "ltr"}
         style={{ fontFamily: '"SF Pro Text", sans-serif' }}
       >
-        {isArabic ? "تصفّح الاحتمالات حسب الفئة" : "Browse possibilities by category"}
+        {t("discover.subtitle")}
       </p>
 
       <div className={`discover-copy-body mt-6 max-w-[696px] md:mt-7 ${isArabic ? "mr-0 ml-auto" : "mx-auto lg:mx-0"}`}>
@@ -35,7 +37,7 @@ const DiscoverCopy = () => {
           dir={isArabic ? "rtl" : "ltr"}
           style={{ fontFamily: '"SF Pro Text", sans-serif' }}
         >
-          {isArabic ? "استكشاف مبسّط للتقنية" : "Simplified Technology Exploration"}
+          {t("discover.bodyTitle")}
         </h3>
         <p
           className={`mt-2 font-normal tracking-normal text-white md:mt-3 ${
@@ -44,9 +46,7 @@ const DiscoverCopy = () => {
           dir={isArabic ? "rtl" : "ltr"}
           style={{ fontFamily: '"SF Pro Text", sans-serif' }}
         >
-          {isArabic
-            ? "اكتشف أفضل الحلول عبر 12 فئة مختلفة. تقوم ExploreTECH بتبسيط بحثك عن برنامج إدارة الفنادق المثالي، بما في ذلك الأنظمة القائمة على السحابة"
-            : "Explore the best solutions across 12 categories. ExploreTECH simplifies your search for the ideal Hotel Management Software, including cloud-based systems."}
+          {t("discover.bodyDescription")}
         </p>
       </div>
 
@@ -56,7 +56,7 @@ const DiscoverCopy = () => {
         }`}
         style={{ fontFamily: '"SF Pro Text", sans-serif' }}
       >
-        {isArabic ? "تصفح جميع الفئات" : "Browse all categories"}
+        {t("discover.browseAll")}
       </button>
     </div>
   );

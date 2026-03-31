@@ -1,4 +1,5 @@
 import { ChevronLeft, ChevronRight, Menu, Search, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import {
   searchButtonDesktop,
   searchButtonTablet,
@@ -54,35 +55,45 @@ export const MobileSearchButton = ({ onClick }) => (
   </button>
 );
 
-export const TabletSignInButton = ({ language, onSignIn }) => (
-  <a
-    href="#"
-    className={signInButtonTablet.className}
-    style={signInButtonTablet.style}
-    onClick={(event) => {
-      if (!onSignIn) return;
-      event.preventDefault();
-      onSignIn();
-    }}
-  >
-    {signInButtonTablet.label(language)}
-  </a>
-);
+export const TabletSignInButton = ({ onSignIn }) => {
+  const { t } = useTranslation("common");
+  const label = `${t("navbar.signIn")} / ${t("navbar.signUp")}`;
 
-export const MobileSignInButton = ({ language, onSignIn }) => (
-  <a
-    href="#"
-    className={signInButtonMobile.className}
-    style={signInButtonMobile.style}
-    onClick={(event) => {
-      if (!onSignIn) return;
-      event.preventDefault();
-      onSignIn();
-    }}
-  >
-    {signInButtonMobile.label(language)}
-  </a>
-);
+  return (
+    <a
+      href="#"
+      className={signInButtonTablet.className}
+      style={signInButtonTablet.style}
+      onClick={(event) => {
+        if (!onSignIn) return;
+        event.preventDefault();
+        onSignIn();
+      }}
+    >
+      {label}
+    </a>
+  );
+};
+
+export const MobileSignInButton = ({ onSignIn }) => {
+  const { t } = useTranslation("common");
+  const label = `${t("navbar.signIn")} / ${t("navbar.signUp")}`;
+
+  return (
+    <a
+      href="#"
+      className={signInButtonMobile.className}
+      style={signInButtonMobile.style}
+      onClick={(event) => {
+        if (!onSignIn) return;
+        event.preventDefault();
+        onSignIn();
+      }}
+    >
+      {label}
+    </a>
+  );
+};
 
 export const TabletMenuButton = ({ onClick }) => (
   <button
@@ -106,7 +117,8 @@ export const MobileMenuButton = ({ onClick }) => (
   </button>
 );
 
-export const SearchPanelSubmitButton = ({ language, hasQuery }) => {
+export const SearchPanelSubmitButton = ({ hasQuery }) => {
+  const { t } = useTranslation("common");
   const className = `order-3 ml-2 ${searchSubmitButtonClass} ${
     hasQuery ? "opacity-100" : "cursor-not-allowed opacity-50"
   }`;
@@ -118,7 +130,7 @@ export const SearchPanelSubmitButton = ({ language, hasQuery }) => {
       style={searchSubmitButton.style}
       aria-label={searchSubmitButton.ariaLabel}
     >
-      {language === "AR" ? "Search" : "Search"}
+      {t("navMenu.searchButton")}
     </button>
   );
 };
@@ -136,15 +148,19 @@ export const SearchPanelClearButton = ({ onClear, language }) => (
   </button>
 );
 
-export const ViewMoreTab = () => (
-  <button
-    className={viewMoreButton.className}
-    style={viewMoreButton.style}
-    aria-label={viewMoreButton.ariaLabel}
-  >
-    {viewMoreButton.label("EN")}
-  </button>
-);
+export const ViewMoreTab = () => {
+  const { t } = useTranslation("common");
+
+  return (
+    <button
+      className={viewMoreButton.className}
+      style={viewMoreButton.style}
+      aria-label={viewMoreButton.ariaLabel}
+    >
+      {t("navMenu.viewMore")}
+    </button>
+  );
+};
 
 export const TabScrollButton = ({ direction, onClick }) => {
   if (direction === "left") {
@@ -169,13 +185,17 @@ export const TabScrollButton = ({ direction, onClick }) => {
   );
 };
 
-export const CompareItemButton = () => (
-  <button
-    className={compareButton.className}
-    style={compareButton.style}
-    aria-label={compareButton.ariaLabel}
-    type={compareButton.type}
-  >
-    Compare
-  </button>
-);
+export const CompareItemButton = () => {
+  const { t } = useTranslation("common");
+
+  return (
+    <button
+      className={compareButton.className}
+      style={compareButton.style}
+      aria-label={compareButton.ariaLabel}
+      type={compareButton.type}
+    >
+      {t("navMenu.compareButton")}
+    </button>
+  );
+};

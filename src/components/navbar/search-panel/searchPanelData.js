@@ -1,5 +1,7 @@
-import { latestNewsItems } from "../../../data/latestNews.js";
+﻿import { latestNewsItems } from "../../../data/latestNews.js";
 import verifiedIcon from "../../../assets/icon/verified.png";
+import enCommon from "../../../i18n/locales/en/common.json";
+import arCommon from "../../../i18n/locales/ar/common.json";
 import productLogo1 from "../../../assets/growing-network/logos/gs14qlFntB.webp";
 import productLogo2 from "../../../assets/growing-network/logos/x5WsbnAfcg.jpg";
 import productLogo3 from "../../../assets/growing-network/logos/121121tacit_corp_logo.jpg";
@@ -10,141 +12,102 @@ import providerLogo3 from "../../../assets/growing-network/logos/160512081225ota
 import providerLogo4 from "../../../assets/growing-network/logos/160559081243thynkcloud.jpg";
 import providerLogo5 from "../../../assets/growing-network/logos/161157081536d-edge.jpg";
 
-export const subcategoriesEn = [
-  "Hospitality Purchasing Software",
-  "Time and Attendance Systems",
-  "Audit Services",
-  "Location Solutions",
-  "Security",
+const enSearchPanel = enCommon.searchPanel;
+const arSearchPanel = arCommon.searchPanel;
+
+const subcategoryKeys = [
+  "hospitalityPurchasingSoftware",
+  "timeAndAttendanceSystems",
+  "auditServices",
+  "locationSolutions",
+  "security",
 ];
 
-export const subcategoriesAr = [
-  "برمجيات شراء الضيافة",
-  "أنظمة الوقت والحضور",
-  "خدمات تدقيق",
-  "حلول الموقع",
-  "الأمن",
+const searchTabKeys = [
+  "all",
+  "subcategories",
+  "products",
+  "serviceProviders",
+  "blogs",
+  "news",
 ];
 
-export const searchTabsEn = [
-  "All",
-  "Subcategories",
-  "Products",
-  "Service Providers",
-  "Blogs",
-  "News",
+const productKeys = [
+  "personalPayments",
+  "electronicPaymentsPlatform",
+  "wifiGuestManagement",
+  "alliantsGuestApp",
+  "alliantsExperiencePlatform",
 ];
 
-export const searchTabsAr = [
-  "الجميع",
-  "الفئات الفرعية",
-  "المنتجات",
-  "مزودوا الخدمات",
-  "المدونات",
-  "الأخبار",
+const allProductKeys = [
+  "meetingPackageVenueSalesManagement",
+  "ventoSpecializedPosByHotelTime",
+  "proTechtSystemByFiserv",
+  "kwentraPointOfSale",
+  "hotelogixOnlineBookingSystem",
 ];
 
-export const productsDataEn = [
-  {
-    title: "Personal Payments",
-    subtitle: "Payment Platforms",
-    logo: productLogo1,
-    verified: true,
-  },
-  {
-    title: "Electronic Payments Platform",
-    subtitle: "POS System",
-    logo: productLogo1,
-    verified: true,
-  },
-  {
-    title: "WiFi Guest Management",
-    subtitle: "Guest Internet",
-    logo: productLogo3,
-    verified: true,
-    hasAI: true,
-  },
-  {
-    title: "Alliants Guest App",
-    subtitle: "Contactless Hotel Solutions",
-    logo: productLogo2,
-    verified: true,
-  },
-  {
-    title: "Alliants Experience Platform",
-    subtitle: "Guest Experiences",
-    logo: productLogo2,
-    verified: true,
-  },
+const blogKeys = [
+  "reshapingHospitalityIndustryThroughVrAndAr",
+  "navigatingFutureSustainableTourism",
 ];
 
-export const productsDataAr = [
-  {
-    title: "المدفوعات الشخصية",
-    subtitle: "منصات الدفع",
-    logo: productLogo1,
-    verified: true,
-  },
-  {
-    title: "منصة المدفوعات الإلكترونية",
-    subtitle: "نظام نقاط البيع (POS)",
-    logo: productLogo1,
-    verified: true,
-  },
-  {
-    title: "WiFi Guest Management",
-    subtitle: "إنترنت الضيف",
-    logo: productLogo3,
-    verified: true,
-    hasAI: true,
-  },
-  {
-    title: "Alliants Guest App",
-    subtitle: "حلول الفندق بدون تلامس",
-    logo: productLogo2,
-    verified: true,
-  },
-  {
-    title: "Alliants Experience Platform",
-    subtitle: "تجارب الضيوف",
-    logo: productLogo2,
-    verified: true,
-  },
-];
+const productVisuals = {
+  personalPayments: { logo: productLogo1, verified: true },
+  electronicPaymentsPlatform: { logo: productLogo1, verified: true },
+  wifiGuestManagement: { logo: productLogo3, verified: true, hasAI: true },
+  alliantsGuestApp: { logo: productLogo2, verified: true },
+  alliantsExperiencePlatform: { logo: productLogo2, verified: true },
+};
 
-export const allProductsData = [
-  {
-    title: "MeetingPackage Venue Sales Management",
-    subtitle: "Event Management",
-    logo: productLogo1,
-  },
-  {
-    title: "Vento Specialized POS by HotelTime",
-    subtitle: "Restaurant Payment Platforms & Restaurant Management Software",
-    logo: productLogo2,
-    hasAI: true,
-    verified: true,
-  },
-  {
-    title: "Pro-Techt System by Fiserv",
-    subtitle: "Contactless Hotel Solutions",
-    logo: productLogo3,
-    verified: true,
-  },
-  {
-    title: "Kwentra Point of Sale",
-    subtitle: "Point of Sale (POS) System",
-    logo: productLogo4,
-    verified: true,
-  },
-  {
-    title: "Hotelogix Online Booking System",
-    subtitle: "Internet Booking Engine (IBE)",
-    logo: providerLogo4,
-    hasAI: true,
-    verified: true,
-  },
-];
+const allProductVisuals = {
+  meetingPackageVenueSalesManagement: { logo: productLogo1 },
+  ventoSpecializedPosByHotelTime: { logo: productLogo2, hasAI: true, verified: true },
+  proTechtSystemByFiserv: { logo: productLogo3, verified: true },
+  kwentraPointOfSale: { logo: productLogo4, verified: true },
+  hotelogixOnlineBookingSystem: { logo: providerLogo4, hasAI: true, verified: true },
+};
+
+const mapProducts = (localeSearchPanel) =>
+  productKeys.map((key) => ({
+    title: localeSearchPanel.products?.[key]?.title || "",
+    subtitle: localeSearchPanel.products?.[key]?.subtitle || "",
+    ...productVisuals[key],
+  }));
+
+const mapAllProducts = (localeSearchPanel) =>
+  allProductKeys.map((key) => ({
+    title: localeSearchPanel.allProducts?.[key]?.title || "",
+    subtitle: localeSearchPanel.allProducts?.[key]?.subtitle || "",
+    ...allProductVisuals[key],
+  }));
+
+export const subcategoriesEn = subcategoryKeys.map(
+  (key) => enSearchPanel.subcategories?.[key] || "",
+);
+
+export const subcategoriesAr = subcategoryKeys.map(
+  (key) => arSearchPanel.subcategories?.[key] || "",
+);
+
+export const searchTabsEn = searchTabKeys.map(
+  (key) => enSearchPanel.tabs?.[key] || "",
+);
+
+export const searchTabsAr = searchTabKeys.map(
+  (key) => arSearchPanel.tabs?.[key] || "",
+);
+
+export const productsDataEn = mapProducts(enSearchPanel);
+
+export const productsDataAr = mapProducts(arSearchPanel);
+
+export const allProductsDataEn = mapAllProducts(enSearchPanel);
+
+export const allProductsDataAr = mapAllProducts(arSearchPanel);
+
+export const allProductsData = allProductsDataEn;
 
 export const serviceProvidersData = [
   { name: "Hosdu", logo: providerLogo1, verified: true },
@@ -158,17 +121,11 @@ export const allServiceProvidersData = [
   { name: "Viralops Company", logo: providerLogo3, verified: true },
 ];
 
-export const blogsDataEn = [
-  { title: "Reshaping the Hospitality Industry through VR and AR" },
-  { title: "Navigating the Future of Sustainable Tourism" },
-];
+export const blogsDataEn = blogKeys.map((key) => ({
+  title: enSearchPanel.blogs?.[key] || "",
+}));
 
-export const newsItemTitlesAr = [
-  "Paid News Check- AR",
-  "Shady Brand News- AR",
-  "Email Test New shady News- AR",
-  "Shady News Edit- AR",
-];
+export const newsItemTitlesAr = arSearchPanel.newsItemTitles || [];
 
 export const searchPanelAssets = {
   latestNewsItems,

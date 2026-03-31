@@ -1,83 +1,41 @@
-﻿// Centralized headings/labels for NavMenu
-export const navMenuHeadings = {
-  en: {
-    categories: "Categories",
-    products: "Products",
-    vendors: "Vendors",
-    advisoryServices: "Advisory Services",
-    resources: "Resources",
-    events: "Events",
-    contactUs: "Contact Us",
-  },
-  ar: {
-    categories: "الفئات",
-    products: "المنتجات",
-    vendors: "مزودوا الخدمات",
-    advisoryServices: "خدمات استشارية",
-    resources: "الموارد",
-    events: "الأحداث",
-    contactUs: "اتصل بنا",
-  },
-};
+﻿export const getNavMenuHeadings = (t) => ({
+  categories: t("navMenu.categories"),
+  products: t("navMenu.products"),
+  vendors: t("navMenu.vendors"),
+  advisoryServices: t("navMenu.advisoryServices"),
+  resources: t("navMenu.resources"),
+  events: t("navMenu.events"),
+  contactUs: t("navMenu.contactUs"),
+});
 
-export const drawerMenuHeadings = {
-  en: {
-    categories: "CATEGORIES",
-    products: "PRODUCTS",
-    vendors: "VENDORS",
-    advisoryServices: "ADVISORY SERVICES",
-    resources: "RESOURCES",
-    events: "EVENTS",
-    contactUs: "CONTACT US",
-  },
-  ar: {
-    categories: "الفئات",
-    products: "المنتجات",
-    vendors: "مزودوا الخدمات",
-    advisoryServices: "خدمات استشارية",
-    resources: "RESOURCES",
-    events: "الأحداث",
-    contactUs: "اتصل بنا",
-  },
-};
+export const getDrawerMenuHeadings = (t) => ({
+  categories: t("navMenu.categoriesUpper"),
+  products: t("navMenu.productsUpper"),
+  vendors: t("navMenu.vendorsUpper"),
+  advisoryServices: t("navMenu.advisoryServicesUpper"),
+  resources: t("navMenu.resourcesUpper"),
+  events: t("navMenu.eventsUpper"),
+  contactUs: t("navMenu.contactUsUpper"),
+});
 
-export const searchTabsLabels = {
-  en: {
-    all: "All",
-    subcategories: "Subcategories",
-    products: "Products",
-    serviceProviders: "Service Providers",
-    blogs: "Blogs",
-    news: "News",
-  },
-  ar: {
-    all: "الجميع",
-    subcategories: "الفئات الفرعية",
-    products: "المنتجات",
-    serviceProviders: "مزودوا الخدمات",
-    blogs: "المدونات",
-    news: "الأخبار",
-  },
-};
+export const getSearchTabsLabels = (t) => ({
+  all: t("searchPanel.tabs.all"),
+  subcategories: t("searchPanel.tabs.subcategories"),
+  products: t("searchPanel.tabs.products"),
+  serviceProviders: t("searchPanel.tabs.serviceProviders"),
+  blogs: t("searchPanel.tabs.blogs"),
+  news: t("searchPanel.tabs.news"),
+});
 
-export const searchSectionHeadings = {
-  en: {
-    subcategories: "Subcategories:",
-    products: "Products:",
-    serviceProviders: "Service Providers:",
-    blogs: "Blogs:",
-    news: "News:",
-  },
-  ar: {
-    subcategories: "الفئات الفرعية:",
-    products: "المنتجات:",
-    serviceProviders: "مزودوا الخدمات:",
-    blogs: "المدونات:",
-    news: "الأخبار:",
-  },
-};
+export const getSearchSectionHeadings = (t) => ({
+  subcategories: t("searchPanel.sections.subcategories"),
+  products: t("searchPanel.sections.products"),
+  serviceProviders: t("searchPanel.sections.serviceProviders"),
+  blogs: t("searchPanel.sections.blogs"),
+  news: t("searchPanel.sections.news"),
+});
 
-export const languageLabels = {
-  english: "English",
-  arabic: "العربية",
-};
+export const getLanguageLabels = (t) => ({
+  english: t("navMenu.languageOptions.english"),
+  arabic: t("navMenu.languageOptions.arabic"),
+});
