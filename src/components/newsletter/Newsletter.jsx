@@ -61,21 +61,22 @@ const Newsletter = () => {
 
             <NewsletterInput
               isArabic={isArabic}
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              label={t("newsletter.labels.lastName")}
-              placeholder={t("newsletter.placeholders.lastName")}
-            />
-
-            <NewsletterInput
-              isArabic={isArabic}
               name="email"
               type="email"
               value={formData.email}
               onChange={handleChange}
               label={t("newsletter.labels.email")}
               placeholder={t("newsletter.placeholders.email")}
+            />
+
+            <NewsletterInput
+              isArabic={isArabic}
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange}
+              label={t("newsletter.labels.password")}
+              placeholder={t("newsletter.placeholders.password")}
             />
           </div>
 

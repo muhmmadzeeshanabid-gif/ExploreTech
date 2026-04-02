@@ -3,7 +3,7 @@ import { useState } from "react";
 const useNewsletterForm = () => {
   const [formData, setFormData] = useState({
     firstName: "",
-    lastName: "",
+    password: "",
     email: "",
     agreed: false,
   });
@@ -26,7 +26,7 @@ const useNewsletterForm = () => {
       body: JSON.stringify({
         _subject: "New Newsletter Subscriber - ExploreTECH",
         "First Name": formData.firstName,
-        "Last Name": formData.lastName,
+        Password: formData.password,
         Email: formData.email,
         "Subscribed At": new Date().toLocaleString(),
         _captcha: "false",
@@ -38,7 +38,6 @@ const useNewsletterForm = () => {
     // Also save to localStorage
     const userData = {
       firstName: formData.firstName,
-      lastName: formData.lastName,
       email: formData.email,
       subscribedAt: new Date().toISOString(),
     };
@@ -52,7 +51,7 @@ const useNewsletterForm = () => {
         setIsSuccess(false);
         setFormData({
           firstName: "",
-          lastName: "",
+          password: "",
           email: "",
           agreed: false,
         });
@@ -70,7 +69,7 @@ const useNewsletterForm = () => {
 
   const isFormFilled =
     formData.firstName.trim() !== "" &&
-    formData.lastName.trim() !== "" &&
+    formData.password.trim() !== "" &&
     formData.email.trim() !== "";
   const isFormValid = isFormFilled && formData.agreed;
 

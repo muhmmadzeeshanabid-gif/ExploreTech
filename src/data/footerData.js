@@ -1,3 +1,9 @@
+import enCommon from "../i18n/locales/en/common.json";
+import arCommon from "../i18n/locales/ar/common.json";
+
+const enFooter = enCommon.footer || {};
+const arFooter = arCommon.footer || {};
+
 export const countries = [
   "--Select Country--",
   "Afghanistan",
@@ -247,59 +253,9 @@ export const countries = [
   "Zimbabwe",
 ];
 
-export const footerLinksGroupsAR = [
-  [
-    "لمحة عامة",
-    "أسئلة متكررة",
-    "التسعير والمزايا للبائعين",
-    "اتصل بنا",
-    "المدونة",
-    "ابدأ مقارنة جديدة",
-  ],
-  [
-    "أحدث الأخبار",
-    "اكتشف أخبار التكنولوجيا",
-    "اكسبلورتك في وسائل الإعلام",
-    "استكشف أحداث التكنولوجيا",
-    "الشروط والأحكام",
-    "شروط الاستخدام",
-  ],
-  [
-    "سياسة الاسترجاع",
-    "اتفاقية ملفات تعريف الارتباط",
-    "سياسة الخصوصية",
-    "شروط وأحكام صوت الخبير",
-    "الموارد",
-    "إعدادات ملفات تعريف الارتباط",
-  ],
-];
+export const footerLinksGroupsAR = arFooter.linksGroups || [];
 
-export const footerLinksGroupsEN = [
-  [
-    "About Us",
-    "FAQ",
-    "Pricing",
-    "Contact Us",
-    "Blog",
-    "Start a New Comparison",
-  ],
-  [
-    "Latest News",
-    "ExploreTECH News",
-    "ExploreTECH in the Media",
-    "ExploreTECH Events",
-    "Terms & Conditions",
-    "Terms of Use",
-  ],
-  [
-    "Refund Policy",
-    "Cookies Policy",
-    "Privacy Policy",
-    "VOE Terms & Conditions",
-    "Resources",
-    "Cookie Settings",
-  ],
-];
+export const footerLinksGroupsEN = enFooter.linksGroups || [];
 
 export const socialLinks = [
   { iconClass: "bi bi-twitter-x", label: "X" },
@@ -309,11 +265,11 @@ export const socialLinks = [
 ];
 
 export const contactInfo = {
-  ar: "مكتب إكسبلورتك في دبي:3906، Mazaya Business Avenue BB1، أبراج بحيرة جميرا، صندوق بريد 333834، دبي، الإمارات العربية المتحدة|اتصل بنا:+971 (0)4 363 6588|راسلنا عبر البريد الإلكتروني:exploremore@exploretech.io",
-  en: "ExploreTECH Dubai office. 3906, Mazaya Business Avenue BB1, JLT P.O.Box 333834, Dubai, UAE | Call Us: +971 (0)4 363 6588 | Email Us: exploremore@exploretech.io",
+  ar: arFooter.contactInfo || "",
+  en: enFooter.contactInfo || "",
 };
 
 export const copyrightText = {
-  ar: "© إكسبلورتك. جميع الحقوق محفوظة",
-  en: "© Copyright 2024, All Rights Reserved",
+  ar: arFooter.copyright || "",
+  en: enFooter.copyright || "",
 };

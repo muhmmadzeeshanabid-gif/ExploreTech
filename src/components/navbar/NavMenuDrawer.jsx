@@ -83,7 +83,9 @@ const NavMenuDrawer = ({
         aria-modal="true"
       >
         <div
-          className={`flex items-start justify-between px-6 pb-4 pt-8 ${
+          className={`flex items-start justify-between px-6 ${
+            isArabic ? "pb-1 pt-4" : "pb-4 pt-8"
+          } ${
             isArabic ? "flex-row-reverse" : ""
           }`}
         >
@@ -92,7 +94,7 @@ const NavMenuDrawer = ({
               src={navLogo}
               alt="Explore Tech"
               className={`h-[60px] w-auto object-contain ${
-                isArabic ? "ml-0 mr-0" : "-ml-2"
+                isArabic ? "-mt-2 ml-0 mr-0 object-top" : "-ml-2"
               }`}
               style={{ filter: "invert(1) brightness(1.2)" }}
             />
@@ -116,7 +118,7 @@ const NavMenuDrawer = ({
           </button>
         </div>
 
-        <nav className="relative mt-4 px-6 text-white">
+        <nav className={`relative px-6 text-white ${isArabic ? "mt-1" : "mt-4"}`}>
           <button
             type="button"
             className={`flex w-full items-center justify-between border-b border-[#18c443] py-4 text-[16px] font-semibold tracking-wide ${
